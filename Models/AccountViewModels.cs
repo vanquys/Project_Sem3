@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Project_Sem3.Models
@@ -129,4 +130,5 @@ namespace Project_Sem3.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+   
 }

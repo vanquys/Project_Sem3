@@ -11,11 +11,10 @@ namespace Project_Sem3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetUser()
         {
-            Admins = new HashSet<Admin>();
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
-            Employees = new HashSet<Employee>();
-            Students = new HashSet<Student>();
+            Registrations = new HashSet<Registration>();
+            UserCompetitions = new HashSet<UserCompetition>();
             AspNetRoles = new HashSet<AspNetRole>();
         }
 
@@ -46,8 +45,19 @@ namespace Project_Sem3.Models
         [StringLength(256)]
         public string UserName { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Admin> Admins { get; set; }
+        [StringLength(50)]
+        public string Name { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? BirthDate { get; set; }
+
+        [StringLength(200)]
+        public string Image { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? CreateDate { get; set; }
+
+        public bool? isResigned { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -56,10 +66,10 @@ namespace Project_Sem3.Models
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Registration> Registrations { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<UserCompetition> UserCompetitions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }

@@ -106,3 +106,7 @@ E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.csproj.CopyComplete
 E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.dll
 E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.pdb
 E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.csproj.AssemblyReference.cache
+E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.Migrations.abc.resources
+E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.csproj.GenerateResource.cache
+E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.Migrations.changedata.resources
+E:\C#\Project\Project_Sem3\obj\Debug\Project_Sem3.Migrations.addcreatedate.resources

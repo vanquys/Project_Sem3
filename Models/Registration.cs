@@ -6,32 +6,29 @@ namespace Project_Sem3.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Student
+    [Table("Registration")]
+    public partial class Registration
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-
-        [StringLength(128)]
-        public string UserId { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? BirthDate { get; set; }
+        public DateTime? JoinDate { get; set; }
+
+        [StringLength(128)]
+        public string RollNo { get; set; }
 
         [StringLength(50)]
-        public string Phone { get; set; }
+        public String Class { get; set; }
 
         [StringLength(50)]
-        public string Email { get; set; }
+        public string Specification { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? CreateDate { get; set; }
-
-        [StringLength(200)]
-        public string Image { get; set; }
-
-        public bool? isResigned { get; set; }
+        [StringLength(50)]
+        public string Section { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }
     }

@@ -158,17 +158,38 @@ namespace Project_Sem3.Controllers
                 return View(model);
             }
             AspNetUser uCheck = db.AspNetUsers.SingleOrDefault(u1 => u1.Email.Equals(model.Email));
-            Admin aCheck = db.Admins.SingleOrDefault(u1 => u1.Email.Equals(model.Email));
-            Employee eCheck = db.Employees.SingleOrDefault(u1 => u1.Email.Equals(model.Email));
-            Student sCheck = db.Students.SingleOrDefault(u1 => u1.Email.Equals(model.Email));
-            if (uCheck != null || aCheck != null || eCheck != null || sCheck != null) {
+      
+            if (uCheck != null ) {
                 ViewBag.MessageRegister = "Email already exists ";
                 return View(model);
             }
+
             int resultRegiter = 0;
-           
+            bool isResigned = false;
             String roleName = Request.Form["role"];
-            var account = new ApplicationUser { PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email };
+            if (roleName == "Admin") {
+                isResigned = true;
+            }
+            // convert birthDate to DateTime
+        
+            DateTime birthDate; string sDateTime;
+            try { birthDate = Convert.ToDateTime(model.BirthDate); }
+            catch (Exception ex)
+            {
+                try
+                {
+                    string[] sDate = model.BirthDate.Split('/');
+                    sDateTime = sDate[1] + '/' + sDate[0] + '/' + sDate[2];
+                    birthDate = Convert.ToDateTime(sDateTime);
+                }
+                catch {
+                    ViewBag.MessageRegister = "Input BirthDate must be dd/MM/YYYY or MM/dd/YYYY";
+                    return View(model);
+                }
+            }
+
+
+            var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = model.Image, isResigned=isResigned};
 
             SqlTransaction RegisterTrans = null;
             using (SqlConnection objConn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=KSMT;Persist Security Info=True;User ID=sa;Password=123;MultipleActiveResultSets=True;Application Name=EntityFramework"))
@@ -180,7 +201,10 @@ namespace Project_Sem3.Controllers
                     var result = await UserManager.CreateAsync(account, model.Password);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(account, isPersistent: false, rememberBrowser: false);
+                        if (isResigned)
+                        {
+                            await SignInManager.SignInAsync(account, isPersistent: false, rememberBrowser: false);
+                        }
                         AddErrors(result);
                         RegisterTrans.Commit();
                     }
@@ -190,7 +214,7 @@ namespace Project_Sem3.Controllers
                         return View(model);
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     RegisterTrans.Rollback();
                     return View(model);
@@ -221,58 +245,13 @@ namespace Project_Sem3.Controllers
                 {
                     db.AspNetUsers.Remove(userRegister);
                     db.SaveChanges();
-
-
                     resultRegiter = -2;
                     ViewBag.MessageRegister = "Register to failed ! ";
                     return View(model);
                 }
             }
 
-
-            // register for user
-           
-            DateTime birthDate = DateTime.ParseExact(model.BirthDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            switch (roleName) {
-                case "Admin":
-                    Admin admin = new Admin();
-                    admin.Name = model.Name;
-                    admin.BirthDate = birthDate;
-                    admin.Phone = model.Phone;
-                    admin.Image = model.Image;
-                    admin.UserId = userRegister.Id;
-                    admin.Email = model.Email;
-                    db.Admins.Add(admin);
-                    db.SaveChanges();
-                    resultRegiter = 2;
-                    break;
-                case "Employee":
-                    Employee em = new Employee();
-                    em.Name = model.Name;
-                    em.BirthDate = birthDate;
-                    em.Phone = model.Phone;
-                    em.Image = model.Image;
-                    em.UserId = userRegister.Id;
-                    em.Email = model.Email;
-                    db.Employees.Add(em);
-                    resultRegiter = 2;
-                    db.SaveChanges();
-                    break;
-                case "Student":
-                    Student st = new Student();
-                    st.Name = model.Name;
-                    st.BirthDate = birthDate;
-                    st.Phone = model.Phone;
-                    st.Image = model.Image;
-                    st.UserId = userRegister.Id;
-                    st.Email = model.Email;
-                    db.Students.Add(st);
-                    resultRegiter = 2;
-                    db.SaveChanges();
-                    break;
-            }
-
-            if (resultRegiter == 2) {
+            if (resultRegiter == 1) {
                 ViewBag.MessageRegister = "Register Success !";
                 return RedirectToAction("Index", "Home");
             }

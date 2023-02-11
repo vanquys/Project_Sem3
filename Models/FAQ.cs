@@ -6,13 +6,16 @@ namespace Project_Sem3.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("SurveyResult")]
-    public partial class SurveyResult
+    [Table("FAQ")]
+    public partial class FAQ
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        public int? MemberId { get; set; }
+        [StringLength(150)]
+        public string Question { get; set; }
 
-        public virtual Member Member { get; set; }
+        [StringLength(150)]
+        public string Answer { get; set; }
     }
 }

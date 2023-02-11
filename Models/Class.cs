@@ -6,13 +6,12 @@ namespace Project_Sem3.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Member")]
-    public partial class Member
+    public partial class Class
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Member()
+        public Class()
         {
-            SurveyResults = new HashSet<SurveyResult>();
+            Registrations = new HashSet<Registration>();
         }
 
         public int Id { get; set; }
@@ -20,21 +19,7 @@ namespace Project_Sem3.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        public int? RollNo { get; set; }
-
-        [StringLength(50)]
-        public string Class { get; set; }
-
-        [StringLength(50)]
-        public string Specification { get; set; }
-
-        [StringLength(50)]
-        public string Section { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? JoinDate { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SurveyResult> SurveyResults { get; set; }
+        public virtual ICollection<Registration> Registrations { get; set; }
     }
 }

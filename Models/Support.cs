@@ -6,19 +6,13 @@ namespace Project_Sem3.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Employee")]
-    public partial class Employee
+    public partial class Support
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-
-        [StringLength(128)]
-        public string UserId { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? BirthDate { get; set; }
 
         [StringLength(50)]
         public string Phone { get; set; }
@@ -26,14 +20,7 @@ namespace Project_Sem3.Models
         [StringLength(50)]
         public string Email { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? CreateDate { get; set; }
-
-        [StringLength(200)]
-        public string Image { get; set; }
-
-        public bool? isResigned { get; set; }
-
-        public virtual AspNetUser AspNetUser { get; set; }
+        [StringLength(150)]
+        public string Position { get; set; }
     }
 }
