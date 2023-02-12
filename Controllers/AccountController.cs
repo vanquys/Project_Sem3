@@ -166,12 +166,15 @@ namespace Project_Sem3.Controllers
 
             int resultRegiter = 0;
             bool isResigned = false;
+            DateTime lockoutEndDateUtc;
+            lockoutEndDateUtc = new DateTime(9999,01,01);
             String roleName = Request.Form["role"];
             if (roleName == "Admin") {
                 isResigned = true;
+                lockoutEndDateUtc = new DateTime(1999, 01, 01);
             }
+
             // convert birthDate to DateTime
-        
             DateTime birthDate; string sDateTime;
             try { birthDate = Convert.ToDateTime(model.BirthDate); }
             catch (Exception ex)
@@ -187,10 +190,7 @@ namespace Project_Sem3.Controllers
                     return View(model);
                 }
             }
-
-
-            var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = model.Image, isResigned=isResigned};
-
+            var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = model.Image, isResigned=isResigned, LockoutEndDateUtc = lockoutEndDateUtc };
             SqlTransaction RegisterTrans = null;
             using (SqlConnection objConn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=KSMT;Persist Security Info=True;User ID=sa;Password=123;MultipleActiveResultSets=True;Application Name=EntityFramework"))
             {
@@ -211,12 +211,14 @@ namespace Project_Sem3.Controllers
                     else
                     {
                         RegisterTrans.Rollback();
+                        ViewBag.MessageRegister = "Can not Create Async !";
                         return View(model);
                     }
                 }
                 catch (Exception e)
                 {
                     RegisterTrans.Rollback();
+                    ViewBag.MessageRegister =" Error: " + e;
                     return View(model);
                 }
                 finally
@@ -225,8 +227,9 @@ namespace Project_Sem3.Controllers
                 }
             }
             // add role for user
-          
+
             AspNetUser userRegister = db.AspNetUsers.SingleOrDefault(u1 => u1.Email.Equals(model.Email));
+
             if (userRegister==null) {
                 ViewBag.MessageRegister = "-- Register to failed ! --";
                 resultRegiter = -1;
@@ -234,12 +237,12 @@ namespace Project_Sem3.Controllers
             }
             else{
                 try
-                {
+                {   
+
                     var context = new ApplicationDbContext();
                     var userStore = new UserStore<ApplicationUser>(context);
                     var userManager = new UserManager<ApplicationUser>(userStore);
                     userManager.AddToRole(userRegister.Id, roleName);
-                    resultRegiter = 1;
                 }
                 catch (Exception e)
                 {
