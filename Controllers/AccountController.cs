@@ -243,6 +243,7 @@ namespace Project_Sem3.Controllers
                     var userStore = new UserStore<ApplicationUser>(context);
                     var userManager = new UserManager<ApplicationUser>(userStore);
                     userManager.AddToRole(userRegister.Id, roleName);
+                    resultRegiter = 1;
                 }
                 catch (Exception e)
                 {
