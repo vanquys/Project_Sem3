@@ -41,6 +41,10 @@ namespace Project_Sem3.Controllers
               }
               return View(aspNetUser);
           }*/
+        public ActionResult CheckRegistration(String id) {
+
+            return View("ListUser");
+        }
         [HttpGet]
         public ActionResult DeleteUser()
         {
