@@ -213,7 +213,6 @@ E:\GitHub\Project_Sem3\bin\Microsoft.Owin.Security.Twitter.xml
 E:\GitHub\Project_Sem3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\GitHub\Project_Sem3\bin\Microsoft.Owin.Security.OAuth.xml
 E:\GitHub\Project_Sem3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.AssemblyReference.cache
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.abc.resources
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.changedata.resources
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.addcreatedate.resources
@@ -222,3 +221,5 @@ E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.CoreCompileInputs.cache
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.CopyComplete
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.dll
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.pdb
+E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.abc1.resources
+E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.AssemblyReference.cache

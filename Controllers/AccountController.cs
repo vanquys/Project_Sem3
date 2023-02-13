@@ -170,7 +170,6 @@ namespace Project_Sem3.Controllers
             lockoutEndDateUtc = new DateTime(9999,01,01);
             String roleName = Request.Form["role"];
             if (roleName == "Admin") {
-                isResigned = true;
                 lockoutEndDateUtc = new DateTime(1999, 01, 01);
             }
 
@@ -201,10 +200,10 @@ namespace Project_Sem3.Controllers
                     var result = await UserManager.CreateAsync(account, model.Password);
                     if (result.Succeeded)
                     {
-                        if (isResigned)
+                     /*   if (roleName == "Admin")
                         {
                             await SignInManager.SignInAsync(account, isPersistent: false, rememberBrowser: false);
-                        }
+                        }*/
                         AddErrors(result);
                         RegisterTrans.Commit();
                     }
