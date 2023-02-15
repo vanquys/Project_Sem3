@@ -6,7 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/assets/css/layout/navbarcss.css" rel="stylesheet" />
+     
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,16 +21,47 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
+
+
+
     <div class="container body-content">
+
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Service</h2>
+                        <div class="service">
+                            <a href="#">Report problem</a>
+                            <a href="#">FAQ's</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Follow Us</h2>
+                        <div class="service">
+                            <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Host line</h2>
+                        <div class="service">
+                            <p><i class="fa-solid fa-phone"></i> 0315872155</p>
+                            <p><i class="fa-solid fa-phone"></i> 0315872155</p>
+                            <p><i class="fa-solid fa-phone"></i> 0315872155</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 

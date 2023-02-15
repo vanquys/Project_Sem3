@@ -5,7 +5,14 @@
 }
 
 <h2>ListUser</h2>
-
+@if (ViewBag.DeleteMessage != null)
+{
+    <script>window.alert('@ViewBag.DeleteMessage');</script>
+}
+@if (ViewBag.AcceptMessage != null)
+{
+    <script>window.alert(ViewBag.DeleteMessage);</script>
+}
 <table class="table">
     <tr>
         <th>
@@ -13,9 +20,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -28,49 +32,90 @@
             @Html.DisplayNameFor(model => model.Image)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isResigned)
+            <label>Status</label>
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
+    @foreach (var item in Model)
+    {
+        <tr>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.PasswordHash)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.BirthDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Image)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreateDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.isResigned)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        <a href="DeleteUser?id=@item.Id" class="btn btn-default">Delete</a>
-    </td>
-</tr>
-}
+                @if (item.EmailConfirmed)
+                {
+                    if (item.isResigned)
+                    {
+                        <span style="color:red">Resigned</span>
+                    }
+                    else
+                    {
+                        <span class="text-success">Working</span>
+                    }
+                }
+                else
+                {
+                    <span style="color:coral">Processing</span>
+                }
+            </td>
+
+            <td>
+
+                @{
+                    if (!item.EmailConfirmed)
+                    {
+                        using (Html.BeginForm("AcceptRegistration", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            <input type="hidden" value="@item.Id" name="id" />
+                            <button type="submit" class="btn btn-default">Accept</button>
+                        }
+                        using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            <input type="hidden" value="@item.Id" name="id" />
+                            <button type="submit" class="btn btn-default">Reject</button>
+                        }
+                    }
+                    else
+                    {
+                        if (item.isResigned)
+                        {
+                            using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                <input type="hidden" value="@item.Id" name="id" />
+                                <button type="submit" class="btn btn-default">Delete</button>
+                            }
+
+                        }
+                        else
+                        {
+                            <button class="btn btn-default">Edit</button>
+                        }
+
+                    }
+                }
+            </td>
+        </tr>
+    }
 
 </table>

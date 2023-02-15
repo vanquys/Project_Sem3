@@ -169,10 +169,10 @@ namespace Project_Sem3.Controllers
             DateTime lockoutEndDateUtc;
             lockoutEndDateUtc = new DateTime(9999,01,01);
             String roleName = Request.Form["role"];
-            if (roleName == "Admin") {
+       /*     if (roleName == "Admin") {
                 lockoutEndDateUtc = new DateTime(1999, 01, 01);
             }
-
+        */
             // convert birthDate to DateTime
             DateTime birthDate; string sDateTime;
             try { birthDate = Convert.ToDateTime(model.BirthDate); }

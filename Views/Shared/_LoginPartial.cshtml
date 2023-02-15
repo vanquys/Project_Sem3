@@ -13,23 +13,43 @@
             case "Admin":
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Admin", "Index", "Home")</li>
+                    <ul class="nav navbar-nav">
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Home</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Survey Board</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Edit Profile</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Support</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">FAQ’s</a></li>
+                    </ul>
                 </ul> break;
             case "Employee":
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Employee", "Index", "Home")</li>
+                    <ul class="nav navbar-nav">
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Home</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Survey Board</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Edit Profile</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Support</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">FAQ’s</a></li>
+                    </ul>
                 </ul> break;
             case "Student":
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Student", "Index", "Home")</li>
+                    <ul class="nav navbar-nav">
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Home</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Survey Board</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Edit Profile</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">Support</a></li>
+                        <li class="item"><a href="~/Views/Home/Index.cshtml">FAQ’s</a></li>
+                    </ul>
                 </ul> break;
             default:
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="item"><a href="~/Views/Home/Index.cshtml">Home</a></li>
+                    <li class="item"><a href="~/Views/Home/Index.cshtml">Survey Board</a></li>
+                    <li class="item"><a href="~/Views/Home/Index.cshtml">Edit Profile</a></li>
+                    <li class="item"><a href="~/Views/Home/Index.cshtml">Support</a></li>
+                    <li class="item"><a href="~/Views/Home/Index.cshtml">FAQ’s</a></li>
                 </ul>
                 break;
         }

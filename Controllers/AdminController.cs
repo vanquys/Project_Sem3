@@ -41,36 +41,55 @@ namespace Project_Sem3.Controllers
               }
               return View(aspNetUser);
           }*/
-        public ActionResult CheckRegistration(String id) {
-
-            return View("ListUser");
-        }
-        [HttpGet]
-        public ActionResult DeleteUser()
-        {
-            return View();
-        }
         [HttpPost]
-        public ActionResult DeleteUser(String id) {
-            DialogResult dialogResult = MessageBox.Show("Are you sure want to delete this user ?", "Some Title", MessageBoxButtons.YesNo);
+        public ActionResult AcceptRegistration(String id)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure want to accept this user ?", "Some Title", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 AspNetUser user = db.AspNetUsers.Find(id);
-                if (user.isResigned)
+                if (user == null)
+                {
+                    ViewBag.DeleteMessage = "User information not found !";
+                }
+                try
+                {
+                    user.EmailConfirmed = true;
+                    user.LockoutEndDateUtc = new DateTime(1999, 01, 01);
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.AcceptMessage = "User is Accepted !";
+                }
+                catch (Exception e)
+                {
+                    ViewBag.AcceptMessage = "err: " + e;
+                } 
+            }
+            List<AspNetUser> list = db.AspNetUsers.ToList();
+            return View("ListUser", list);
+            
+        }
+
+        [HttpPost]
+        public ActionResult DeleteUser(String id) {
+            DialogResult dialogResult = MessageBox.Show("Are you sure want to delete this user ?", "Some Title", MessageBoxButtons.YesNo);
+            ViewBag.DeleteMessage = null;
+            if (dialogResult == DialogResult.Yes)
+            {
+                AspNetUser user = db.AspNetUsers.Find(id);
+                if (user != null)
                 {
                     db.AspNetUsers.Remove(user);
                     db.SaveChanges();
+                    ViewBag.DeleteMessage = "Deleted user successfully.";
                 }
-                else
-                {
-                    // message user must Resigned
+                else {
+                    ViewBag.DeleteMessage = "User information not found !";
                 }
             }
-            else {
-                return View("ListUser");
-            }
-           
-            return View("Index");    
+
+            List<AspNetUser> list = db.AspNetUsers.ToList();
+            return View("ListUser", list);
         }
 
     }
