@@ -8,7 +8,6 @@ namespace Project_Sem3.Models
 
     public partial class Support
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [StringLength(50)]

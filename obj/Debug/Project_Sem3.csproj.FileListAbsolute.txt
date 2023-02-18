@@ -223,3 +223,4 @@ E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.dll
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.pdb
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.abc1.resources
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.AssemblyReference.cache
+E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.cojko.resources

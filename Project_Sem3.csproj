@@ -174,9 +174,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\FAQsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\SupportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,13 +198,16 @@
     <Compile Include="Migrations\202302121218398_abc1.Designer.cs">
       <DependentUpon>202302121218398_abc1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302180426304_%27co j ko%27.cs" />
+    <Compile Include="Migrations\202302180426304_%27co j ko%27.Designer.cs">
+      <DependentUpon>202302180426304_%27co j ko%27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
-    <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Competition.cs" />
     <Compile Include="Models\DataQuuestion.cs" />
     <Compile Include="Models\FAQ.cs" />
@@ -261,6 +266,15 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Admin\ListUser.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\Supports\Create.cshtml" />
+    <Content Include="Views\Supports\Delete.cshtml" />
+    <Content Include="Views\Supports\Details.cshtml" />
+    <Content Include="Views\Supports\Edit.cshtml" />
+    <Content Include="Views\Supports\Index.cshtml" />
+    <Content Include="Views\FAQs\Create.cshtml" />
+    <Content Include="Views\FAQs\Delete.cshtml" />
+    <Content Include="Views\FAQs\Edit.cshtml" />
+    <Content Include="Views\FAQs\Index.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
@@ -298,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302121218398_abc1.resx">
       <DependentUpon>202302121218398_abc1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302180426304_%27co j ko%27.resx">
+      <DependentUpon>202302180426304_%27co j ko%27.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

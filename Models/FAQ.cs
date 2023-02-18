@@ -9,7 +9,6 @@ namespace Project_Sem3.Models
     [Table("FAQ")]
     public partial class FAQ
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [StringLength(150)]

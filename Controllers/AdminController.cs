@@ -95,6 +95,5 @@ namespace Project_Sem3.Controllers
             List<AspNetUser> list = db.AspNetUsers.ToList();
             return View("ListUser", list);
         }
-
     }
 }
