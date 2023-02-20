@@ -3,16 +3,10 @@
 @{
     ViewBag.Title = "ListUser";
 }
+<link href="~/Content/model.css" type="text/css" rel="stylesheet" />
 
-<h2>ListUser</h2>
-@if (ViewBag.DeleteMessage != null)
-{
-    <script>window.alert('@ViewBag.DeleteMessage');</script>
-}
-@if (ViewBag.AcceptMessage != null)
-{
-    <script>window.alert(ViewBag.DeleteMessage);</script>
-}
+<h2>List User</h2>
+
 <table class="table">
     <tr>
         <th>
@@ -111,5 +105,4 @@
             </td>
         </tr>
     }
-
 </table>

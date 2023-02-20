@@ -25,7 +25,7 @@ namespace Project_Sem3.Controllers
             List<AspNetUser> list = db.AspNetUsers.ToList();
             return View(list);
         }
-        [HttpGet]
+      /*  [HttpGet]
         public ActionResult EditUser(String id)
         {
             AspNetUser user = db.AspNetUsers.Find(id);
@@ -43,7 +43,9 @@ namespace Project_Sem3.Controllers
                 return RedirectToAction("ListUser");
             }
             return View(aspNetUser);
-        }
+        }*/
+
+
         [HttpPost]
         public ActionResult AcceptRegistration(String id)
         {

@@ -12,50 +12,42 @@
         {
             case "Admin":
 
-                <ul class="nav navbar-nav">
-                    <ul class="nav navbar-nav">
-                        <li class="item"><a href="~/Home/index">Home</a></li>
-                        <li class="item"><a href="~/Home/Index">Survey</a></li>
-                        <li class="item"><a href="~/Admin/ListUser">Member</a></li>
-                        <li class="item"><a href="~/Supports/Index">Support</a></li>
-                        <li class="item"><a href="~/FAQs/Index">FAQ’s</a></li>
-                    </ul>
+                <ul>
+                        <li ><a href="~/Home/index">Home</a></li>
+                        <li ><a href="~/Home/Index">Survey</a></li>
+                        <li ><a href="~/Admin/ListUser">Member</a></li>
+                        <li ><a href="~/Supports/Index">Support</a></li>
+                        <li ><a href="~/FAQs/Index">FAQ’s</a></li>
                 </ul>
                 break;
             case "Employee":
 
-                <ul class="nav navbar-nav">
-                    <ul class="nav navbar-nav">
-                        <li class="item"><a href="~/Home/index">Home</a></li>
-                        <li class="item"><a href="~/Home/Index">Survey Board</a></li>
-                        <li class="item"><a href="~/Home/Index">Edit Profile</a></li>
-                        <li class="item"><a href="~/Supports/Index">Support</a></li>
-                        <li class="item"><a href="~/FAQs/Index">FAQ’s</a></li>
-                    </ul>
+                <ul>
+                        <li ><a href="~/Home/index">Home</a></li>
+                        <li ><a href="~/Home/Index">Survey Board</a></li>
+                        <li ><a href="~/Home/Index">Edit Profile</a></li>
+                        <li ><a href="~/Supports/Index">Support</a></li>
+                        <li ><a href="~/FAQs/Index">FAQ’s</a></li>
                 </ul> break;
             case "Student":
-                <ul class="nav navbar-nav">
-                    <ul class="nav navbar-nav">
-                        <li class="item"><a href="~/Home/index">Home</a></li>
-                        <li class="item"><a href="~/Home/Index">Survey Board</a></li>
-                        <li class="item"><a href="~/Home/Index">Edit Profile</a></li>
-                        <li class="item"><a href="~/Supports/Index">Support</a></li>
-                        <li class="item"><a href="~/FAQs/Index">FAQ’s</a></li>
-                    </ul>
+                <ul >
+                        <li ><a href="~/Home/index">Home</a></li>
+                        <li ><a href="~/Home/Index">Survey Board</a></li>
+                        <li ><a href="~/Home/Index">Edit Profile</a></li>
+                        <li ><a href="~/Supports/Index">Support</a></li>
+                        <li ><a href="~/FAQs/Index">FAQ’s</a></li>
                 </ul> break;
             default:
-                <ul class="nav navbar-nav">
-                    <ul class="nav navbar-nav">
-                        <li class="item"><a href="~/Home/index">Home</a></li>
-                        <li class="item"><a href="~/Home/Index">Survey Board</a></li>
-                        <li class="item"><a href="~/Home/Index">Edit Profile</a></li>
-                        <li class="item"><a href="~/Supports/Index">Support</a></li>
-                        <li class="item"><a href="~/FAQs/Index">FAQ’s</a></li>
-                    </ul>
+                <ul >
+                        <li ><a href="~/Home/index">Home</a></li>
+                        <li ><a href="~/Home/Index">Survey Board</a></li>
+                        <li ><a href="~/Home/Index">Edit Profile</a></li>
+                        <li ><a href="~/Supports/Index">Support</a></li>
+                        <li ><a href="~/FAQs/Index">FAQ’s</a></li>
                 </ul>
                 break;
         }
-        <ul class="nav navbar-nav navbar-right">
+        <ul>
             <li>
                 @Html.ActionLink("Hello " + user.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
@@ -67,12 +59,12 @@
 }
 else
 {
-    <ul class="nav navbar-nav">
+    <ul >
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li>@Html.ActionLink("About", "About", "Home")</li>
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul>
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
