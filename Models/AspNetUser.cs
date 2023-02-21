@@ -11,8 +11,7 @@ namespace Project_Sem3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetUser()
         {
-            AspNetUserClaims = new HashSet<AspNetUserClaim>();
-            AspNetUserLogins = new HashSet<AspNetUserLogin>();
+            AnswerResults = new HashSet<AnswerResult>();
             Registrations = new HashSet<Registration>();
             UserCompetitions = new HashSet<UserCompetition>();
             AspNetRoles = new HashSet<AspNetRole>();
@@ -45,25 +44,20 @@ namespace Project_Sem3.Models
         [StringLength(256)]
         public string UserName { get; set; }
 
-        [StringLength(50)]
         public string Name { get; set; }
+
+        public string Image { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? BirthDate { get; set; }
 
-        [StringLength(200)]
-        public string Image { get; set; }
+        public bool isResigned { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
-        public bool isResigned { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual ICollection<AnswerResult> AnswerResults { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registration> Registrations { get; set; }

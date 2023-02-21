@@ -184,10 +184,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AnswerResult.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
-    <Compile Include="Models\AspNetUserClaim.cs" />
-    <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\Competition.cs" />
     <Compile Include="Models\DataQuuestion.cs" />
     <Compile Include="Models\FAQ.cs" />

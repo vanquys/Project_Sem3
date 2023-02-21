@@ -12,9 +12,8 @@ namespace Project_Sem3.Models
         {
         }
 
+        public virtual DbSet<AnswerResult> AnswerResults { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Competition> Competitions { get; set; }
         public virtual DbSet<DataQuuestion> DataQuuestions { get; set; }
@@ -32,17 +31,8 @@ namespace Project_Sem3.Models
                 .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
 
             modelBuilder.Entity<AspNetUser>()
-                .Property(e => e.Image)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.AspNetUserClaims)
-                .WithRequired(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.AspNetUserLogins)
-                .WithRequired(e => e.AspNetUser)
+                .HasMany(e => e.AnswerResults)
+                .WithOptional(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<AspNetUser>()

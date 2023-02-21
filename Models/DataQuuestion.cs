@@ -14,9 +14,6 @@ namespace Project_Sem3.Models
         public int CompetitionId { get; set; }
 
         [StringLength(150)]
-        public string Answer { get; set; }
-
-        [StringLength(150)]
         public string Question { get; set; }
 
         public virtual Competition Competition { get; set; }

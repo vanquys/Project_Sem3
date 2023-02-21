@@ -21,8 +21,7 @@ namespace Project_Sem3.Models
         [StringLength(128)]
         public string RollNo { get; set; }
 
-        [StringLength(50)]
-        public String Class { get; set; }
+        public int? ClassId { get; set; }
 
         [StringLength(50)]
         public string Specification { get; set; }

@@ -11,6 +11,7 @@ namespace Project_Sem3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Competition()
         {
+            AnswerResults = new HashSet<AnswerResult>();
             DataQuuestions = new HashSet<DataQuuestion>();
             UserCompetitions = new HashSet<UserCompetition>();
         }
@@ -26,6 +27,19 @@ namespace Project_Sem3.Models
 
         [StringLength(250)]
         public string Description { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? StartDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? EndDate { get; set; }
+
+        public string Question { get; set; }
+
+        public string RightAnswer { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnswerResult> AnswerResults { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DataQuuestion> DataQuuestions { get; set; }

@@ -18,7 +18,7 @@ namespace Project_Sem3.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CompetitionId { get; set; }
 
-        public bool isStatus { get; set; }
+        public bool? isStatus { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }
 
