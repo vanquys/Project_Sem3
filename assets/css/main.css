@@ -416,7 +416,7 @@ section {
   .navbar .dropdown ul {
     display: block;
     position: absolute;
-    left: 28px;
+    left: -60px;
     top: calc(100% + 30px);
     margin: 0;
     padding: 10px 0;
@@ -469,6 +469,9 @@ section {
     left: 100%;
     visibility: visible;
   }
+    .dropdown-child-mobie {
+        display: none;
+    }
 }
 
 @media (min-width: 1280px) and (max-width: 1366px) {
@@ -507,7 +510,7 @@ section {
   .navbar ul {
     position: absolute;
     inset: 0;
-    padding: 50px 0 10px 0;
+    padding: 70px 0 10px 0;
     margin: 0;
     background: rgba(0, 131, 116, 0.9);
     overflow-y: auto;
@@ -611,6 +614,16 @@ section {
     background: rgba(0, 106, 93, 0.8);
     z-index: 9996;
   }
+    .dropdown {
+        position: absolute;
+        top: 18px;
+    }
+    .dropdown-child {
+        display: none;
+    } 
+    .dropdown-child-mobie{
+        display: block;
+    }
 }
 
 /*--------------------------------------------------------------

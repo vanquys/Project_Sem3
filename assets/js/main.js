@@ -103,7 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Toggle mobile nav dropdowns
    */
-  const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
+
+
+/*  const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
 
   navDropdowns.forEach(el => {
     el.addEventListener('click', function(event) {
@@ -118,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   });
+*/
+
 
   /**
    * Initiate glightbox
