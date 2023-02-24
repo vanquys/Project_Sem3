@@ -201,6 +201,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\Admin\index.css" />
+    <Content Include="assets\css\Home\index.css" />
     <Content Include="assets\css\main.css" />
     <Content Include="assets\img\about-2.jpg" />
     <Content Include="assets\img\about.jpg" />
