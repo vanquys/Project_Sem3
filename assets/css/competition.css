@@ -1,0 +1,118 @@
+﻿.Competition {
+    margin: 35px;
+}
+.Competition .CP-top{
+    margin: 35px;
+}
+.Competition .CP-top h2{
+    text-align:center;
+}
+.Competition .line {
+    margin: 50px 0;        
+    border: 1px solid black;
+    text-align:center;
+    line-height: 1.5;
+}
+.Cp-item{
+    padding:0 7%
+
+}
+.Cp-item .row{
+    margin-top: 20px;
+}
+.Cp a {
+    background-color: #008374;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+}
+.Cp a:hover {
+    color: black;
+}
+
+
+.references {
+    background-color: #008374;
+    padding: 55px;
+    color:white;
+}
+.references .row {
+    margin-bottom:60px;
+}
+.references h2{
+    text-align:center;
+    margin-bottom:34px;
+}
+.references h3 {
+    margin-bottom: 20px;
+}
+.references a {
+    color:white;
+}
+.references a:hover{
+    color: bisque;
+}
+.dialog{
+   position:fixed;
+   top:0;
+   right:0;
+   bottom:0;
+   left:0;
+   display:flex;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-o {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.dialog-body {
+    
+    background-color: #008374; 
+    margin:auto;
+    z-index:100;
+    border-radius:8px;
+}
+.close-btn {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    color: red;
+    font-weight: 600;
+    font-size: 20px;
+    margin-right:5px;
+}
+.f-rigister{
+    display:grid;
+    padding: 15px 100px;
+}
+.f-rigister .item {
+    margin-top: 25px;
+    padding: 6px 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #008374;
+    color:black;
+}
+.f-rigister .btn-rgt{
+    display:flex;
+    justify-content:end;
+    margin-top:30px;
+}
+
+.f-rigister .btn-rgt a {
+    color: wheat;
+    text-decoration: none;
+    border: 1px solid gray;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.f-rigister .btn-rgt a:hover {
+    color:black;
+}

@@ -460,7 +460,7 @@ section {
   .navbar .dropdown .dropdown ul {
     top: 0;
     left: calc(100% - 30px);
-    visibility: hidden;
+    visibility: hidden; 
   }
 
   .navbar .dropdown .dropdown:hover>ul {
