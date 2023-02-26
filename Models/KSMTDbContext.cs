@@ -8,11 +8,10 @@ namespace Project_Sem3.Models
     public partial class KSMTDbContext : DbContext
     {
         public KSMTDbContext()
-            : base("name=KSMTDbContext")
+            : base("name=KSMT")
         {
         }
 
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AnswerResult> AnswerResults { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -23,7 +22,6 @@ namespace Project_Sem3.Models
         public virtual DbSet<Register> Registers { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserCompetition> UserCompetitions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
