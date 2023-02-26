@@ -326,3 +326,5 @@ C:\Users\MSII\Desktop\Project_Sem3\obj\Debug\Project_Sem3.csproj.CopyComplete
 C:\Users\MSII\Desktop\Project_Sem3\obj\Debug\Project_Sem3.dll
 C:\Users\MSII\Desktop\Project_Sem3\obj\Debug\Project_Sem3.pdb
 E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.AssemblyReference.cache
+E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.a.resources
+E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.GenerateResource.cache

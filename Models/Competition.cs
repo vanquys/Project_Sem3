@@ -12,15 +12,10 @@ namespace Project_Sem3.Models
         public Competition()
         {
             AnswerResults = new HashSet<AnswerResult>();
-            DataQuuestions = new HashSet<DataQuuestion>();
             UserCompetitions = new HashSet<UserCompetition>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-
-        [StringLength(128)]
-        public string UserId { get; set; }
 
         [StringLength(100)]
         public string Title { get; set; }
@@ -29,10 +24,10 @@ namespace Project_Sem3.Models
         public string Description { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public string Question { get; set; }
 
@@ -40,9 +35,6 @@ namespace Project_Sem3.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnswerResult> AnswerResults { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DataQuuestion> DataQuuestions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCompetition> UserCompetitions { get; set; }

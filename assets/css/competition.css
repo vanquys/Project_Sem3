@@ -20,11 +20,12 @@
 .Cp-item .row{
     margin-top: 20px;
 }
-.Cp a {
+.cp-btn-rgt {
     background-color: #008374;
     padding: 10px 15px;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
 .Cp a:hover {
     color: black;

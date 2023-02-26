@@ -8,19 +8,22 @@ namespace Project_Sem3.Models
     public partial class KSMTDbContext : DbContext
     {
         public KSMTDbContext()
-            : base("name=KSMT")
+            : base("name=KSMTDbContext")
         {
         }
 
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AnswerResult> AnswerResults { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Competition> Competitions { get; set; }
-        public virtual DbSet<DataQuuestion> DataQuuestions { get; set; }
         public virtual DbSet<FAQ> FAQs { get; set; }
         public virtual DbSet<Register> Registers { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserCompetition> UserCompetitions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -36,6 +39,16 @@ namespace Project_Sem3.Models
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.AspNetUserClaims)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.AspNetUserLogins)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUser>()
                 .HasMany(e => e.Registrations)
                 .WithOptional(e => e.AspNetUser)
                 .HasForeignKey(e => e.RollNo);
@@ -44,11 +57,6 @@ namespace Project_Sem3.Models
                 .HasMany(e => e.UserCompetitions)
                 .WithRequired(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Competition>()
-                .HasMany(e => e.DataQuuestions)
-                .WithRequired(e => e.Competition)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Competition>()

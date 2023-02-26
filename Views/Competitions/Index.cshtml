@@ -51,111 +51,34 @@
                 </div>
             </div>
             <div class="Cp">
-                <div class="row">
-                    <div class="col-md-1">
-                        <p>1</p>
+                @foreach (var m in Model)
+                {
+                    <div class="row">
+                        <div class="col-md-1">
+                            <p>@m.Id</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                @m.Description
+                            </p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>@m.UserCompetitions.Count</p>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="cp-btn-rgt">
+                                Register
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                            at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        </p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>14/2/2023 - 14/3/2023</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>169</p>
-                    </div>
-                    <div class="col-md-2">
-                        <a class="cp-btn-rgt"  >
-                            Register
-                        </a>
+                    <div class="line">
 
                     </div>
-                </div>
-                <div class="line">
+                }
 
-                </div>
-                <div class="row">
-                    <div class="col-md-1">
-                        <p>1</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                            at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        </p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>14/2/2023 - 14/3/2023</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>169</p>
-                    </div>
-                    <div class="col-md-2">
-                        <a class="cp-btn-rgt" >
-                            Register
-                        </a>
-                    </div>
-                </div>
-                <div class="line">
-
-                </div>
-                <div class="row">
-                    <div class="col-md-1">
-                        <p>1</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                            at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        </p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>14/2/2023 - 14/3/2023</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>169</p>
-                    </div>
-                    <div class="col-md-2">
-                        <a class="cp-btn-rgt" >
-                            Register
-                        </a>
-                    </div>
-                </div>
-                <div class="line">
-
-                </div>
-                <div class="row">
-                    <div class="col-md-1">
-                        <p>1</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                            at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        </p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>14/2/2023 - 14/3/2023</p>
-                    </div>
-                    <div class="col-md-3">
-                        <p>169</p>
-                    </div>
-                    <div class="col-md-2">
-                        <a  class="cp-btn-rgt" >
-                            Register
-                        </a>
-                    </div>
-                </div>
-                <div class="line">
-
-                </div>
             </div>
         </div>
 

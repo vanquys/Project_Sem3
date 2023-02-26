@@ -6,103 +6,158 @@
 <link href="~/Content/model.css" type="text/css" rel="stylesheet" />
 
 <h2>List User</h2>
+<div class="table-responsive">
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            <label>Role</label>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            <label>Status</label>
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspNetRoles.SingleOrDefault().Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>
-            <td>
-                @if (item.EmailConfirmed)
-                {
-                    if (item.isResigned)
-                    {
-                        <span style="color:red">Resigned</span>
-                    }
-                    else
-                    {
-                        <span class="text-success">Working</span>
-                    }
-                }
-                else
-                {
-                    <span style="color:coral">Processing</span>
-                }
-            </td>
-
-            <td>
-
-                @{
-                    if (!item.EmailConfirmed)
-                    {
-                        using (Html.BeginForm("AcceptRegistration", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>Role</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AspNetRoles.SingleOrDefault().Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BirthDate.ToString("dd/MM/yyyy"))</td>
+                    <td>
+                        @if (item.EmailConfirmed)
                         {
-                            <input type="hidden" value="@item.Id" name="id" />
-                            <button type="submit" class="btn btn-default">Accept</button>
-                        }
-                        using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
-                        {
-                            <input type="hidden" value="@item.Id" name="id" />
-                            <button type="submit" class="btn btn-default">Reject</button>
-                        }
-                    }
-                    else
-                    {
-                        if (item.isResigned)
-                        {
-                            using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                            if (item.isResigned)
                             {
-                                <input type="hidden" value="@item.Id" name="id" />
-                                <button type="submit" class="btn btn-default">Delete</button>
+                                <span style="color:red">Resigned</span>
                             }
-
+                            else
+                            {
+                                <span class="text-success">Working</span>
+                            }
                         }
                         else
                         {
-                                <a href="#" class="btn btn-default">Detail</a>
+                            <span style="color:coral">Processing</span>
                         }
+                    </td>
+                    <td>
+                        @if (!item.EmailConfirmed)
+                        {
+                        <div class="btn-group  mx-1" role="group" aria-label="Action buttons">
+                            <form method="post" action="@Url.Action("AcceptRegistration", "Admin")">
+                                <input type="hidden" value="@item.Id" name="id" />
+                                <button type="submit" class="btn btn-success">Accept</button>
+                            </form>
+                            <form method="post" action="@Url.Action("DeleteUser", "Admin")">
+                                <input type="hidden" value="@item.Id" name="id" />
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                            </form>
+                        </div>
+                        }
+                        else
+                        {
+                            if (item.isResigned)
+                            {
+                                using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    <input type="hidden" value="@item.Id" name="id" />
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                }
 
+                            }
+                            else
+                            {
+                                <a href="#" class="btn btn-default">Detail</a>
+                            }
+
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*    @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetRoles.SingleOrDefault().Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @if (item.EmailConfirmed)
+                    {
+                        if (item.isResigned)
+                        {
+                            <span style="color:red">Resigned</span>
+                        }
+                        else
+                        {
+                            <span class="text-success">Working</span>
+                        }
                     }
-                }
-            </td>
-        </tr>
-    }
-</table>
+                    else
+                    {
+                        <span style="color:coral">Processing</span>
+                    }
+                </td>
+
+                <td>
+
+                    @{
+                        if (!item.EmailConfirmed)
+                        {
+                            using (Html.BeginForm("AcceptRegistration", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                <input type="hidden" value="@item.Id" name="id" />
+                                <button type="submit" class="btn btn-default">Accept</button>
+                            }
+                            using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                <input type="hidden" value="@item.Id" name="id" />
+                                <button type="submit" class="btn btn-default">Reject</button>
+                            }
+                        }
+                        else
+                        {
+                            if (item.isResigned)
+                            {
+                                using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    <input type="hidden" value="@item.Id" name="id" />
+                                    <button type="submit" class="btn btn-default">Delete</button>
+                                }
+
+                            }
+                            else
+                            {
+                                    <a href="#" class="btn btn-default">Detail</a>
+                            }
+
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+*@
