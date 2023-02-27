@@ -9,6 +9,7 @@
 <div class="table-responsive">
 
     <table class="table table-striped table-bordered">
+
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Name)</th>
@@ -23,87 +24,13 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.AspNetRoles.SingleOrDefault().Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
-                    <td>@Html.DisplayFor(modelItem => item.BirthDate.ToString("dd/MM/yyyy"))</td>
-                    <td>
-                        @if (item.EmailConfirmed)
-                        {
-                            if (item.isResigned)
-                            {
-                                <span style="color:red">Resigned</span>
-                            }
-                            else
-                            {
-                                <span class="text-success">Working</span>
-                            }
-                        }
-                        else
-                        {
-                            <span style="color:coral">Processing</span>
-                        }
-                    </td>
-                    <td>
-                        @if (!item.EmailConfirmed)
-                        {
-                        <div class="btn-group  mx-1" role="group" aria-label="Action buttons">
-                            <form method="post" action="@Url.Action("AcceptRegistration", "Admin")">
-                                <input type="hidden" value="@item.Id" name="id" />
-                                <button type="submit" class="btn btn-success">Accept</button>
-                            </form>
-                            <form method="post" action="@Url.Action("DeleteUser", "Admin")">
-                                <input type="hidden" value="@item.Id" name="id" />
-                                <button type="submit" class="btn btn-danger">Reject</button>
-                            </form>
-                        </div>
-                        }
-                        else
-                        {
-                            if (item.isResigned)
-                            {
-                                using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
-                                {
-                                    <input type="hidden" value="@item.Id" name="id" />
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                }
-
-                            }
-                            else
-                            {
-                                <a href="#" class="btn btn-default">Detail</a>
-                            }
-
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-@*    @foreach (var item in Model)
-        {
+             var birthDate = @item.BirthDate.ToString("dd/MM/yyyy");
             <tr>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AspNetRoles.SingleOrDefault().Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.AspNetRoles.SingleOrDefault().Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                <td>@birthDate</td>
                 <td>
                     @if (item.EmailConfirmed)
                     {
@@ -121,43 +48,83 @@
                         <span style="color:coral">Processing</span>
                     }
                 </td>
-
                 <td>
-
-                    @{
-                        if (!item.EmailConfirmed)
+                    @if (!item.EmailConfirmed)
+                    {
+                        <div class="btn-group  mx-1" role="group" aria-label="Action buttons">
+                            <button type="submit" data-id="@item.Id" class="btn btn-success accept-btn">Accept</button>
+                            <button type="submit" data-id="@item.Id" class="btn btn-danger delete-btn">Reject</button>
+                        </div>
+                    }
+                    else
+                    {
+                        if (item.isResigned)
                         {
-                            using (Html.BeginForm("AcceptRegistration", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
-                            {
-                                <input type="hidden" value="@item.Id" name="id" />
-                                <button type="submit" class="btn btn-default">Accept</button>
-                            }
-                            using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
-                            {
-                                <input type="hidden" value="@item.Id" name="id" />
-                                <button type="submit" class="btn btn-default">Reject</button>
-                            }
+                            <button data-id="@item.Id" class="btn btn-danger delete-btn">Delete</button>
                         }
                         else
                         {
-                            if (item.isResigned)
-                            {
-                                using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
-                                {
-                                    <input type="hidden" value="@item.Id" name="id" />
-                                    <button type="submit" class="btn btn-default">Delete</button>
-                                }
-
-                            }
-                            else
-                            {
-                                    <a href="#" class="btn btn-default">Detail</a>
-                            }
-
+                            <a href="#" class="btn btn-default">Detail</a>
                         }
+
                     }
                 </td>
             </tr>
-        }
+            }
+        </tbody>
     </table>
-*@
+</div>
+<script>
+   
+    document.addEventListener('DOMContentLoaded', () => {
+
+        
+       
+        $('.delete-btn').click(function () {
+            var id = $(this).data('id');
+            if (confirm("Bạn có chắc muốn xóa?")) {
+
+                $.ajax({
+                    url: '/Admin/DeleteUser',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (result) {
+                        if (result.success) {
+                            location.reload();
+                            alert(result.message);
+                        } else {
+                            alert(result.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+            }
+        });
+        $('.accept-btn').click(function () {
+            var id = $(this).data('id');
+            if (confirm("Bạn có chắc muốn xóa?")) {
+
+                $.ajax({
+                    url: '/Admin/AcceptRegistration',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (result) {
+                        if (result.success) {
+                            location.reload();
+                            alert(result.message);
+                        } else {
+                            alert(result.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+            }
+        });
+
+    });
+
+</script>

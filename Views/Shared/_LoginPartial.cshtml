@@ -10,11 +10,11 @@
     switch (user.AspNetRoles.First().Name)
     {
         case "Admin":
-            <li><a class="home">Home</a></li>
-            <li><a href="~/home/index" class="survey">Survey</a></li>
-            <li><a href="~/home/index" class="member">Member</a></li>
-            <li><a href="~/home/index" class="support">Support</a></li>
-            <li><a href="~/home/index" class="faq">FAQ’s</a></li>
+            <li><a href="~/home/index" class="home">Home</a></li>
+            <li><a href="~/competitions/index" class="survey">Survey</a></li>
+            <li><a href="~/Admin/ListUser" class="member">Member</a></li>
+            <li><a href="~/Supports/index" class="support">Support</a></li>
+            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
             <li class="dropdown-child"></li>
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>

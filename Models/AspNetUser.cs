@@ -55,7 +55,6 @@ namespace Project_Sem3.Models
 
         public bool isResigned { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
