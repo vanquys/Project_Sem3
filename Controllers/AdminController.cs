@@ -25,26 +25,7 @@ namespace Project_Sem3.Controllers
             List<AspNetUser> list = db.AspNetUsers.ToList();
             return View(list);
         }
-      /*  [HttpGet]
-        public ActionResult EditUser(String id)
-        {
-            AspNetUser user = db.AspNetUsers.Find(id);
-            return View(user);
-        }
-        [HttpPost]
-        public ActionResult EditUser(AspNetUser aspNetUser)
-        {
-
-            if (ModelState.IsValid)
-            {
-                db.Entry(aspNetUser).State = EntityState.Modified;
-                db.SaveChanges();
-                ViewBag.Message = "Updated User .";
-                return RedirectToAction("ListUser");
-            }
-            return View(aspNetUser);
-        }*/
-
+      
 
         [HttpPost]
         public ActionResult AcceptRegistration(String id)

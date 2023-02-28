@@ -79,7 +79,6 @@ namespace Project_Sem3.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-
         public string ConfirmPassword { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -96,7 +95,7 @@ namespace Project_Sem3.Models
         [DataType(DataType.Date, ErrorMessage ="You must Enter a date ")]
         public string BirthDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field cannot be left blank")]
         [Display(Name = "Your Iamge")]
         public string Image { get; set; }
 

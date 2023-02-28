@@ -153,6 +153,23 @@ namespace Project_Sem3.Controllers
         {
             ViewBag.MessageRegister = null;
             KSMTDbContext db = new KSMTDbContext();
+            // convert birthDate to DateTime
+            DateTime birthDate; string sDateTime;
+            try { birthDate = Convert.ToDateTime(model.BirthDate); }
+            catch (Exception ex)
+            {
+                try
+                {
+                    string[] sDate = model.BirthDate.Split('/');
+                    sDateTime = sDate[1] + '/' + sDate[0] + '/' + sDate[2];
+                    birthDate = Convert.ToDateTime(sDateTime);
+                }
+                catch
+                {
+                    ViewBag.MessageRegister = "Input BirthDate must be dd/MM/YYYY or MM/dd/YYYY";
+                    return View(model);
+                }
+            }
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -173,22 +190,7 @@ namespace Project_Sem3.Controllers
                 lockoutEndDateUtc = new DateTime(1999, 01, 01);
             }
         */
-            // convert birthDate to DateTime
-            DateTime birthDate; string sDateTime;
-            try { birthDate = Convert.ToDateTime(model.BirthDate); }
-            catch (Exception ex)
-            {
-                try
-                {
-                    string[] sDate = model.BirthDate.Split('/');
-                    sDateTime = sDate[1] + '/' + sDate[0] + '/' + sDate[2];
-                    birthDate = Convert.ToDateTime(sDateTime);
-                }
-                catch {
-                    ViewBag.MessageRegister = "Input BirthDate must be dd/MM/YYYY or MM/dd/YYYY";
-                    return View(model);
-                }
-            }
+           
             var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = model.Image, isResigned=isResigned, LockoutEndDateUtc = lockoutEndDateUtc };
             SqlTransaction RegisterTrans = null;
             using (SqlConnection objConn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=KSMT;Persist Security Info=True;User ID=sa;Password=123;MultipleActiveResultSets=True;Application Name=EntityFramework"))
@@ -200,10 +202,6 @@ namespace Project_Sem3.Controllers
                     var result = await UserManager.CreateAsync(account, model.Password);
                     if (result.Succeeded)
                     {
-                     /*   if (roleName == "Admin")
-                        {
-                            await SignInManager.SignInAsync(account, isPersistent: false, rememberBrowser: false);
-                        }*/
                         AddErrors(result);
                         RegisterTrans.Commit();
                     }

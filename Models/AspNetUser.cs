@@ -18,7 +18,6 @@ namespace Project_Sem3.Models
             UserCompetitions = new HashSet<UserCompetition>();
             AspNetRoles = new HashSet<AspNetRole>();
         }
-
         public string Id { get; set; }
 
         [StringLength(256)]
