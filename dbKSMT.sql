@@ -313,7 +313,7 @@ GO
 /****** data test ******/
 insert into AspNetRoles values('role1', 'Admin')
 insert into AspNetRoles values('role2', 'Employee')
-insert into AspNetRoles values('role1', 'Student')
+insert into AspNetRoles values('role3', 'Student')
 insert into AspNetUsers values('AdminId','admin@admin.vn', 'True' ,	'AJ2xZaz2NewNq39o4ba+OBqgCCrbDJNkfI7cMrhzAXm/P3cqcbURxONhiR5H4RzoBA==',	'eb99fc5e-9689-4976-aa83-13d0fe090bd3',	'0123456789',	'False',	'False',	'1999-01-01' , 'True'	,0	,'admin@admin.vn',	'ADMIN A'	,'a',	'1970-01-01'	,'False',	NULL)
 GO
-insert into AspNetUserRoles values('AdminId','role1')
+insert into AspNetUserRoles values('role1','AdminId')
