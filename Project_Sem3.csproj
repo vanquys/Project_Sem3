@@ -195,7 +195,6 @@
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\Competition.cs" />
-    <Compile Include="Models\DataQuuestion.cs" />
     <Compile Include="Models\FAQ.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KSMTDbContext.cs" />
@@ -315,6 +314,7 @@
     <Content Include="assets\img\testimonials\testimonials-4.jpg" />
     <Content Include="assets\img\testimonials\testimonials-5.jpg" />
     <Content Include="assets\js\Competition.js" />
+    <Content Include="assets\js\EditProfile.js" />
     <Content Include="assets\js\main.js" />
     <Content Include="assets\scss\Readme.txt" />
     <Content Include="assets\vendor\aos\aos.css" />
@@ -452,6 +452,7 @@
     <Content Include="assets\assetsLogin\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="assets\assetsLogin\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="assets\assetsLogin\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="assets\css\EditProfile.css" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

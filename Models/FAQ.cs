@@ -11,10 +11,8 @@ namespace Project_Sem3.Models
     {
         public int Id { get; set; }
 
-        [StringLength(150)]
         public string Question { get; set; }
 
-        [StringLength(150)]
         public string Answer { get; set; }
     }
 }
