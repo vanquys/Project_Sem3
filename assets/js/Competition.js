@@ -20,4 +20,27 @@ document.addEventListener('DOMContentLoaded', () => {
             dialog.querySelector('.dialog-Id').innerHTML = id
         });
     }
+    $('.btn-delete').click(function (event) {
+        event.preventDefault();
+        var id = $(this).data('id');
+        if (confirm("Are you want deleted this user?")) {
+            $.ajax({
+                url: '/Competitions/Delete',
+                type: 'POST',
+                async: true,
+                data: { id: id },
+                success: function (result) {
+                    if (result.success) {
+                        location.reload();
+                        alert(result.message);
+                    } else {
+                        alert(result.message);
+                    }
+                },
+                error: function () {
+                    alert('Error');
+                }
+            });
+        }
+    });
 });

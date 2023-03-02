@@ -1,0 +1,92 @@
+﻿.sv-top {
+    display: flex;
+    background-color: #008374;
+    padding:40px 10px;
+}
+.sv-top ul li{
+    list-style-type:none;
+    margin-top: 20px;
+}
+.sv-top .col-md-6{
+    text-align:center;
+}
+.sv-top .col-md-6 img{
+    border-radius:5px;
+}
+.sv-content{
+    padding:30px; 
+}
+.sv-content-top{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 30px;
+}
+.sv-content-top .title {
+    display: flex;
+    align-items: center;
+    background-color: #008374;
+    padding: 10px;
+    border-radius: 5px;
+}
+.sv-content-top .title h3 {
+    display: flex;
+    align-items: center;
+    margin:0;
+}
+.sv-content-top .time {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+    color: red;
+    border-radius:5px;
+}
+.sv-content-top .time p {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+.sv-content .question{
+    margin-top:40px;
+    padding:10px 30px;
+}
+.sv-content .question h2{
+    margin-bottom:20px;
+}
+.sv-content .question p {
+    padding:0 50px;
+}
+.form-answer{
+    
+}
+.form-answer .container {
+    display: flex;
+}
+.form-answer textarea{
+    width:100%;
+    resize:none;
+    border-radius:5px;
+}
+.sv-form{
+    width:50%;
+}
+.form-answer-img{
+    width:50%;
+    text-align:center;
+}
+.form-answer .btn-form-sv a{
+    cursor:pointer;
+    border: 1px solid black;
+    padding:5px 10px;
+    margin-top: 20px;
+    border-radius:5px;
+}
+.form-answer .btn-form-sv{
+    display:flex;
+    justify-content:end;
+}
+.sv-bottom {
+    text-align: center;
+    margin-top: 30px;
+    background-color: #008374;
+}

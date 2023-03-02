@@ -249,8 +249,10 @@
     <Content Include="assets\assetsLogin\vendor\select2\select2.js" />
     <Content Include="assets\assetsLogin\vendor\select2\select2.min.css" />
     <Content Include="assets\assetsLogin\vendor\select2\select2.min.js" />
+    <Content Include="assets\css\ADcompetition.css" />
     <Content Include="assets\css\competition.css" />
     <Content Include="assets\css\main.css" />
+    <Content Include="assets\css\Survey.css" />
     <Content Include="assets\img\about-2.jpg" />
     <Content Include="assets\img\about.jpg" />
     <Content Include="assets\img\apple-touch-icon.png" />
@@ -497,6 +499,8 @@
     <Content Include="Views\FAQs\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Competitions\Index.cshtml" />
+    <Content Include="Views\Competitions\AdminCompetition.cshtml" />
+    <Content Include="Views\Competitions\Survey.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

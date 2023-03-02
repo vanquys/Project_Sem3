@@ -50,8 +50,8 @@
                             @if (!item.EmailConfirmed)
                             {
                                 <div class="btn-group mx-1" role="group" aria-label="Action buttons">
-                                    <button type="submit" data-id="@item.Id" class="btn btn-success accept-btn">Accept</button>
-                                    <button type="submit" data-id="@item.Id" class="btn btn-danger delete-btn">Reject</button>
+                                    <button data-id="@item.Id" class="btn btn-success accept-btn">Accept</button>
+                                    <button data-id="@item.Id" class="btn btn-danger delete-btn">Reject</button>
                                 </div>
                             }
                             else
@@ -82,7 +82,7 @@
        
         $('.delete-btn').click(function () {
             var id = $(this).data('id');
-            if (confirm("Bạn có chắc muốn xóa?")) {
+            if (confirm("Are you want deleted this user?")) {
 
                 $.ajax({
                     url: '/Admin/DeleteUser',
@@ -104,7 +104,7 @@
         });
         $('.accept-btn').click(function () {
             var id = $(this).data('id');
-            if (confirm("Bạn có chắc muốn xóa?")) {
+            if (confirm("Are you want accepted this user ?")) {
 
                 $.ajax({
                     url: '/Admin/AcceptRegistration',
@@ -125,6 +125,7 @@
             }
         });
 
+      
     });
 
 </script>

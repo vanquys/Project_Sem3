@@ -166,18 +166,36 @@ namespace Project_Sem3.Controllers
                 }
                 catch
                 {
-                    ViewBag.MessageRegister = "Input BirthDate must be dd/MM/YYYY or MM/dd/YYYY";
+                    ModelState.AddModelError("", "Input BirthDate must be dd/MM/YYYY or MM/dd/YYYY") ;
                     return View(model);
                 }
             }
+            if (!ModelState.IsValidField("Phone"))
+            {
+                ModelState.AddModelError("", "Phone must have 10 - 11 number !");
+                return View(model);
+
+            }
             if (!ModelState.IsValid)
             {
+                if (model.Password.Equals(model.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "password must be minimum of 6 characters with at least one number and one special character !");
+                    return View(model);
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "the password and comfirmation password do not match");
+                }
                 return View(model);
+                
             }
             AspNetUser uCheck = db.AspNetUsers.SingleOrDefault(u1 => u1.Email.Equals(model.Email));
       
             if (uCheck != null ) {
-                ViewBag.MessageRegister = "Email already exists ";
+                ModelState.AddModelError("", "Email already exists");
+              
                 return View(model);
             }
 
@@ -186,12 +204,8 @@ namespace Project_Sem3.Controllers
             DateTime lockoutEndDateUtc;
             lockoutEndDateUtc = new DateTime(9999,01,01);
             String roleName = Request.Form["role"];
-       /*     if (roleName == "Admin") {
-                lockoutEndDateUtc = new DateTime(1999, 01, 01);
-            }
-        */
            
-            var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = model.Image, isResigned=isResigned, LockoutEndDateUtc = lockoutEndDateUtc };
+            var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = model.Image, isResigned=isResigned, LockoutEndDateUtc = lockoutEndDateUtc, CreateDate= DateTime.UtcNow };
             SqlTransaction RegisterTrans = null;
             using (SqlConnection objConn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=KSMT;Persist Security Info=True;User ID=sa;Password=123;MultipleActiveResultSets=True;Application Name=EntityFramework"))
             {
@@ -208,14 +222,14 @@ namespace Project_Sem3.Controllers
                     else
                     {
                         RegisterTrans.Rollback();
-                        ViewBag.MessageRegister = "Can not Create Async !";
+                        ModelState.AddModelError("", "Password ... ");
                         return View(model);
                     }
                 }
                 catch (Exception e)
                 {
                     RegisterTrans.Rollback();
-                    ViewBag.MessageRegister =" Error: " + e;
+                    ModelState.AddModelError("", " Error: " + e);
                     return View(model);
                 }
                 finally
@@ -228,7 +242,7 @@ namespace Project_Sem3.Controllers
             AspNetUser userRegister = db.AspNetUsers.SingleOrDefault(u1 => u1.Email.Equals(model.Email));
 
             if (userRegister==null) {
-                ViewBag.MessageRegister = "-- Register to failed ! --";
+                ModelState.AddModelError("", " -- Register to failed ! --");
                 resultRegiter = -1;
                 return View(model);
             }
@@ -253,7 +267,8 @@ namespace Project_Sem3.Controllers
             }
 
             if (resultRegiter == 1) {
-                ViewBag.MessageRegister = "Register Success !";
+                ViewBag.MessageRegister = "Register Success, please wait Admin check!";
+                @TempData["alertMessage"] = "Register Success, please wait Admin check!";
                 return RedirectToAction("Index", "Home");
             }
             return View(model);

@@ -20,6 +20,15 @@ namespace Project_Sem3.Controllers
             return View(db.Competitions.ToList());
         }
 
+        public ActionResult Survey()
+        {
+            return View(db.Competitions.ToList());
+        }
+        public ActionResult AdminCompetition()
+        {
+            return View(db.Competitions.ToList());
+        }
+
         // GET: Competitions/Details/5
         public ActionResult Details(int? id)
         {
@@ -89,30 +98,21 @@ namespace Project_Sem3.Controllers
             return View(competition);
         }
 
-        // GET: Competitions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Competition competition = db.Competitions.Find(id);
-            if (competition == null)
-            {
-                return HttpNotFound();
-            }
-            return View(competition);
-        }
-
         // POST: Competitions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             Competition competition = db.Competitions.Find(id);
-            db.Competitions.Remove(competition);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Competitions.Remove(competition);
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted user successfully." });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = "err: " + e.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)

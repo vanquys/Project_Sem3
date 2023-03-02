@@ -1,0 +1,208 @@
+﻿.Competition {
+    margin: 35px;
+}
+
+.Competition .CP-top {
+    margin: 35px;
+}
+
+    .Competition .CP-top h2 {
+        text-align: center;
+    }
+
+.Competition .line {
+    margin: 50px 0;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.Cp-item {
+    padding: 0 7%
+}
+
+    .Cp-item .row {
+        margin-top: 20px;
+    }
+
+.cp-btn-rgt , .btn-delete{
+    background-color: #008374;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: grid;
+    margin-top: 5px;
+}
+
+
+.cp-add {
+    justify-content: end;
+    display: grid;
+    margin-right: 50px;
+    margin-bottom: 30px;
+}
+
+.cp-add-btn {
+    background-color: #008374;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.Cp a:hover {
+    color: black;
+}
+
+
+.references {
+    background-color: #008374;
+    padding: 55px;
+    color: white;
+}
+
+.references .row {
+    margin-bottom: 60px;
+}
+
+.references h2 {
+    text-align: center;
+    margin-bottom: 34px;
+}
+
+.references h3 {
+    margin-bottom: 20px;
+}
+
+.references a {
+    color: white;
+}
+
+.references a:hover {
+    color: bisque;
+}
+
+.dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    z-index: 10;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-o {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dialog-body {
+    background-color: #008374;
+    margin: auto;
+    z-index: 100;
+    border-radius: 8px;
+}
+
+.close-btn {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    color: red;
+    font-weight: 600;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.f-rigister {
+    display: grid;
+    padding: 15px 100px;
+}
+
+.f-rigister .item {
+    margin-top: 25px;
+    padding: 6px 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #008374;
+    border-color: black;
+}
+
+    .f-rigister .item::placeholder {
+        color: darkslategrey;
+    }
+
+    .f-rigister .item:focus {
+        outline: none;
+    }
+
+.f-rigister .btn-rgt {
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+}
+
+.f-rigister .btn-rgt a {
+    color: wheat;
+    text-decoration: none;
+    border: 1px solid gray;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.f-rigister .btn-rgt a:hover {
+    color: black;
+}
+
+.cp-add-form {
+    display: grid;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 30px;
+}
+
+.cp-add-item-date {
+    display: flex;
+}
+
+.item-date {
+    display: grid;
+    margin-top: 8px;
+}
+
+.cp-add-item {
+    display: grid;
+    margin-top:8px;
+}
+.cp-add-description {
+    resize: none;
+    font-size: 12px;
+    border-radius: 5px;
+}
+.btn-add-cp {
+    margin-top: 16px;
+    display: flex;
+    justify-content: end;
+}
+.btn-add-cp-item {
+    cursor: pointer;
+    font-size: 20px;
+    color:black;
+    padding:3px 16px;
+    border:1px solid black;
+
+}
+.btn-add-cp-item:hover {
+    color: white;
+}
+.ip-add-cp{
+    border-radius:5px;
+}

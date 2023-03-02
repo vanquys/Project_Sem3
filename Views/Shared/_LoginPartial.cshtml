@@ -98,28 +98,28 @@
                 <h2>Edit ProFile</h2>
                 <form>
                     <div class="form-group">
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" value="@user.Id" required>
                         <label for="name">UserId</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" value="@user.Name" required>
                         <label for="name">Name</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" value="@user.BirthDate.ToString("dd/MM/yyyy")" required>
                         <label for="name">BirthDate</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" value="@user.PhoneNumber" required>
                         <label for="name">phone</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" value="@user.Email" required>
                         <label for="name">Email</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="name" required>
-                        <label for="name">Sex</label>
+                        <input type="text" id="name" value="@user.isResigned" required>
+                        <label for="name">Resigned </label>
                     </div>
                 </form>
             </div>
