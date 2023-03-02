@@ -261,13 +261,12 @@ namespace Project_Sem3.Controllers
                     db.AspNetUsers.Remove(userRegister);
                     db.SaveChanges();
                     resultRegiter = -2;
-                    ViewBag.MessageRegister = "Register to failed ! ";
+                    ModelState.AddModelError("", "Register to failed !");
                     return View(model);
                 }
             }
 
             if (resultRegiter == 1) {
-                ViewBag.MessageRegister = "Register Success, please wait Admin check!";
                 @TempData["alertMessage"] = "Register Success, please wait Admin check!";
                 return RedirectToAction("Index", "Home");
             }
