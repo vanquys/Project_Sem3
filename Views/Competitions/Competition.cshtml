@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Project_Sem3.Models.Competition>
+
+@{
+    ViewBag.Title = "View";
+}
+<div class="Competition">
+    <div class="container-fluid">
+        <div class="CP-top">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="~/assets/img/Competition/cp-top.jpg" />
+                </div>
+                <div class="col-md-7">
+                    <h2>Competition</h2>
+                    <h6>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                        Curabitur vitae tortor arcu.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci, at luctus leo
+                        mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt. Curabitur vitae
+                        tortor arcu.
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <div class="line">
+
+        </div>
+        <table class="table">
+            <tr>
+                <th>No</th>
+                <th>Description</th>
+                <th>Time</th>
+                <th>Contestant</th>
+                <th>Status</th>
+            </tr>
+            @foreach (var m in Model)
+            {
+                <tr class="ts">
+                    <td class="no">
+                        <p class="id">@m.Id</p>
+                    </td>
+                    <td class="description">
+                        <p>@m.Description</p>
+                    </td>
+                    <td class="date">
+                        <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
+                    </td>
+                    <td class="contestant">
+                        <p>@m.UserCompetitions.Count</p>
+                    </td>
+                    <td class="btn-rgt-cp">
+                        <a class="cp-btn-rgt" data-id="@m.Id">
+                            Register
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<div class="references">
+    <h2>References</h2>
+    <a href="#">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="~/assets/img/Competition/images.jpg" />
+            </div>
+            <div class="col-md-9">
+                <h3>Lorem ipsum dolor sit amet</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                    Donec sit amet augue vitae augue tempor tincidunt.
+                </p>
+            </div>
+        </div>
+    </a>
+    <a href="#">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="~/assets/img/Competition/images.jpg" />
+            </div>
+            <div class="col-md-9">
+                <h3>Lorem ipsum dolor sit amet</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                    Donec sit amet augue vitae augue tempor tincidunt.
+                </p>
+            </div>
+        </div>
+    </a>
+    <a href="#">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="~/assets/img/Competition/images.jpg" />
+            </div>
+            <div class="col-md-9">
+                <h3>Lorem ipsum dolor sit amet</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                    Donec sit amet augue vitae augue tempor tincidunt.
+                </p>
+            </div>
+        </div>
+    </a>
+
+</div>
+<div class="dialog hidden">
+    <div class="modal-o"></div>
+    <div class="dialog-body">
+        <div class="close-btn">
+            &times;
+        </div>
+        <div class="f-rigister">
+            <h2>Register Competition</h2>
+            <hr />
+            <input class="item" type="text" placeholder="Name" />
+            <input class="item" type="text" placeholder="Roll No. or Employee id" />
+            <input class="item" type="text" placeholder="Class" />
+            <input class="item" type="text" placeholder="Specification" />
+            <input class="item" type="text" placeholder="Section" />
+            <div class="btn-rgt">
+                <a href="#">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/Competition.js"></script>
+<link href="~/assets/css/competition.css" rel="stylesheet" />
+
+

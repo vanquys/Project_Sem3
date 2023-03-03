@@ -3,6 +3,10 @@
     background-color: #008374;
     padding:40px 10px;
 }
+.sv-top .container{
+    margin:0 30px;
+    width:100%;
+}
 .sv-top ul li{
     list-style-type:none;
     margin-top: 20px;
@@ -12,6 +16,7 @@
 }
 .sv-top .col-md-6 img{
     border-radius:5px;
+    width:50%
 }
 .sv-content{
     padding:30px; 
@@ -55,12 +60,14 @@
 }
 .sv-content .question p {
     padding:0 50px;
-}
+}  
 .form-answer{
     
 }
 .form-answer .container {
     display: flex;
+    width:100%;
+    justify-content:space-around;
 }
 .form-answer textarea{
     width:100%;
@@ -68,11 +75,14 @@
     border-radius:5px;
 }
 .sv-form{
-    width:50%;
+    width:40%;
 }
 .form-answer-img{
     width:50%;
     text-align:center;
+}
+.form-answer-img img {
+    width: 100%;
 }
 .form-answer .btn-form-sv a{
     cursor:pointer;
@@ -89,4 +99,67 @@
     text-align: center;
     margin-top: 30px;
     background-color: #008374;
+}
+.sv-bottom img{
+    width:100%;
+}   
+@media only screen and (max-width:832px) {
+    .sv-top .col-md-6 li h6 {
+        font-size: 13px;
+    }
+}
+@media only screen and (max-width:767px) {
+    .sv-top .col-md-6 li h6 {
+        font-size: 15px;
+    }
+    .sv-content .title h3{
+        font-size:20px;
+    }
+    .sv-form textarea{
+        line-height:1.2;
+        font-size:13px;
+        width:100%;
+    }
+}
+@media only screen and (max-width:623px) {
+    .sv-content .title h3 {
+        font-size: 15px;
+    }
+    .sv-content{
+        padding:30px 0;
+    }
+    .sv-content .question{
+        padding:0 10px;
+    }
+    .sv-content .question p{
+        font-size:13px;
+    }
+}
+@media only screen and (max-width:463px) {
+    .sv-content .sv-content-top{   
+        display:grid;
+        justify-content:center;
+    }
+    .sv-content .sv-content-top .time{
+        justify-content:center;
+        margin-top:20px;
+        margin:10px 30%;
+
+    }
+    .sv-form textarea {
+        line-height: 1;
+        
+    }
+    .sv-form {
+        width: 50%;
+    }
+    .form-answer-img {
+        width: 40%;
+        
+    }
+}
+@media only screen and (max-width:389px) {
+    .sv-content .title h3 {
+        font-size: 14px;
+    }
 }

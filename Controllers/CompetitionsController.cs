@@ -15,7 +15,7 @@ namespace Project_Sem3.Controllers
         private KSMTDbContext db = new KSMTDbContext();
 
         // GET: Competitions
-        public ActionResult Index()
+        public ActionResult Competition()
         {
             return View(db.Competitions.ToList());
         }
@@ -24,7 +24,7 @@ namespace Project_Sem3.Controllers
         {
             return View(db.Competitions.ToList());
         }
-        public ActionResult AdminCompetition()
+        public ActionResult ADCompetition()
         {
             return View(db.Competitions.ToList());
         }
@@ -55,7 +55,7 @@ namespace Project_Sem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
+        public ActionResult Create([Bind(Include = "UserId,Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace Project_Sem3.Controllers
             {
                 db.Competitions.Remove(competition);
                 db.SaveChanges();
-                return Json(new { success = true, message = "Deleted user successfully." });
+                return Json(new { success = true, message = "Deleted competition successfully." });
             }
             catch (Exception e)
             {

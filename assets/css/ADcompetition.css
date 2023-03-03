@@ -3,39 +3,48 @@
 }
 
 .Competition .CP-top {
-    margin: 35px;
+    padding: 20px;
+    background-image: url('../img/competition/cp-img-brg.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
-    .Competition .CP-top h2 {
-        text-align: center;
-    }
+.Competition .CP-top h2 {
+    text-align: center;
+}   
 
 .Competition .line {
     margin: 50px 0;
     border: 1px solid black;
     text-align: center;
     line-height: 1.5;
+} 
+.Competition .CP-top .col-md-5 {
+    display: grid; 
+    justify-content: center;
+    align-items: center;
 }
-
 .Cp-item {
     padding: 0 7%
 }
 
-    .Cp-item .row {
-        margin-top: 20px;
-    }
-
-.cp-btn-rgt , .btn-delete{
+.Cp-item .row {
+    margin-top: 20px;
+}
+  
+.cp-btn-rgt {
     background-color: #008374;
     padding: 10px 15px;
     border-radius: 5px;
-    color: white;
+    color: white;  
     cursor: pointer;
     display: grid;
     margin-top: 5px;
 }
-
-
+ 
+.cp-btn-rgt:hover {
+    background-color: yellow;
+}
 .cp-add {
     justify-content: end;
     display: grid;
@@ -43,7 +52,7 @@
     margin-bottom: 30px;
 }
 
-.cp-add-btn {
+.btn-add {
     background-color: #008374;
     padding: 10px 15px;
     border-radius: 5px;
@@ -63,7 +72,14 @@
 }
 
 .references .row {
-    margin-bottom: 60px;
+margin-bottom: 60px;
+border: 1px solid black;
+padding: 10px;
+transition: transform ease-in-out .2s
+}
+
+.references .row:hover {
+    transform: scale(1.02);
 }
 
 .references h2 {
@@ -136,13 +152,13 @@
     border-color: black;
 }
 
-    .f-rigister .item::placeholder {
-        color: darkslategrey;
-    }
+.f-rigister .item::placeholder {
+    color: darkslategrey;
+}
 
-    .f-rigister .item:focus {
-        outline: none;
-    }
+.f-rigister .item:focus {
+    outline: none;
+}
 
 .f-rigister .btn-rgt {
     display: flex;
@@ -169,7 +185,7 @@
     padding-bottom: 30px;
 }
 
-.cp-add-item-date {
+.cp-add-item-date {  
     display: flex;
 }
 
@@ -192,6 +208,15 @@
     display: flex;
     justify-content: end;
 }
+.btn-delete, .btn-edit {
+    background-color: #008374;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: grid;
+    margin-top: 5px;
+}
 .btn-add-cp-item {
     cursor: pointer;
     font-size: 20px;
@@ -205,4 +230,136 @@
 }
 .ip-add-cp{
     border-radius:5px;
+}
+.ts td p {
+    margin: 0;
+    margin-bottom: 20px;
+    margin-top: 10px
+}
+
+.ts td a {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 1px
+}
+
+.Competition .table { 
+    border: 1px solid black;
+    text-align: center;
+}
+
+table td {
+    border-bottom: 1px solid black;
+}
+
+.ts .no {
+    width: 10%;
+    border-bottom: 1px solid black;
+}
+
+.ts .description {
+    width: 45%;
+}
+
+.ts .date {
+    width: 25%;
+}
+
+.ts .contestant {
+    width: 8%;
+}
+
+.ts .btn-rg-cp {
+    width: 12%;
+}
+
+.references img {
+    border-radius: 5px;
+}
+@media only screen and (max-width: 1200px) {
+    .references .col-md-9 p {
+        font-size: 15px;
+    }
+
+    .references img {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .references .col-md-9 p {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .references .col-md-9 {
+        margin-top: 15px;  
+    } 
+
+    .references img {
+        width: 50%;
+    } 
+    .Competition .table {
+        font-size: 12px;
+    }
+
+    .CP-top h6 {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .CP-top h2 {
+        margin-top: 7px;
+        font-size: 25px;
+    }
+
+    .references .col-md-9 p {
+        font-size: 10px;
+    }
+
+    .references h3 {
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 544px) {
+    .Competition {
+        margin: 0;
+    }
+    .references h3 {
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 544px) {
+    .cp-add-form {
+        padding: 15px 35px;
+    }
+    .f-rigister h2 {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width: 477px) {
+    .Competition .table {
+        font-size: 10px;
+    }
+    .references h3 {
+        font-size: 15px;
+    }
+    .cp-add-form {
+        padding: 5px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .dialog .cp-add-form input{
+        width:97%;
+    }
+    .dialog .cp-add-form textarea {
+        width: 97%;
+    }
+    .cp-add-form {
+        padding: 5px;
+        padding-left:10px;
+    }
 }
