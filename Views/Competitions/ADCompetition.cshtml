@@ -4,7 +4,15 @@
     ViewBag.Title = "View";
 }
 
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
 
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
 
 <div class="Competition">
     <div class="container-fluid">
@@ -31,44 +39,60 @@
 
         </div>
         <div class="cp-add">
-            <a class="btn-add btn-dialog">
+            <a class="btn-add btn-dialog-add" style="color:white">
                 ADD COMPETITION +
             </a>
         </div>
-        <table class="table">
-            <tr>
-                <th>No</th>
-                <th>Description</th>
-                <th>Time</th>
-                <th>Contestant</th>
-                <th>Status</th>
-            </tr>
-            @foreach (var m in Model)
-            {
-                <tr class="ts">
-                    <td class="no">
-                        <p cla>@m.Id</p>
-                    </td>
-                    <td class="description">
-                        <p>@m.Description</p>
-                    </td>
-                    <td class="date">
-                        <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
-                    </td>
-                    <td class="contestant">
-                        <p>@m.UserCompetitions.Count</p>
-                    </td>
-                    <td class="btn-rgt-cp-ad">
-                        <a class="btn-edit btn-dialog" data-title="@m.Title">
-                            Edit
-                        </a>
-                        <a class="btn-delete" data-id="@m.Id">
-                            Delete
-                        </a>
-                    </td>
+        <div class="table-scroll">
+            <table class="table">
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Time</th>
+                    <th>Contestant</th>
+                    <th>Question</th>
+                    <th>Right Answer</th>
+                    <th>Status</th>
                 </tr>
-            }
-        </table>
+                @foreach (var m in Model)
+                {
+                    <tr class="ts">
+                        <td class="no">
+                            <p>@m.Id</p>
+                        </td>
+                        <td class="title">
+                            <p>@m.Title</p>
+                        </td>
+                        <td class="description">
+                            <p>@m.Description</p>
+                        </td>
+                        <td class="date">
+                            <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
+                        </td>
+                        <td class="contestant">
+                            <p>@m.UserCompetitions.Count</p>
+                        </td>
+                        <td class="question">
+                            <p>@m.Question</p>
+                        </td>
+                        <td class="answer">
+                            <p>@m.RightAnswer</p>
+                        </td>
+
+                        <td class="btn-rgt-cp-ad">
+                            <a class="btn-edit btn-dialog-edit" style="color:white">
+                                Edit
+                            </a>
+                            <a class="btn-delete" style="color:white" data-id="@m.Id">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
 
     </div>
 
@@ -129,52 +153,107 @@
             </div>
         </div>
     </a>
-
 </div>
-<div class="dialog hidden">
+
+<div class="dialog-add hidden">
     <div class="modal-o"></div>
     <div class="dialog-body">
         <div class="close-btn">
             &times;
         </div>
         <div class="cp-add-form">
-            <h2>Add new competition</h2>
-            <div class="line">
+            @using (Html.BeginForm("Create", "Competitions", new{ ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h2>Add new competition</h2>
+                <div class="line">
 
-            </div>
-            <div class="cp-add-item">
-                <label class="lb-add-cp">Title</label>
-                <input class="ip-add-cp dialog-title" type="text" />
-            </div>
-            <div class="cp-add-item">
-                <label class="lb-add-cp">Description</label>
-                <textarea class="cp-add-description dialog-description" rows="4"></textarea>
-            </div>
-            <div class="cp-add-item-date">
-                <div class="item-date">
-                    <label class="lb-add-cp">Start Date</label>
-                    <input class="ip-add-cp dialog-StartDate" type="datetime" />
                 </div>
-                <div class="item-date">
-                    <label class="lb-add-cp">End Date</label>
-                    <input class="ip-add-cp dialog-EndDate" type="datetime" />
+                <div class="cp-add-item">
+                    <label class="lb-add-cp dialog-title">Title</label>
+                    <input class="ip-add-cp dialog-title" type="text" name="Title" />
                 </div>
+                <div class="cp-add-item">
+                    <label class="lb-add-cp">Description</label>
+                    <textarea class="cp-add-description dialog-description" name="Description" rows="4"></textarea>
+                </div>
+                <div class="cp-add-item-date">
+                    <div class="item-date">
+                        <label class="lb-add-cp">Start Date</label>
+                        <input class="ip-add-cp" name="StartDate" type="date" />
+                    </div>
+                    <div class="item-date">
+                        <label class="lb-add-cp">End Date</label>
+                        <input class="ip-add-cp" name="EndDate" type="date" />
+                    </div>
 
-            </div>
-            <div class="cp-add-item">
-                <label class="lb-add-cp">Question</label>
-                <textarea class="cp-add-description dialog-question" rows="4"></textarea>
-            </div>
-            <div class="cp-add-item">
-                <label class="lb-add-cp">Answer</label>
-                <textarea class="cp-add-description dialog-answer" rows="2"></textarea>
-            </div>
-            <div class="btn-add-cp">
-                <a class="btn-add-cp-item">ADD</a>
-            </div>
+                </div>
+                <div class="cp-add-item">
+                    <label class="lb-add-cp">Question</label>
+                    <textarea class="cp-add-description dialog-question" name="Question" rows="4"></textarea>
+                </div>
+                <div class="cp-add-item">
+                    <label class="lb-add-cp">Answer</label>
+                    <textarea class="cp-add-description dialog-answer" name="RightAnswer" rows="2"></textarea>
+                </div>
+                <div class="btn-add-cp">
+                    <button class="btn-add-cp-item" type="submit">ADD</button>
+                </div>
+            }
         </div>
     </div>
 </div>
 
+<div class="dialog-edit hidden">
+    <div class="modal-o"></div>
+    <div class="dialog-body">
+        <div class="close-btn">
+            &times;
+        </div>
+        <div class="cp-add-form">
+            @using (Html.BeginForm("Edit", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <h2>Edit competition</h2>
+                <div class="cp-add-item" hidden>
+                    <label class="lb-add-cp"></label>
+                    <input class="ip-add-cp" id="id" name="id" type="text" />
+                </div>
+                <div class="line"></div>
+                <div class="cp-add-item">
+                    <label class="lb-add-cp"></label>
+                    <input class="ip-add-cp" id="title" name="title" type="text" />
+                </div>
+                <div class="cp-add-item">
+                    <label class="lb-add-cp">Description</label>
+                    <textarea class="cp-add-description" id="description" name="description" rows="4"></textarea>
+                </div>
+                <div class="cp-add-item-date">
+                    <div class="item-date">
+                        <label class="lb-add-cp">Start Date</label>
+                        <input class="ip-add-cp" id="startDate" name="StartDate" type="date" />
+                    </div>
+                    <div class="item-date">
+                        <label class="lb-add-cp">End Date</label>
+                        <input class="ip-add-cp" name="EndDate" id="endDate" type="date"/>
+                    </div>
+                </div>
+                <div class="cp-add-item">
+                    <label class="lb-add-cp">Question</label>
+                    <textarea class="cp-add-description" name="question" id="question" rows="4"></textarea>
+                </div>
+                <div class="cp-add-item">
+                    <label class="lb-add-cp">Answer</label>
+                    <textarea class="cp-add-description" name="RightAnswer" id="RightAnswer" rows="2"></textarea>
+                </div>
+                <div class="btn-add-cp">
+                    <button type="submit" class="btn-add-cp-item btn__edit-save">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
 <link href="~/assets/css/ADcompetition.css" rel="stylesheet" />
 <script src="~/assets/js/ADCompetition.js"></script>

@@ -1,5 +1,5 @@
 ﻿.Competition {
-    margin: 35px;
+    margin:20px;
 }
 
 .Competition .CP-top {
@@ -99,7 +99,7 @@ transition: transform ease-in-out .2s
     color: bisque;
 }
 
-.dialog {
+.dialog-add, .dialog-edit {
     position: fixed;
     top: 0;
     right: 0;
@@ -241,10 +241,11 @@ transition: transform ease-in-out .2s
     margin-top: 10px;
     margin-bottom: 20px;
     text-align: center;
-    padding: 1px
 }
-
-.Competition .table { 
+.table-scroll {
+    overflow-x:scroll;
+}
+.Competition .table {
     border: 1px solid black;
     text-align: center;
 }
@@ -259,15 +260,21 @@ table td {
 }
 
 .ts .description {
-    width: 45%;
+    width: 20%;
 }
 
 .ts .date {
-    width: 25%;
+    width: 10%;
 }
 
 .ts .contestant {
     width: 8%;
+}
+.ts .question {
+    width: 20%;
+}
+.ts .answer{
+    width: 20%;
 }
 
 .ts .btn-rg-cp {
@@ -276,6 +283,12 @@ table td {
 
 .references img {
     border-radius: 5px;
+}
+tr td:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr td:nth-child(odd) {
+    background-color: #19875426;
 }
 @media only screen and (max-width: 1200px) {
     .references .col-md-9 p {
@@ -352,10 +365,10 @@ table td {
     }
 }
 @media only screen and (max-width: 400px) {
-    .dialog .cp-add-form input{
+    .cp-add-form input{
         width:97%;
     }
-    .dialog .cp-add-form textarea {
+    .cp-add-form textarea {
         width: 97%;
     }
     .cp-add-form {

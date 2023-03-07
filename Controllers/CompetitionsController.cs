@@ -26,6 +26,14 @@ namespace Project_Sem3.Controllers
         }
         public ActionResult ADCompetition()
         {
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
+            else if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
+            }
             return View(db.Competitions.ToList());
         }
 
@@ -44,59 +52,38 @@ namespace Project_Sem3.Controllers
             return View(competition);
         }
 
-        // GET: Competitions/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Competitions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
+        public ActionResult Create([Bind(Include = "Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
         {
             if (ModelState.IsValid)
             {
                 db.Competitions.Add(competition);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["SuccessMessage"] = "Competition added successfully.";
+                return RedirectToAction("AdCompetition", "Competitions");
             }
-
-            return View(competition);
+            TempData["ErrorMessage"] = "Failed to add competition.";
+            return View("AdCompetition");
         }
 
-        // GET: Competitions/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Competition competition = db.Competitions.Find(id);
-            if (competition == null)
-            {
-                return HttpNotFound();
-            }
-            return View(competition);
-        }
-
-        // POST: Competitions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
+        public ActionResult Edit([Bind(Include = "id,Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
         {
+            DateTime b = competition.EndDate;
+            DateTime a = competition.StartDate;
             if (ModelState.IsValid)
             {
                 db.Entry(competition).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["SuccessMessage"] = "Competition updated successfully.";
+                return RedirectToAction("AdCompetition", "Competitions");
             }
-            return View(competition);
+            TempData["ErrorMessage"] = "Failed to update competition.";
+            return View("AdCompetition");
         }
+
 
         // POST: Competitions/Delete/5
         [HttpPost]
