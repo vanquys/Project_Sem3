@@ -19,7 +19,6 @@ namespace Project_Sem3.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Competition> Competitions { get; set; }
         public virtual DbSet<FAQ> FAQs { get; set; }
-        public virtual DbSet<Register> Registers { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
         public virtual DbSet<UserCompetition> UserCompetitions { get; set; }
@@ -62,9 +61,6 @@ namespace Project_Sem3.Models
                 .WithRequired(e => e.Competition)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Register>()
-                .Property(e => e.Image)
-                .IsUnicode(false);
 
             modelBuilder.Entity<Registration>()
                 .HasMany(e => e.AnswerResults)

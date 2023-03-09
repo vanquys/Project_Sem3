@@ -194,7 +194,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KSMTDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Support.cs" />
     <Compile Include="Models\UserCompetition.cs" />

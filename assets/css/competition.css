@@ -31,13 +31,31 @@
 }
 .cp-btn-rgt, .cp-btn-join {
     background-color: #008374;
-    padding: 10px 15px;
+    padding: 5px;
     border-radius: 5px;
     color: white;
     cursor: pointer;
     display: grid;
     margin-top: 5px;
 }
+.cp-btn-completed {
+    background-color: darkgray;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: grid;
+    margin-top: 5px;
+}
+    .cp-btn-completed:hover {
+        background-color: darkgray;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        display: grid;
+        cursor: default;
+    }
 .cp-add{
     justify-content:end;
     display:grid;
@@ -84,6 +102,7 @@
 .references a:hover{
     color: bisque;
 }
+
 .dialog{
    position:fixed;
    top:0;
@@ -181,7 +200,6 @@
     margin-top:10px;
     margin-bottom: 20px;
     text-align:center;
-    padding:1px 
 }
 .Competition .table {
     border: 1px solid black;

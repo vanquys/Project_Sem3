@@ -267,7 +267,7 @@ namespace Project_Sem3.Controllers
             }
 
             if (resultRegiter == 1) {
-                @TempData["alertMessage"] = "Register Success, please wait Admin check!";
+                TempData["alertMessage"] = "Register Success, please wait Admin check!";
                 return RedirectToAction("Index", "Home");
             }
             return View(model);

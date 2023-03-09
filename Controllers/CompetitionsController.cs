@@ -30,14 +30,27 @@ namespace Project_Sem3.Controllers
 
         public ActionResult Survey(int id)
         {
-            
+
             return View(db.Competitions.Find(id));
         }
         [HttpPost]
         public ActionResult CompleteSurvey(AnswerResult answerResult)
         {
-            var competitionId = Request.Form["competitionId"];
-            return View();
+            try {
+                var idRegistration = Convert.ToInt32(Request["IdRegistratedUser"]);
+                int idCompetition = Convert.ToInt32(Request["CompetitionId"]);
+                answerResult.CompetitionId = idCompetition;
+                answerResult.IdRegistratedUser = idRegistration;
+                answerResult.Date = DateTime.Now;
+                db.AnswerResults.Add(answerResult);
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "Successful submission";
+                return RedirectToAction("Competition", "Competitions");
+            }
+            catch (Exception e) {
+                TempData["SuccessMessage"] = "Failed submission !.  Error: " + e.Message;
+                return RedirectToAction("Competition", "Competitions");
+            }
         }
         public ActionResult ADCompetition()
         {

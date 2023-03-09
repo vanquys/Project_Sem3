@@ -10,6 +10,9 @@ namespace Project_Sem3.Controllers
     {
         public ActionResult Index()
         {
+            if (TempData.ContainsKey("alertMessage")) { 
+                ViewBag.alertMessage = TempData["alertMessage"].ToString();
+            }
             return View();
         }
 

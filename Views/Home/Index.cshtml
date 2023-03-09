@@ -1,5 +1,9 @@
 ﻿
 <link rel="stylesheet" href="~/assets/css/main.css" />
+@if (!string.IsNullOrEmpty(ViewBag.alertMessage))
+{
+    <script>alert("@ViewBag.alertMessage");</script>
+}
 <main id="home">
     <section id="hero" class="hero">
         <div class="container position-relative">

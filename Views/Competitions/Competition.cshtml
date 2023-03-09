@@ -9,9 +9,10 @@
     var name = "";
     var userId = "";
     Registration registration = null;
+    KSMTDbContext db = new KSMTDbContext();
+
     if (Request.IsAuthenticated)
     {
-        KSMTDbContext db = new KSMTDbContext();
         var Id = User.Identity.GetUserId();
         var user = db.AspNetUsers.Find(Id);
         name = user.Name;
@@ -64,6 +65,7 @@
                 </tr>
                 @foreach (var m in Model)
                 {
+
                     <tr class="ts">
                         <td class="no">
                             <p class="id">@m.Id</p>
@@ -75,16 +77,27 @@
                             <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
                         </td>
                         <td class="contestant">
-                            <p>@m.UserCompetitions.Count</p>
+                            <p>@m.AnswerResults.Count</p>
                         </td>
                         <td class="btn-rgt-cp">
 
 
                             @if (registration != null)
                             {
-                                <a class="cp-btn-join" onclick="surveyFunction(@m.Id)">
-                                    Join Now
-                                </a>
+                                AnswerResult answerResult = m.AnswerResults.SingleOrDefault(a => a.IdRegistratedUser == registration.Id);
+                                if (answerResult != null)
+                                {
+                                    <a class="cp-btn-completed">
+                                        completed
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="cp-btn-join" onclick="surveyFunction(@m.Id)">
+                                        Join Now
+                                    </a>
+                                }
+
                             }
                             else
                             {
