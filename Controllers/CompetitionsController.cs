@@ -17,12 +17,27 @@ namespace Project_Sem3.Controllers
         // GET: Competitions
         public ActionResult Competition()
         {
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
+            else if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
+            }
             return View(db.Competitions.ToList());
         }
 
-        public ActionResult Survey()
+        public ActionResult Survey(int id)
         {
-            return View(db.Competitions.ToList());
+            
+            return View(db.Competitions.Find(id));
+        }
+        [HttpPost]
+        public ActionResult CompleteSurvey(AnswerResult answerResult)
+        {
+            var competitionId = Request.Form["competitionId"];
+            return View();
         }
         public ActionResult ADCompetition()
         {
@@ -37,20 +52,6 @@ namespace Project_Sem3.Controllers
             return View(db.Competitions.ToList());
         }
 
-        // GET: Competitions/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Competition competition = db.Competitions.Find(id);
-            if (competition == null)
-            {
-                return HttpNotFound();
-            }
-            return View(competition);
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -71,8 +72,6 @@ namespace Project_Sem3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
         {
-            DateTime b = competition.EndDate;
-            DateTime a = competition.StartDate;
             if (ModelState.IsValid)
             {
                 db.Entry(competition).State = EntityState.Modified;
@@ -101,6 +100,24 @@ namespace Project_Sem3.Controllers
                 return Json(new { success = false, message = "err: " + e.Message });
             }
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Registration([Bind(Include = "UserId,ClassName,Name,Specification,Section")] Registration registration)
+        {
+            if (ModelState.IsValid)
+            {
+                registration.JoinDate = DateTime.Now;
+                db.Registrations.Add(registration);
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "Competition added successfully.";
+                return RedirectToAction("Competition", "Competitions");
+            }
+            TempData["ErrorMessage"] = "Failed to add competition.";
+            return View("Competition");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

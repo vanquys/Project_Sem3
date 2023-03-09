@@ -11,7 +11,7 @@
     {
         case "Admin":
             <li><a href="~/home/index" class="home">Home</a></li>
-            <li><a href="~/competitions/competition" class="survey">Survey</a></li>
+            <li><a href="~/competitions/Adcompetition" class="survey">Survey</a></li>
             <li><a href="~/Admin/ListUser" class="member">Member</a></li>
             <li><a href="~/Supports/index" class="support">Support</a></li>
             <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
@@ -19,7 +19,7 @@
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
                 <ul class="dropdown-child">
-                    <li><a class="cp-btn-rgt">Edit Profile</a></li>
+                    <li><a class="">Edit Profile</a></li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
@@ -29,7 +29,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown-child-mobie"><a class="cp-btn-rgt">Edit Profile</a></li>
+            <li class="dropdown-child-mobie"><a class="">Edit Profile</a></li>
             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 @Html.AntiForgeryToken()
@@ -38,53 +38,67 @@
 
             break;
         case "Employee":
-            <ul>
-                <li><a href="~/home/index" class="home">Home</a></li>
-                <li><a href="~/competitions/index" class="survey">Survey</a></li>
-                <li><a href="~/Admin/ListUser" class="member">Member</a></li>
-                <li><a href="~/Supports/index" class="support">Support</a></li>
-                <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
-                <li class="dropdown">
-                    <a href="#"><ion-icon style="font-size:28px" name="person-circle-outline"></ion-icon></a>
-                    <ul class="dropdown-child">
-                        <li class="dropdown-child-mobie"><a class="cp-btn-rgt">Edit Profile</a></li>
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <li class="dropdown-child-mobie"><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
-                        }
+            <li><a href="~/home/index" class="home">Home</a></li>
+            <li><a href="~/competitions/competition" class="survey">Survey</a></li>
+            <li><a href="~/Admin/ListUser" class="member">Member</a></li>
+            <li><a href="~/Supports/index" class="support">Support</a></li>
+            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li class="dropdown">
+                <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
+                <ul class="dropdown-child">
+                    <li><a class="">Edit Profile</a></li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+                    }
 
-                    </ul>
-                </li>
-            </ul> break;
+                </ul>
+            </li>
+
+            <li class="dropdown-child-mobie"><a class="">Edit Profile</a></li>
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <li class="dropdown-child-mobie"><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+            }
+            break;
         case "Student":
-            <ul>
-                <li><a href="~/home/index" class="home">Home</a></li>
-                <li><a href="~/competitions/index" class="survey">Survey</a></li>
-                <li><a href="~/Admin/ListUser" class="member">Member</a></li>
-                <li><a href="~/Supports/index" class="support">Support</a></li>
-                <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
-                <li class="dropdown">
-                    <a href="#"><ion-icon style="font-size:28px" name="person-circle-outline"></ion-icon></a>
-                    <ul class="dropdown-child">
-                        <li class="dropdown-child-mobie"><a class="cp-btn-rgt">Edit Profile</a></li>
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <li class="dropdown-child-mobie"><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
-                        }
+            <li><a href="~/home/index" class="home">Home</a></li>
+            <li><a href="~/competitions/competition" class="survey">Survey</a></li>
+            <li><a href="~/Admin/ListUser" class="member">Member</a></li>
+            <li><a href="~/Supports/index" class="support">Support</a></li>
+            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li class="dropdown">
+                <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
+                <ul class="dropdown-child">
+                    <li><a class="">Edit Profile</a></li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+                    }
 
-                    </ul>
-                </li>
-            </ul> break;
+                </ul>
+            </li>
+
+            <li class="dropdown-child-mobie"><a class="">Edit Profile</a></li>
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <li class="dropdown-child-mobie"><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+            }
+            break;
         default:
-            <ul>
-                <li><a href="~/home/index" class="home">Home</a></li>
-                <li><a href="~/competitions/index" class="survey">Survey</a></li>
-                <li><a href="~/Admin/ListUser" class="member">Member</a></li>
-                <li><a href="~/Supports/index" class="support">Support</a></li>
-                <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
-            </ul>
+
+            <li><a href="~/home/index" class="home">Home</a></li>
+            <li><a href="~/competitions/competition" class="survey">Survey</a></li>
+            <li><a href="~/Admin/ListUser" class="member">Member</a></li>
+            <li><a href="~/Supports/index" class="support">Support</a></li>
+            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li class="dropdown-child"></li>
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
             break;
 
     }
@@ -94,7 +108,7 @@
 else
 {
     <li><a href="~/home/index" class="home">Home</a></li>
-    <li><a href="~/competitions/index" class="survey">Survey</a></li>
+    <li><a href="~/competitions/competition" class="survey">Survey</a></li>
     <li><a href="~/Admin/ListUser" class="member">Member</a></li>
     <li><a href="~/Supports/index" class="support">Support</a></li>
     <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>

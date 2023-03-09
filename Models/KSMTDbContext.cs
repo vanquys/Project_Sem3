@@ -32,11 +32,6 @@ namespace Project_Sem3.Models
                 .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
 
             modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.AnswerResults)
-                .WithOptional(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<AspNetUser>()
                 .HasMany(e => e.AspNetUserClaims)
                 .WithRequired(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId);
@@ -49,12 +44,17 @@ namespace Project_Sem3.Models
             modelBuilder.Entity<AspNetUser>()
                 .HasMany(e => e.Registrations)
                 .WithOptional(e => e.AspNetUser)
-                .HasForeignKey(e => e.RollNo);
+                .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<AspNetUser>()
                 .HasMany(e => e.UserCompetitions)
                 .WithRequired(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Competition>()
+                .HasMany(e => e.AnswerResults)
+                .WithRequired(e => e.Competition)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Competition>()
@@ -65,6 +65,12 @@ namespace Project_Sem3.Models
             modelBuilder.Entity<Register>()
                 .Property(e => e.Image)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Registration>()
+                .HasMany(e => e.AnswerResults)
+                .WithRequired(e => e.Registration)
+                .HasForeignKey(e => e.IdRegistratedUser)
+                .WillCascadeOnDelete(false);
         }
     }
 }

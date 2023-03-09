@@ -1,143 +1,199 @@
 ﻿@model IEnumerable<Project_Sem3.Models.Competition>
+@using Microsoft.AspNet.Identity
+@using Project_Sem3.Models
 
 @{
     ViewBag.Title = "View";
 }
-<div class="Competition">
-    <div class="container-fluid">
-        <div class="CP-top">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="~/assets/img/Competition/cp-top.jpg" />
+@{
+    var name = "";
+    var userId = "";
+    Registration registration = null;
+    if (Request.IsAuthenticated)
+    {
+        KSMTDbContext db = new KSMTDbContext();
+        var Id = User.Identity.GetUserId();
+        var user = db.AspNetUsers.Find(Id);
+        name = user.Name;
+        userId = user.Id;
+        registration = db.Registrations.SingleOrDefault(r => r.UserId == userId);
+    }
+
+}
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
+<main id="survey">
+    <div class="Competition">
+        <div class="container-fluid">
+            <div class="CP-top">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="~/assets/img/Competition/cp-top.jpg" />
+                    </div>
+                    <div class="col-md-7">
+                        <h2>Competition</h2>
+                        <h6>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                            at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                            Curabitur vitae tortor arcu.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci, at luctus leo
+                            mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt. Curabitur vitae
+                            tortor arcu.
+                        </h6>
+                    </div>
                 </div>
-                <div class="col-md-7">
-                    <h2>Competition</h2>
-                    <h6>
+            </div>
+            <div class="line">
+
+            </div>
+            <table class="table">
+                <tr>
+                    <th>No</th>
+                    <th>Description</th>
+                    <th>Time</th>
+                    <th>Contestant</th>
+                    <th>Status</th>
+                </tr>
+                @foreach (var m in Model)
+                {
+                    <tr class="ts">
+                        <td class="no">
+                            <p class="id">@m.Id</p>
+                        </td>
+                        <td class="description">
+                            <p>@m.Description</p>
+                        </td>
+                        <td class="date">
+                            <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
+                        </td>
+                        <td class="contestant">
+                            <p>@m.UserCompetitions.Count</p>
+                        </td>
+                        <td class="btn-rgt-cp">
+
+
+                            @if (registration != null)
+                            {
+                                <a class="cp-btn-join" onclick="surveyFunction(@m.Id)">
+                                    Join Now
+                                </a>
+                            }
+                            else
+                            {
+                                if (Request.IsAuthenticated)
+                                {
+                                    <a class="cp-btn-rgt" data-competitionId="@m.Id" data-userId="@userId" data-name="@name">
+                                        Register
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="cp-btn-join" href="/Account/Login">
+                                        Login To Join
+                                    </a>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="references">
+        <h2>References</h2>
+        <a href="#">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/assets/img/Competition/images.jpg" />
+                </div>
+                <div class="col-md-9">
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
                         at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Curabitur vitae tortor arcu.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci, at luctus leo
-                        mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt. Curabitur vitae
-                        tortor arcu.
-                    </h6>
+                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                        Donec sit amet augue vitae augue tempor tincidunt.
+                    </p>
                 </div>
             </div>
-        </div>
-        <div class="line">
+        </a>
+        <a href="#">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/assets/img/Competition/images.jpg" />
+                </div>
+                <div class="col-md-9">
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                        Donec sit amet augue vitae augue tempor tincidunt.
+                    </p>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/assets/img/Competition/images.jpg" />
+                </div>
+                <div class="col-md-9">
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
+                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
+                        Donec sit amet augue vitae augue tempor tincidunt.
+                    </p>
+                </div>
+            </div>
+        </a>
 
-        </div>
-        <table class="table">
-            <tr>
-                <th>No</th>
-                <th>Description</th>
-                <th>Time</th>
-                <th>Contestant</th>
-                <th>Status</th>
-            </tr>
-            @foreach (var m in Model)
+    </div>
+    <div class="dialog hidden">
+        <div class="modal-o"></div>
+        <div class="dialog-body">
+            <div class="close-btn">
+                &times;
+            </div>
+            @using (Html.BeginForm("Registration", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "f-rigister" }))
             {
-                <tr class="ts">
-                    <td class="no">
-                        <p class="id">@m.Id</p>
-                    </td>
-                    <td class="description">
-                        <p>@m.Description</p>
-                    </td>
-                    <td class="date">
-                        <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
-                    </td>
-                    <td class="contestant">
-                        <p>@m.UserCompetitions.Count</p>
-                    </td>
-                    <td class="btn-rgt-cp">
-                        <a class="cp-btn-rgt" data-id="@m.Id">
-                            Register
-                        </a>
-                    </td>
-                </tr>
+                @Html.AntiForgeryToken()
+                <h2>Register Competition</h2>
+                <hr />
+                <label class="item" type="text" name="competitionId" id="dialog-competitionId"></label>
+                <input class="item" type="text" name="Name" id="dialog-name" placeholder="Name" />
+                <input class="item" type="text" name="UserId" id="dialog-roll" placeholder="Roll No. or Employee id" />
+                <input class="item" type="text" name="ClassName" placeholder="Class" />
+                <input class="item" type="text" name="Specification" placeholder="Specification" />
+                <input class="item" type="text" name="Section" placeholder="Section" />
+                <div class="btn-rgt">
+                    <button type="submit">Register</button>
+                </div>
             }
-        </table>
+        </div>
     </div>
-</div>
-<div class="references">
-    <h2>References</h2>
-    <a href="#">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="~/assets/img/Competition/images.jpg" />
-            </div>
-            <div class="col-md-9">
-                <h3>Lorem ipsum dolor sit amet</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                    Donec sit amet augue vitae augue tempor tincidunt.
-                </p>
-            </div>
-        </div>
-    </a>
-    <a href="#">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="~/assets/img/Competition/images.jpg" />
-            </div>
-            <div class="col-md-9">
-                <h3>Lorem ipsum dolor sit amet</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                    Donec sit amet augue vitae augue tempor tincidunt.
-                </p>
-            </div>
-        </div>
-    </a>
-    <a href="#">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="~/assets/img/Competition/images.jpg" />
-            </div>
-            <div class="col-md-9">
-                <h3>Lorem ipsum dolor sit amet</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                    Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                    at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                    Donec sit amet augue vitae augue tempor tincidunt.
-                </p>
-            </div>
-        </div>
-    </a>
+</main>
 
-</div>
-<div class="dialog hidden">
-    <div class="modal-o"></div>
-    <div class="dialog-body">
-        <div class="close-btn">
-            &times;
-        </div>
-        <div class="f-rigister">
-            <h2>Register Competition</h2>
-            <hr />
-            <input class="item" type="text" placeholder="Name" />
-            <input class="item" type="text" placeholder="Roll No. or Employee id" />
-            <input class="item" type="text" placeholder="Class" />
-            <input class="item" type="text" placeholder="Specification" />
-            <input class="item" type="text" placeholder="Section" />
-            <div class="btn-rgt">
-                <a href="#">Register</a>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    function surveyFunction(id) {
+        window.location.href = '/Competitions/Survey?id=' + id;
+    }</script>
 <script src="~/assets/js/Competition.js"></script>
 <link href="~/assets/css/competition.css" rel="stylesheet" />
 

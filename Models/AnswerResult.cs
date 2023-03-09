@@ -1,4 +1,4 @@
-﻿namespace Project_Sem3.Models
+namespace Project_Sem3.Models
 {
     using System;
     using System.Collections.Generic;
@@ -9,13 +9,15 @@
     [Table("AnswerResult")]
     public partial class AnswerResult
     {
+        [Key]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int IdRegistratedUser { get; set; }
 
-        [StringLength(128)]
-        public string UserId { get; set; }
-
-        public int? CompetitionId { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CompetitionId { get; set; }
 
         public string Answer { get; set; }
 
@@ -24,8 +26,8 @@
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }
 
-        public virtual AspNetUser AspNetUser { get; set; }
-
         public virtual Competition Competition { get; set; }
+
+        public virtual Registration Registration { get; set; }
     }
 }

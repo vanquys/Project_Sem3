@@ -29,14 +29,14 @@
 .Cp-item .row{
     margin-top: 20px;
 }
-.cp-btn-rgt {
+.cp-btn-rgt, .cp-btn-join {
     background-color: #008374;
     padding: 10px 15px;
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    display:grid;
-    margin-top:5px;
+    display: grid;
+    margin-top: 5px;
 }
 .cp-add{
     justify-content:end;
@@ -123,15 +123,16 @@
     display:grid;
     padding: 15px 100px;
 }
-.f-rigister .item {
-    margin-top: 25px;
-    padding: 6px 0;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    background-color: #008374;
-    border-color:black;
-}
+    .f-rigister .item {
+        margin-top: 25px;
+        padding: 6px 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        background-color: #008374;
+        border-color: black;
+        color: #d9ebd7;
+    }
 .f-rigister .item::placeholder{
     color:darkslategrey;
 }

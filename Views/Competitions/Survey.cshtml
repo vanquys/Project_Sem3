@@ -1,52 +1,59 @@
-﻿<link href="~/assets/css/Survey.css" rel="stylesheet" />
-
-<div class="sv-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <ul>
-                    <li><h6>1. Lorem ipsum dolor sit amet, consectetur</h6></li>
-                    <li><h6>2. Lorem ipsum dolor sit amet, consectetur</h6></li>
-                    <li><h6>3. Lorem ipsum dolor sit amet, consectetur</h6></li>
-                    <li><h6>4. Lorem ipsum dolor sit amet, consectetur</h6></li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <img src="~/assets/img/survey/60.jpg" />
-            </div>
-        </div>  
-    </div>
-</div>
-<div class="sv-content">
-    <div class="sv-content-top">
-        <div class="title">
-            <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-        </div>
-        <div class="time">
-            <p>10:00</p>
-        </div>
-    </div>
-    <div class="question">
-        <h2>Questiton:</h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat, diam ut rhoncus lobortis
-            , erat sapien fringilla orci, at luctus leo mauris ut metus. Donec sit amet augue vitae augue tem
-        </p>
-    </div>
-</div>
-<div class="form-answer">
-    <div class="container">
-        <div class="sv-form">
-            <textarea rows="10"></textarea>
-            <div class="btn-form-sv">
-                <a>Complete</a>
+﻿@model Project_Sem3.Models.Competition
+<link href="~/assets/css/Survey.css" rel="stylesheet" />
+<main id="survey">
+    @using (Html.BeginForm("CompleteSurvey", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="sv-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li><h6>1. Lorem ipsum dolor sit amet, consectetur</h6></li>
+                            <li><h6>2. Lorem ipsum dolor sit amet, consectetur</h6></li>
+                            <li><h6>3. Lorem ipsum dolor sit amet, consectetur</h6></li>
+                            <li><h6>4. Lorem ipsum dolor sit amet, consectetur</h6></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/assets/img/survey/60.jpg" />
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-answer-img">
-            <img src="~/assets/img/survey/nik-OouFKZynpAM-unsplash.jpg" />
+        <div class="sv-content">
+            <div class="sv-content-top">
+                <div class="title">
+                    <h3 >@Model.Title</h3>
+                </div>
+                <div class="time">
+                    <p>10:00</p>
+                </div>
+            </div>
+            <div class="question">
+                <h2>Questiton:</h2>
+                <p>
+                    @Model.Question
+                </p>
+            </div>
         </div>
-    </div>  
-</div>
-<div class="sv-bottom">
-    <img src="~/assets/img/survey/Untitled.png" />
-</div>
+        <div class="form-answer">
+            <div class="container">
+                <div class="sv-form">
+                    <textarea rows="10" name="Answer"></textarea>
+                    <input name="IdRegistratedUser" id="IdRegistratedUser" hidden/>
+                    <input name="CompetitionId" id="CompetitionId" hidden/>
+                    <div class="btn-form-sv">
+                        <button type="submit">Complete</button>
+                    </div>
+                </div>
+                <div class="form-answer-img">
+                    <img src="~/assets/img/survey/nik-OouFKZynpAM-unsplash.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="sv-bottom">
+            <img src="~/assets/img/survey/Untitled.png" />
+        </div>
+    }
+    </main>
