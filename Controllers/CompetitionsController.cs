@@ -35,7 +35,7 @@ namespace Project_Sem3.Controllers
         }
         [HttpPost]
         public ActionResult CompleteSurvey(AnswerResult answerResult)
-        {
+         {
             try {
                 var idRegistration = Convert.ToInt32(Request["IdRegistratedUser"]);
                 int idCompetition = Convert.ToInt32(Request["CompetitionId"]);

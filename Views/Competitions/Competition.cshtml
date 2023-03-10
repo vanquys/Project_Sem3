@@ -81,15 +81,20 @@
                         </td>
                         <td class="btn-rgt-cp">
 
-
-                            @if (registration != null)
+                            @if (@m.EndDate.CompareTo(DateTime.Now) <= 0)
+                            {
+                                <a class="cp-btn-expired">
+                                    Expired
+                                </a>
+                            }
+                            else if (registration != null)
                             {
                                 AnswerResult answerResult = m.AnswerResults.SingleOrDefault(a => a.IdRegistratedUser == registration.Id);
                                 if (answerResult != null)
                                 {
-                                    <a class="cp-btn-completed">
-                                        completed
-                                    </a>
+                                    <span class="cp-btn-completed">
+                                        Completed
+                                    </span>
                                 }
                                 else
                                 {

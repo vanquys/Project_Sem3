@@ -29,6 +29,13 @@
 .Cp-item .row{
     margin-top: 20px;
 }
+tr td:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr td:nth-child(odd) {
+    background-color: #19875426;
+}
 .cp-btn-rgt, .cp-btn-join {
     background-color: #008374;
     padding: 5px;
@@ -39,28 +46,37 @@
     margin-top: 5px;
 }
 .cp-btn-completed {
-    background-color: darkgray;
+    background-color: #f9f9f90f;
     padding: 5px;
     border-radius: 5px;
-    color: white;
-    cursor: pointer;
+    color: #265c00;
+    cursor: default;
     display: grid;
     margin-top: 5px;
 }
     .cp-btn-completed:hover {
-        background-color: darkgray;
+        background-color: #f9f9f90f;
         padding: 5px;
         border-radius: 5px;
-        color: white;
-        cursor: pointer;
-        display: grid;
+        color: #265c00;
         cursor: default;
+        display: grid;
+        margin-top: 5px;
     }
-.cp-add{
-    justify-content:end;
-    display:grid;
-    margin-right:50px;
-    margin-bottom:30px;
+.cp-btn-expired {
+    background-color: #f9f9f90f;
+    padding: 5px;
+    border-radius: 5px;
+    color: red;
+    cursor: default;
+    display: grid;
+    margin-top: 5px;
+}
+.cp-add {
+    justify-content: end;
+    display: grid;
+    margin-right: 50px;
+    margin-bottom: 30px;
 }
 .cp-add-btn {
     background-color: #008374;
