@@ -84,11 +84,10 @@
                         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input100", @placeholder = "Confirm Password" })
                         <span class="focus-input100" data-placeholder="&#9752;"></span>
                     </div>
-                    <div class="wrap-input100 validate-input">
-                        @Html.PasswordFor(m => m.Image, new { @class = "input100", @placeholder = "Your Image" })
-                        <span class="focus-input100" data-placeholder="&#9752;"></span>
+                    <div class="wrap-input100 register-image">
+                        <label>&#9752; Image</label>
+                        @Html.PasswordFor(m => m.Image, new { @class = "", @placeholder = "Your Image" , type = "file" })
                     </div>
-
                     <div class="container-login100-form-btn">
                         <input type="submit" class="login100-form-btn" vla>
                     </div>

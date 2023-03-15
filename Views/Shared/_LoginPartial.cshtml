@@ -4,6 +4,7 @@
 @if (Request.IsAuthenticated)
 {
     <link rel="stylesheet" type="text/css" href="~/assets/css/EditProfile.css" />
+    <script src="~/assets/js/EditProfile.js"></script>
     KSMTDbContext db = new KSMTDbContext();
     var userId = User.Identity.GetUserId();
     var user = db.AspNetUsers.Find(userId);
@@ -19,7 +20,7 @@
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
                 <ul class="dropdown-child">
-                    <li><a class="">Edit Profile</a></li>
+                    <li><a class="editProfile">Edit Profile</a></li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
@@ -29,7 +30,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown-child-mobie"><a class="">Edit Profile</a></li>
+            <li class="dropdown-child-mobie"><a class="editProfile">Edit Profile</a></li>
             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 @Html.AntiForgeryToken()
@@ -45,7 +46,7 @@
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
                 <ul class="dropdown-child">
-                    <li><a class="">Edit Profile</a></li>
+                    <li><a class="editProfile">Edit Profile</a></li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
@@ -55,7 +56,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown-child-mobie"><a class="">Edit Profile</a></li>
+            <li class="dropdown-child-mobie"><a class="editProfile">Edit Profile</a></li>
             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 @Html.AntiForgeryToken()
@@ -70,7 +71,7 @@
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
                 <ul class="dropdown-child">
-                    <li><a class="">Edit Profile</a></li>
+                    <li><a class="editProfile">Edit Profile</a></li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
@@ -80,7 +81,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown-child-mobie"><a class="">Edit Profile</a></li>
+            <li class="dropdown-child-mobie"><a class="editProfile">Edit Profile</a></li>
             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 @Html.AntiForgeryToken()
@@ -100,7 +101,74 @@
 
     }
 
+    <div class="dialog-editProfile hidden">
+        <div class="modal-o"></div>
+        <div class="dialog-body">
+            <div class="close-editProfile">
+                &times;
+            </div>
+            <div class="editProfile-form">
+                @using (Html.BeginForm("EditProfile", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="editProfile-image">
+                        <div class="editProfile-image-img">
+                            <img id="myImage" src="https://images.pexels.com/photos/21787/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Your Avatar">
+                            <br>
+                            <input type="file" name="Image" onchange="loadImage(event)">
+                        </div>
+                        <div class="editProfile-image-name">
+                            <h5>@user.Name</h5>
+                        </div>
 
+                    </div>
+                    <div class="line">
+
+                    </div>
+
+                    <div class="editProfile-item">
+                        <label>Name</label>
+                        <input class="ip-editProfile" type="text" name="Name" value="@user.Name" required pattern="^[\p{L} ]+$" />
+                    </div>
+
+                    <div class="editProfile-item">
+                        <label>New Password</label>
+                        <input class="ip-editProfile" type="password" name="NewPassword" placeholder="leave blank if no changes" />
+                    </div>
+                    <div class="editProfile-item">
+                        <label>Comfirm Password</label>
+                        <input class="ip-editProfile" type="password" name="ConfirmPassword" placeholder="leave blank if no changes" />
+                    </div>
+
+                    <div class="editProfile-item editProfile-checkbox">
+                        <label class="editProfile-checkbox_label">Resign</label>
+                        @if (user.isResigned)
+                        {
+                            <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" />
+                        }
+                        else
+                        {
+                            <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" checked />
+                        }
+                    </div>
+                    <div class="editProfile-item">
+                        <label>Input Curent Password to Change </label>
+                        <input class="ip-editProfile" type="password" name="CurrentPassword" placeholder="*********" required />
+                    </div>
+                    <div class="line"></div>
+                    <div class="editProfile-btn-save">
+                        <button class="edit-btn-save" type="submit">Save</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script>
+        function loadImage(event) {
+            var image = document.getElementById('myImage');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
 }
 else
 {

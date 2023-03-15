@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Project_Sem3.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        KSMTDbContext db = new KSMTDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -53,6 +55,41 @@ namespace Project_Sem3.Controllers
                 _userManager = value;
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult> EditProfile(){
+            var img = Request["Image"];
+            var name = Request["Name"];
+            var currentPass = Request["CurrentPassword"];
+            var newPass = Request["NewPassword"];
+            var confirmPass = Request["ConfirmPassword"];
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user == null)
+            {
+                return View("sai mk");
+            }
+            if (!newPass.Equals(confirmPass)) {
+                return View();
+            }
+            try{
+                user.Image = img;
+                user.Name = name;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                if (newPass != null) {
+                    var result = await UserManager.ChangePasswordAsync(user.Id, currentPass, newPass);
+                    if (result.Succeeded)
+                    {
+                        return View("thanh cong");
+                    }
+                }
+                return View("thanh cong");
+            }
+            catch(Exception e) { return View("loi add"); }
+        }
+
+
 
         //
         // GET: /Account/Login
@@ -287,7 +324,11 @@ namespace Project_Sem3.Controllers
         }
 
         //
-        // GET: /Account/ForgotPassword
+        // GET: /Account/Forgot
+        // 
+
+
+
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -339,7 +380,7 @@ namespace Project_Sem3.Controllers
         }
 
         //
-        // POST: /Account/ResetPassword
+        /*// POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -362,7 +403,7 @@ namespace Project_Sem3.Controllers
             }
             AddErrors(result);
             return View();
-        }
+        }*/
 
         //
         // GET: /Account/ResetPasswordConfirmation
@@ -552,6 +593,9 @@ namespace Project_Sem3.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+
+
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {

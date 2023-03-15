@@ -562,3 +562,16 @@ iframe {
         opacity: 1;
     }
 }
+
+.register-image {
+    color: #eaeaea;
+    border-bottom: none;
+}
+    .register-image label {
+        margin-bottom: 11px;
+        margin-left: 7px;
+    }
+    .register-image input {
+        font-size: 15px;
+    }
+
