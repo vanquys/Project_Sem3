@@ -13,6 +13,14 @@ namespace Project_Sem3.Controllers
             if (TempData.ContainsKey("alertMessage")) { 
                 ViewBag.alertMessage = TempData["alertMessage"].ToString();
             }
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
+            else if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
+            }
             return View();
         }
 

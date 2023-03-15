@@ -63,30 +63,49 @@ namespace Project_Sem3.Controllers
             var currentPass = Request["CurrentPassword"];
             var newPass = Request["NewPassword"];
             var confirmPass = Request["ConfirmPassword"];
-
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user == null)
-            {
-                return View("sai mk");
+            var Resign = Request["isResigned"];
+            bool isResigned = false;
+            if (Resign == "on") {
+                isResigned = true;
             }
+            bool remember = false;
+
+            AspNetUser user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            SignInStatus checkPass = await SignInManager.PasswordSignInAsync(user.Email, currentPass,remember , shouldLockout: false);
+
+            if (!checkPass.ToString().Equals("Success"))
+            {
+                TempData["ErrorMessage"] = "Incorrect Password  !";
+                return RedirectToAction("Index", "Home");
+            }
+          
             if (!newPass.Equals(confirmPass)) {
-                return View();
+                TempData["ErrorMessage"] = "New Passwords and Confirm Password do not match !";
+                return RedirectToAction("Index", "Home");
             }
             try{
-                user.Image = img;
+                if (img != "") { 
+                    user.Image = img;
+                }
                 user.Name = name;
+                user.isResigned = isResigned;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                if (newPass != null) {
+                if (newPass != "") {
                     var result = await UserManager.ChangePasswordAsync(user.Id, currentPass, newPass);
-                    if (result.Succeeded)
+                    if (!result.Succeeded)
                     {
-                        return View("thanh cong");
+                        TempData["ErrorMessage"] = "Failed to change password" ;
                     }
                 }
-                return View("thanh cong");
+                TempData["SuccessMessage"] = "successfully  !";
             }
-            catch(Exception e) { return View("loi add"); }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = "Failed to Change: " + e.Message ;
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
 
@@ -289,7 +308,7 @@ namespace Project_Sem3.Controllers
 
                     var context = new ApplicationDbContext();
                     var userStore = new UserStore<ApplicationUser>(context);
-                    var userManager = new UserManager<ApplicationUser>(userStore);
+                    var userManager = new Microsoft.AspNet.Identity.UserManager<ApplicationUser>(userStore);
                     userManager.AddToRole(userRegister.Id, roleName);
                     resultRegiter = 1;
                 }

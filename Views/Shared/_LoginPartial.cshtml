@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="~/assets/css/EditProfile.css" />
     <script src="~/assets/js/EditProfile.js"></script>
     KSMTDbContext db = new KSMTDbContext();
+    String patternPass = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&amp;*]).{6,}$";
     var userId = User.Identity.GetUserId();
     var user = db.AspNetUsers.Find(userId);
     switch (user.AspNetRoles.First().Name)
@@ -113,7 +114,7 @@
                     @Html.AntiForgeryToken()
                     <div class="editProfile-image">
                         <div class="editProfile-image-img">
-                            <img id="myImage" src="https://images.pexels.com/photos/21787/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Your Avatar">
+                            <img id="myImage" src="~/assets/img/Avatar/@user.Image" alt="Your Avatar">
                             <br>
                             <input type="file" name="Image" onchange="loadImage(event)">
                         </div>
@@ -133,24 +134,32 @@
 
                     <div class="editProfile-item">
                         <label>New Password</label>
-                        <input class="ip-editProfile" type="password" name="NewPassword" placeholder="leave blank if no changes" />
+                        <input class="ip-editProfile" type="password" name="NewPassword" placeholder="leave blank if no changes" pattern="@patternPass" />
                     </div>
                     <div class="editProfile-item">
                         <label>Comfirm Password</label>
                         <input class="ip-editProfile" type="password" name="ConfirmPassword" placeholder="leave blank if no changes" />
                     </div>
+                    if (user.AspNetRoles.First().Name == "Admin")
+                    {
+                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" hidden/>
+                    }
+                    else
+                    {
+                        <div class="editProfile-item editProfile-checkbox">
+                            <label class="editProfile-checkbox_label">Resign</label>
+                            @if (user.isResigned)
+                            {
+                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" checked />
+                            }
+                            else
+                            {
+                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" />
+                            }
+                        </div>
 
-                    <div class="editProfile-item editProfile-checkbox">
-                        <label class="editProfile-checkbox_label">Resign</label>
-                        @if (user.isResigned)
-                        {
-                            <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" />
-                        }
-                        else
-                        {
-                            <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" checked />
-                        }
-                    </div>
+                    }
+
                     <div class="editProfile-item">
                         <label>Input Curent Password to Change </label>
                         <input class="ip-editProfile" type="password" name="CurrentPassword" placeholder="*********" required />

@@ -4,6 +4,16 @@
 {
     <script>alert("@ViewBag.alertMessage");</script>
 }
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
 <main id="home">
     <section id="hero" class="hero">
         <div class="container position-relative">
