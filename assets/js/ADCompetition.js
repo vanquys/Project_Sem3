@@ -7,6 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
     var dialogEdit = document.querySelector('.dialog-edit');
     var i;
 
+    //deleteanswer
+
+
+    $('.delete-answer').click(function (event) {
+        event.preventDefault();
+        var iduser = $(this).data('iduser');
+        var idcp = $(this).data('idcp');
+        if (confirm("Are you want deleted this competition ?")) {
+            $.ajax({
+                url: '/Competitions/DeleteAnswer',
+                type: 'POST',
+                data: { iduser: iduser, idcp: idcp },
+                success: function (result) {
+                    if (result.success) {
+                        location.reload();
+                        alert(result.message);
+                    } else {
+                        alert("There are members participating in the contest, cannot be deleted !");
+                        console.log(result.message);
+                    }
+                },
+                error: function () {
+                    alert('Error');
+                }
+            });
+        }
+    });
     // dialog
     for (i = 0; i < closebtns.length; i++) {
         closebtns[i].addEventListener("click", function () {
@@ -79,29 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    $('.delete-btn').click(function () {
-        var iduser = $(this).data('iduser');
-        var idcp = $(this).data('idcp');
-        console.log(iduser+  "_"  + idcp )
-        if (confirm("Are you want deleted this user?")) {
-
-            $.ajax({
-                url: '/Competitions/DeleteAnswer',
-                type: 'POST',
-                data: { iduser: iduser, idcp: idcp },
-                success: function (result) {
-                    if (result.success) {
-                        location.reload();
-                        alert(result.message);
-                    } else {
-                        alert(result.message);
-                    }
-                },
-                error: function () {
-                    alert('Error');
-                }
-            });
-        }
-    });
+    
 });
-
+  

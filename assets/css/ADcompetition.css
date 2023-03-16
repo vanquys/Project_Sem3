@@ -172,22 +172,25 @@ tr td:nth-child(odd) {
     margin: auto;
     z-index: 1000;
     border-radius: 8px;
+    display:block;
+    width:50%;
 }
 
 .close-btn {
     display: flex;
     justify-content: end;
     cursor: pointer;
-    color: red;
+    color: black;
     font-weight: 600;
     font-size: 20px;
-    margin-right: 5px;
+    margin-right: 10px;
+   
 }
 
-.f-rigister {
-    display: grid;
-    padding: 15px 100px;
-}
+    .f-rigister {
+        display: grid;
+        padding: 15px 100px;
+    }
 
     .f-rigister .item {
         margin-top: 25px;
@@ -230,10 +233,12 @@ tr td:nth-child(odd) {
     padding-left: 60px;
     padding-right: 60px;
     padding-bottom: 30px;
+    
 }
 
 .cp-add-item-date {
     display: flex;
+    justify-content:space-between;
 }
 
 .item-date {
@@ -246,7 +251,7 @@ tr td:nth-child(odd) {
     margin-top: 15px;
 }
 .ip-add-cp {
-    background-color: #17b3d300;
+    background-color: #ffffffba;
     border: none;
     border: 1px solid black;
     padding: 2px;
@@ -257,7 +262,7 @@ tr td:nth-child(odd) {
     font-size:20px;
 }
 .cp-add-description {
-    background-color: #17b3d300;
+    background-color: #ffffffba;
     border: none;
     border: 1px solid black;
     resize: none;
@@ -268,17 +273,18 @@ tr td:nth-child(odd) {
     justify-content:end;
     margin-top:8px;
 }
-    .btn-add-cp .btn-add-cp-item {
-        border-radius: 5px;
-        background-color: #008374;
-        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-        padding:2px 10px;
-     }
-    .ts td p {
-        margin: 0;
-        margin-bottom: 20px;
-        margin-top: 10px
-    }
+.btn-add-cp .btn-add-cp-item {
+    border-radius: 5px;
+    background-color: #1e4a1fc2;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+}
+.ts td p {
+    margin: 0;
+    margin-bottom: 20px;
+    margin-top: 10px
+}
 
 .Competition .table {
     border: 1px solid black;
@@ -296,10 +302,12 @@ table td {
 }
 
 .ts .description {
-    width: 15%;
+    width: 10%;
 }
 .ts .answer{
-    width:15%;
+    width:35%;
+    min-width:300px;
+        
 }
 .ts .question{
     width:15%;
@@ -308,41 +316,55 @@ table td {
     width:10%;
 }
 .ts .date {
-    width: 20%;
+    width: 10%;
 }
 
 .ts .contestant {
-    width: 8%;
+    width: 5%;
 }
 
 .ts .btn-rg-cp {
-    width: 12%;
+    width: 10%;
 }
       
 .references img {
     border-radius: 5px;
 }
 .btn-edit {
+    display:block;
     background-color: #008374;
     border-radius: 5px;
     cursor: pointer;
     padding: 2px;
     margin-bottom:15px;
+    color:white;
+}
+.btn-edit:hover {
+    color:black;
 }
 .btn-delete {
+    display: block;
     background-color: #008374;
     border-radius: 5px;
     cursor: pointer;
     padding: 2px;
+    color: white;
+}
+.btn-delete:hover {
+    color: black;
 }
 .btn-rgt-cp-ad{
-    display:grid;
+    display:revert;
 }
 .btn-add {
     background-color: #008374;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer;  
     padding: 10px;  
+    color:white;
+}
+.btn-add:hover {
+    color:black;
 }
 .cp-mark-uid{     
     width:5%;
@@ -355,7 +377,8 @@ table td {
     width: 5%;
 }
 .cp-mark-answer {
-    width: 55%;     
+    width: 55%;
+    min-width: 300px;
 }
 .cp-mark-score input {   
     width: 50px;  
@@ -366,7 +389,32 @@ table td {
 .cp-mark-btn {   
     width: 5%;   
 }
-
+.cp-mark .btn-apply {
+    display: block;
+    background-color: #008374;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;   
+    width:100%;
+    margin-bottom:8px;
+    border:none;
+    color:white;
+}
+.cp-mark .btn-apply:hover {
+    color:black
+}
+.cp-mark .delete-answer {
+    display: block;
+    background-color: #c32f2f;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    color: white;
+}
+.cp-mark .delete-answer:hover {
+    color:black;
+}
 @media only screen and (max-width: 1200px) {
     .references .col-md-9 p {
         font-size: 15px;
@@ -464,6 +512,9 @@ table td {
     .cp-mark-uname {
         font-size: 12px;
     }
+    .dialog-body {
+        width: 70%;
+    }
 }
 @media only screen and (max-width: 627px) {
     .ts td a {
@@ -477,6 +528,9 @@ table td {
 
         .references h3 {
             font-size: 17px;
+        }
+        .dialog-body {
+            width: 90%;
         }
     }
 
@@ -498,4 +552,9 @@ table td {
         .references h3 {
             font-size: 14px;
         }
+        .cp-add-item-date {
+            display: flex;
+            flex-direction:column;  
+        }
+
     }
