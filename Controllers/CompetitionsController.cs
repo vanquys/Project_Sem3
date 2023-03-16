@@ -131,6 +131,21 @@ namespace Project_Sem3.Controllers
             return View("Competition");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddMark([Bind(Include = "IdRegistratedUser,CompetitionId,Answer,Mark,Date")] AnswerResult answerResult)
+        {
+            if (ModelState.IsValid)
+            {
+
+                string mark = Request["Mark"];
+                answerResult.Mark = double.Parse(mark);
+                db.Entry(answerResult).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("AdCompetition", "Competitions");
+            }
+            return View(answerResult);
+        }
 
         protected override void Dispose(bool disposing)
         {

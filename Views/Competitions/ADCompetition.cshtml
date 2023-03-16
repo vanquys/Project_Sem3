@@ -1,9 +1,33 @@
 ﻿@model IEnumerable<Project_Sem3.Models.Competition>
-
+@using Microsoft.AspNet.Identity
+@using Project_Sem3.Models
 @{
     ViewBag.Title = "View";
 }
+@{
+    KSMTDbContext db = new KSMTDbContext();
+    List<AnswerResult> listas = db.AnswerResults.ToList();
+    var name = "";
+    var userId = "";
+    Registration registration = null;
+    if (Request.IsAuthenticated)
+    {
+        var Id = User.Identity.GetUserId();
+        var user = db.AspNetUsers.Find(Id);
+        name = user.Name;
+        userId = user.Id;
+        registration = db.Registrations.SingleOrDefault(r => r.UserId == userId);
 
+    }
+
+
+
+}
+<link href="~/assets/css/ADcompetition.css" rel="stylesheet" />
+<script src="~/assets/js/ADCompetition.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Tilt+Neon&display=swap" rel="stylesheet">
 @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
 {
     <script>alert("@ViewBag.SuccessMessage");</script>
@@ -25,19 +49,16 @@
                     <div class="col-md-7">
                         <h2>Competition</h2>
                         <h6>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                            at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                            Curabitur vitae tortor arcu.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci, at luctus leo
-                            mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt. Curabitur vitae
-                            tortor arcu.
+                            Environmental survey is the process of gathering information about the environment and
+                            the impacts of human activities on it. It helps to assess the current state of the
+                            environment, predict the impacts of future activities, and provide solutions to
+                            protect and improve the environment.
                         </h6>
                     </div>
                 </div>
             </div>
             <div class="line">
-
+                <p></p>
             </div>
             <div class="cp-add">
                 <a class="btn-add btn-dialog-add" style="color:white">
@@ -72,7 +93,7 @@
                                 <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
                             </td>
                             <td class="contestant">
-                                <p>@m.UserCompetitions.Count</p>
+                                <p>@m.AnswerResults.Count</p>
                             </td>
                             <td class="question">
                                 <p>@m.Question</p>
@@ -94,7 +115,42 @@
                 </table>
 
             </div>
+            @using (Html.BeginForm("AddMark", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h2>Mark</h2>
+                <div class="cp-mark table-scroll">
 
+                    <table class="table">
+                        <tr>
+                            <th>Roll ID</th>
+                            <th>Name</th>
+                            <th>CP-ID</th>
+                            <th>Answer</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                        </tr>
+                        @foreach (var m in listas)
+                        {
+                            <tr>
+                                <td class="cp-mark-uid">@m.IdRegistratedUser</td>
+                                <td class="cp-mark-uname">@m.Registration.Name</td>
+                                <td class="cp-mark-compe">@m.CompetitionId</td>
+                                <td>@m.Answer</td>
+                                <td class="cp-mark-score"><input name="Mark" /></td>
+                                <td class="cp-mark-btn">
+                                    <button type="submit">Apply</button>
+                                </td>
+                            </tr>
+                            <input name="Date" value="@m.Date" hidden />
+                            <input name="IdRegistratedUser" value="@m.IdRegistratedUser" hidden />
+                            <input name="CompetitionId" value="@m.CompetitionId" hidden />
+                            <input name="Answer" value="@m.Answer" hidden />
+                        }
+
+                    </table>
+                </div>
+            }
         </div>
 
     </div>
@@ -103,17 +159,16 @@
         <a href="#">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="~/assets/img/Competition/images.jpg" />
+                    <img src="~/assets/img/competition/rf1.jpg" />
                 </div>
                 <div class="col-md-9">
-                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <h3>Assessment of environmental status and human impacts</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Donec sit amet augue vitae augue tempor tincidunt.
+                        This document assesses the current state of the environment and examines
+                        the impact of human activities on natural resources. It covers various aspects
+                        of the environment, such as air and water quality, land use, and biodiversity.
+                        The report aims to provide insights into the current environmental conditions and
+                        their relationship with ...
                     </p>
                 </div>
             </div>
@@ -124,14 +179,10 @@
                     <img src="~/assets/img/Competition/images.jpg" />
                 </div>
                 <div class="col-md-9">
-                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <h3>The phenomenon of weather is becoming increasingly difficult to explain.</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Donec sit amet augue vitae augue tempor tincidunt.
+                        Although scientists have analyzed and studied extensively about the weather,
+                        there are still many different factors and impacts that can affect the weather.
                     </p>
                 </div>
             </div>
@@ -139,17 +190,14 @@
         <a href="#">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="~/assets/img/Competition/images.jpg" />
+                    <img src="~/assets/img/competition/rf2.jpg" />
                 </div>
                 <div class="col-md-9">
-                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <h3>The need for clean energy is challenging for us.</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Donec sit amet augue vitae augue tempor tincidunt.
+                        The need for clean energy is crucial for a sustainable future, but transitioning
+                        to it presents significant challenges such as investment in research, infrastructure,
+                        and technology, as well as complex policy and regulatory frameworks.
                     </p>
                 </div>
             </div>
@@ -166,7 +214,6 @@
                 @using (Html.BeginForm("Create", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h2>Add new competition</h2>
                     <div class="line">
 
                     </div>
@@ -176,7 +223,7 @@
                     </div>
                     <div class="cp-add-item">
                         <label class="lb-add-cp">Description</label>
-                        <textarea class="cp-add-description dialog-description" name="Description" rows="4"></textarea>
+                        <textarea class="cp-add-description dialog-description" name="Description" rows="3"></textarea>
                     </div>
                     <div class="cp-add-item-date">
                         <div class="item-date">
@@ -191,11 +238,11 @@
                     </div>
                     <div class="cp-add-item">
                         <label class="lb-add-cp">Question</label>
-                        <textarea class="cp-add-description dialog-question" name="Question" rows="4"></textarea>
+                        <textarea class="cp-add-description dialog-question" name="Question" rows="2"></textarea>
                     </div>
                     <div class="cp-add-item">
                         <label class="lb-add-cp">Answer</label>
-                        <textarea class="cp-add-description dialog-answer" name="RightAnswer" rows="2"></textarea>
+                        <textarea class="cp-add-description dialog-answer" name="RightAnswer" rows="4"></textarea>
                     </div>
                     <div class="btn-add-cp">
                         <button class="btn-add-cp-item" type="submit">ADD</button>
@@ -257,5 +304,4 @@
 
     </div>
 </main>
-<link href="~/assets/css/ADcompetition.css" rel="stylesheet" />
-<script src="~/assets/js/ADCompetition.js"></script>
+

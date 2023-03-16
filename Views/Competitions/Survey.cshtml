@@ -1,7 +1,7 @@
 ﻿@model Project_Sem3.Models.Competition
 @using Project_Sem3.Models
 @using Microsoft.AspNet.Identity
-
+<script src="~/assets/js/survey.js"></script>
 <link href="~/assets/css/Survey.css" rel="stylesheet" />
 @{
     KSMTDbContext db = new KSMTDbContext();
@@ -19,10 +19,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li><h6>1. Lorem ipsum dolor sit amet, consectetur</h6></li>
-                            <li><h6>2. Lorem ipsum dolor sit amet, consectetur</h6></li>
-                            <li><h6>3. Lorem ipsum dolor sit amet, consectetur</h6></li>
-                            <li><h6>4. Lorem ipsum dolor sit amet, consectetur</h6></li>
+                            <li><h6>1. Time: 10min</h6></li>
+                            <li><h6>2. Submit when complelte</h6></li>
+                            <li><h6>3, scores will be available within 2-3 days</h6></li>
+                            <li><h6>4. Good luck</h6></li>
                         </ul>
                     </div>
                     <div class="col-md-6">
@@ -33,11 +33,11 @@
         </div>
         <div class="sv-content">
             <div class="sv-content-top">
+                <div class="time">
+                    <p id="countdown"></p>
+                </div>
                 <div class="title">
                     <h3>@Model.Title</h3>
-                </div>
-                <div class="time">
-                    <p>10:00</p>
                 </div>
             </div>
             <div class="question">
@@ -50,7 +50,7 @@
         <div class="form-answer">
             <div class="container">
                 <div class="sv-form">
-                    <textarea rows="10" name="Answer"></textarea>
+                    <textarea class="sv-textarea" rows="10" name="Answer"></textarea>
                     <input name="IdRegistratedUser" id="IdRegistratedUser" value="@idRegistration" hidden />
                     <input name="CompetitionId" id="CompetitionId" value="@Model.Id"  hidden />
                     <div class="btn-form-sv">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="form-answer-img">
-                    <img src="~/assets/img/survey/nik-OouFKZynpAM-unsplash.jpg" />
+                    <img src="~/assets/img/survey/philippe-leone-CR06GzANXmo-unsplash.jpg" />
                 </div>
             </div>
         </div>

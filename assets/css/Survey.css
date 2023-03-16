@@ -9,7 +9,7 @@
 }
 .sv-top ul li{
     list-style-type:none;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .sv-top .col-md-6{
     text-align:center;
@@ -21,9 +21,7 @@
 .sv-content{
     padding:30px; 
 }
-.sv-content-top{
-    display:flex;
-    justify-content:space-between;
+.sv-content-top{  
     padding:10px 30px;
 }
 .sv-content-top .title {
@@ -32,24 +30,28 @@
     background-color: #008374;
     padding: 10px;
     border-radius: 5px;
+    margin-top:20px;
 }
 .sv-content-top .title h3 {
     display: flex;
     align-items: center;
     margin:0;
+    font-size:20px;
 }
 .sv-content-top .time {
     display: flex;
     align-items: center;
-    border: 1px solid black;
-    padding: 10px;
-    color: red;
-    border-radius:5px;
+    justify-content:end;
 }
 .sv-content-top .time p {
     display: flex;
     align-items: center;
     margin: 0;
+    border: 1px solid black;
+    color: red;  
+    border-radius:5px;
+    padding: 10px;
+
 }
 .sv-content .question{
     margin-top:40px;
@@ -57,6 +59,7 @@
 }
 .sv-content .question h2{
     margin-bottom:20px;
+    font-size:19px;
 }
 .sv-content .question p {
     padding:0 50px;
@@ -69,10 +72,12 @@
     width:100%;
     justify-content:space-around;
 }
-.form-answer textarea{
+.form-answer .sv-textarea{
     width:100%;
     resize:none;
     border-radius:5px;
+    background-color:white;
+    border:1px solid black;  
 }
 .sv-form{
     width:40%;
@@ -94,7 +99,14 @@
 .form-answer .btn-form-sv{
     display:flex;
     justify-content:end;
+    background-color:white;
+    margin-top:25px;
+
 }
+    .form-answer .btn-form-sv button {
+        background-color: white;
+        box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    }
 .sv-bottom {
     text-align: center;
     margin-top: 30px;
@@ -103,6 +115,7 @@
 .sv-bottom img{
     width:100%;
 }   
+
 @media only screen and (max-width:832px) {
     .sv-top .col-md-6 li h6 {
         font-size: 13px;
@@ -143,7 +156,7 @@
     .sv-content .sv-content-top .time{
         justify-content:center;
         margin-top:20px;
-        margin:10px 30%;
+        margin:10px;
 
     }
     .sv-form textarea {

@@ -12,7 +12,6 @@ namespace Project_Sem3.Models
         public Competition()
         {
             AnswerResults = new HashSet<AnswerResult>();
-            UserCompetitions = new HashSet<UserCompetition>();
         }
 
         public int Id { get; set; }
@@ -35,8 +34,5 @@ namespace Project_Sem3.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnswerResult> AnswerResults { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserCompetition> UserCompetitions { get; set; }
     }
 }

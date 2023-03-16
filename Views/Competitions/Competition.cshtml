@@ -9,10 +9,9 @@
     var name = "";
     var userId = "";
     Registration registration = null;
-    KSMTDbContext db = new KSMTDbContext();
-
     if (Request.IsAuthenticated)
     {
+        KSMTDbContext db = new KSMTDbContext();
         var Id = User.Identity.GetUserId();
         var user = db.AspNetUsers.Find(Id);
         name = user.Name;
@@ -30,8 +29,8 @@
 {
     <script>alert("@ViewBag.ErrorMessage");</script>
 }
-<main id="survey">
-    <div class="Competition">
+<main id="survey" data-aos="fade-up">
+    <div class="Competition"  >   
         <div class="container-fluid">
             <div class="CP-top">
                 <div class="row">
@@ -41,21 +40,18 @@
                     <div class="col-md-7">
                         <h2>Competition</h2>
                         <h6>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                            at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                            Curabitur vitae tortor arcu.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci, at luctus leo
-                            mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt. Curabitur vitae
-                            tortor arcu.
+                            Environmental survey is the process of gathering information about the environment and
+                            the impacts of human activities on it. It helps to assess the current state of the
+                            environment, predict the impacts of future activities, and provide solutions to
+                            protect and improve the environment.
                         </h6>
                     </div>
                 </div>
             </div>
             <div class="line">
-
+                <p></p>
             </div>
-            <table class="table">
+            <table class="table table-scroll">
                 <tr>
                     <th>No</th>
                     <th>Description</th>
@@ -65,7 +61,6 @@
                 </tr>
                 @foreach (var m in Model)
                 {
-
                     <tr class="ts">
                         <td class="no">
                             <p class="id">@m.Id</p>
@@ -80,13 +75,13 @@
                             <p>@m.AnswerResults.Count</p>
                         </td>
                         <td class="btn-rgt-cp">
-
                             @if (@m.EndDate.CompareTo(DateTime.Now) <= 0)
                             {
                                 <a class="cp-btn-expired">
                                     Expired
                                 </a>
                             }
+
                             else if (registration != null)
                             {
                                 AnswerResult answerResult = m.AnswerResults.SingleOrDefault(a => a.IdRegistratedUser == registration.Id);
@@ -102,7 +97,6 @@
                                         Join Now
                                     </a>
                                 }
-
                             }
                             else
                             {
@@ -130,17 +124,16 @@
         <a href="#">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="~/assets/img/Competition/images.jpg" />
+                    <img src="~/assets/img/competition/rf1.jpg" />
                 </div>
                 <div class="col-md-9">
-                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <h3>Assessment of environmental status and human impacts</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Donec sit amet augue vitae augue tempor tincidunt.
+                        This document assesses the current state of the environment and examines
+                        the impact of human activities on natural resources. It covers various aspects
+                        of the environment, such as air and water quality, land use, and biodiversity.
+                        The report aims to provide insights into the current environmental conditions and
+                        their relationship with ...
                     </p>
                 </div>
             </div>
@@ -151,14 +144,10 @@
                     <img src="~/assets/img/Competition/images.jpg" />
                 </div>
                 <div class="col-md-9">
-                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <h3>The phenomenon of weather is becoming increasingly difficult to explain.</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Donec sit amet augue vitae augue tempor tincidunt.
+                        Although scientists have analyzed and studied extensively about the weather,
+                        there are still many different factors and impacts that can affect the weather.
                     </p>
                 </div>
             </div>
@@ -166,22 +155,18 @@
         <a href="#">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="~/assets/img/Competition/images.jpg" />
+                    <img src="~/assets/img/competition/rf2.jpg" />
                 </div>
                 <div class="col-md-9">
-                    <h3>Lorem ipsum dolor sit amet</h3>
+                    <h3>The need for clean energy is challenging for us.</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Quisque volutpat, diam ut rhoncus lobortis, erat sapien fringilla orci,
-                        at luctus leo mauris ut metus. Donec sit amet augue vitae augue tempor tincidunt.
-                        Donec sit amet augue vitae augue tempor tincidunt.
+                        The need for clean energy is crucial for a sustainable future, but transitioning
+                        to it presents significant challenges such as investment in research, infrastructure,
+                        and technology, as well as complex policy and regulatory frameworks.
                     </p>
                 </div>
             </div>
         </a>
-
     </div>
     <div class="dialog hidden">
         <div class="modal-o"></div>

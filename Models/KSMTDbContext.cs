@@ -21,7 +21,6 @@ namespace Project_Sem3.Models
         public virtual DbSet<FAQ> FAQs { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
-        public virtual DbSet<UserCompetition> UserCompetitions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -45,22 +44,10 @@ namespace Project_Sem3.Models
                 .WithOptional(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId);
 
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.UserCompetitions)
-                .WithRequired(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Competition>()
                 .HasMany(e => e.AnswerResults)
                 .WithRequired(e => e.Competition)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Competition>()
-                .HasMany(e => e.UserCompetitions)
-                .WithRequired(e => e.Competition)
-                .WillCascadeOnDelete(false);
-
 
             modelBuilder.Entity<Registration>()
                 .HasMany(e => e.AnswerResults)

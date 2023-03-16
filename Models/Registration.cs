@@ -15,7 +15,6 @@ namespace Project_Sem3.Models
             AnswerResults = new HashSet<AnswerResult>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [StringLength(128)]
