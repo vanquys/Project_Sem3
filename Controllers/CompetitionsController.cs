@@ -114,6 +114,22 @@ namespace Project_Sem3.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult DeleteAnswer(int iduser, int idcp)
+        {
+            AnswerResult answerResult = db.AnswerResults.FirstOrDefault(a => a.IdRegistratedUser == iduser && a.CompetitionId == idcp);
+
+            try
+            {
+                db.AnswerResults.Remove(answerResult);
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted competition successfully." });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = "err: " + e.Message });
+            }
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

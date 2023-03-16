@@ -79,6 +79,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    $('.delete-btn').click(function () {
+        var iduser = $(this).data('iduser');
+        var idcp = $(this).data('idcp');
+        console.log(iduser+  "_"  + idcp )
+        if (confirm("Are you want deleted this user?")) {
 
+            $.ajax({
+                url: '/Competitions/DeleteAnswer',
+                type: 'POST',
+                data: { iduser: iduser, idcp: idcp },
+                success: function (result) {
+                    if (result.success) {
+                        location.reload();
+                        alert(result.message);
+                    } else {
+                        alert(result.message);
+                    }
+                },
+                error: function () {
+                    alert('Error');
+                }
+            });
+        }
+    });
 });
 
