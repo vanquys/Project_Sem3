@@ -155,7 +155,14 @@ namespace Project_Sem3.Controllers
             {
 
                 string mark = Request["Mark"];
+                if (mark == "")
+                {
+                    answerResult.Mark = null;
+                }
+                else { 
                 answerResult.Mark = double.Parse(mark);
+
+                }
                 db.Entry(answerResult).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("AdCompetition", "Competitions");

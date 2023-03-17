@@ -371,6 +371,7 @@
     <Content Include="assets\assetsLogin\vendor\select2\select2.min.js" />
     <Content Include="assets\css\ADcompetition.css" />
     <Content Include="assets\css\competition.css" />
+    <Content Include="assets\css\ListUser.css" />
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\Survey.css" />
     <Content Include="assets\img\about-2.jpg" />

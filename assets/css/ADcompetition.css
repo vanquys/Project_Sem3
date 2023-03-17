@@ -1,6 +1,9 @@
 ﻿.Competition {
     margin: 35px;
 }
+a:hover {
+    color:white !important;
+}
 .table-scroll {
     overflow-x: scroll;
 }
@@ -18,7 +21,6 @@
 .CP-top p {
     background-color: #418b2236;
     padding: 5px;
-    font-family: 'Shantell Sans', cursive;
 }
 
 .Competition .CP-top .col-md-5 {
@@ -30,7 +32,6 @@
 .Competition .CP-top h2 {
     color: green;
     text-align: center;
-    font-family: 'Rubik Bubbles', cursive;
     background-color: #ffffffab;
     padding: 6px;
     border-radius: 5px;
@@ -67,7 +68,7 @@
 
 
 .Cp a:hover {
-    color: black;
+    color: white;
 }
 
 tr td:nth-child(even) {
@@ -84,6 +85,7 @@ tr td:nth-child(odd) {
     padding: 55px;
     color: white;
 }
+
 
 .cp-btn-join {
     display: grid;
@@ -119,10 +121,10 @@ tr td:nth-child(odd) {
 }
 
 .references h2 {
-    color: green;
+    color: #013901;
     text-align: center;
     margin-bottom: 80px;
-    font-family: 'Rubik Bubbles', cursive;
+    font-weight: 600;
 }
 
 .references h3 {
@@ -134,7 +136,7 @@ tr td:nth-child(odd) {
 }
 
 .references a:hover {
-    color: bisque;
+    color: white;
 }
 
 .dialog-add {
@@ -225,7 +227,7 @@ tr td:nth-child(odd) {
         }  
 
             .f-rigister .btn-rgt a:hover {
-                color: black;
+                color: white;
             }
 
 .cp-add-form {
@@ -258,7 +260,6 @@ tr td:nth-child(odd) {
     border-radius:1px;
 }
 .lb-add-cp {
-    font-family: 'Rubik Iso'; 
     font-size:20px;
 }
 .cp-add-description {
@@ -273,23 +274,27 @@ tr td:nth-child(odd) {
     justify-content:end;
     margin-top:8px;
 }
-.btn-add-cp .btn-add-cp-item {
-    border-radius: 5px;
-    background-color: #1e4a1fc2;
-    color: white;
-    border: none;
-    padding: 5px 20px;
-}
+    .btn-add:hover {
+        background-color: #0aa593;
+    }
+    .btn-add-cp .btn-add-cp-item {
+        border-radius: 5px;
+        background-color: #1e4a1fc2;
+        color: white;
+        border: none;
+        padding: 5px 20px;
+    }
 .ts td p {
     margin: 0;
     margin-bottom: 20px;
     margin-top: 10px
 }
-
-.Competition .table {
+.table {
+    font-weight: 500;
     border: 1px solid black;
+}
+.Competition .table {
     text-align: center;
-    font-family: 'Russo One', cursive; 
 }
 
 table td {
@@ -331,37 +336,51 @@ table td {
     border-radius: 5px;
 }
 .btn-edit {
-    display:block;
-    background-color: #008374;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 2px;
-    margin-bottom:15px;
-    color:white;
-}
-.btn-edit:hover {
-    color:black;
-}
-.btn-delete {
     display: block;
     background-color: #008374;
     border-radius: 5px;
     cursor: pointer;
     padding: 2px;
+    margin-bottom: 15px;
     color: white;
+    width: 80%;
 }
-.btn-delete:hover {
-    color: black;
+    .btn-edit:hover {
+        background-color: #0ea291;
+    }
+.btn-delete {
+    display: block;
+    background-color: #c32f2f;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px;
+    color: white;
+    width:80%;
 }
+    .btn-delete:hover {
+        background-color: #df2525;
+    }
 .btn-rgt-cp-ad{
-    display:revert;
+    position:relative;
+}
+    .btn-rgt-cp-ad div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+    }
 }
 .btn-add {
     background-color: #008374;
     border-radius: 5px;
-    cursor: pointer;  
-    padding: 10px;  
-    color:white;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
 }
 .btn-add:hover {
     color:black;
@@ -400,9 +419,9 @@ table td {
     border:none;
     color:white;
 }
-.cp-mark .btn-apply:hover {
-    color:black
-}
+    .cp-mark .btn-apply:hover {
+        background-color: #05baa5;
+    }
 .cp-mark .delete-answer {
     display: block;
     background-color: #c32f2f;
@@ -412,9 +431,9 @@ table td {
     border: none;
     color: white;
 }
-.cp-mark .delete-answer:hover {
-    color:black;
-}
+    .cp-mark .delete-answer:hover {
+        background-color: #df3232;
+    }
 @media only screen and (max-width: 1200px) {
     .references .col-md-9 p {
         font-size: 15px;
@@ -519,6 +538,9 @@ table td {
 @media only screen and (max-width: 627px) {
     .ts td a {
         margin: 10px 0;
+    }
+    .btn-rgt-cp-ad .btn-edit, .btn-rgt-cp-ad .btn-delete {
+        font-size: 10px;
     }
 }
     @media only screen and (max-width: 544px) {
