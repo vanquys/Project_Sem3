@@ -21,5 +21,7 @@ namespace Project_Sem3.Models
 
         [StringLength(150)]
         public string Position { get; set; }
+        public string Image { get; set; }
+
     }
 }

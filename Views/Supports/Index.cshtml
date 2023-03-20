@@ -1,54 +1,164 @@
 ﻿@model IEnumerable<Project_Sem3.Models.Support>
 
+<script src="~/assets/js/Support.js"></script>
+<link href="~/assets/css/Support.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
 <main id="support">
+    <div class="sp-top">
+        <div class="sp-top-top">
+            <div class="sp-top-content">
+                <h1>Support</h1>
+                <p>
+                    Support page is a website or software that supports customers in resolving technical
+                    issues or questions related to the products or services of a company or organization.
+                    Support page provides users with instructional materials, answers to frequently asked questions,
+                    repair instructions, and other support resources. It also provides users with a direct contact channel
+                    with customer support staff to help them resolve more complex issues.
+                </p>
+            </div>
+        </div>
+    </div>
 
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Position)
-            </th>
-            <th></th>
-        </tr>
+    <div class="sp-title">
+        <h2>Support team</h2>
+    </div>
+    <div class="sp-table">
+        <div class="container">
+            <div class="sp-btn-add btn-dialog-add">
+                <a class="sp-btn-btn-add">ADD</a>
+            </div>
+            <div class="sp-spter">
+                @foreach (var m in Model)
+                {
+                    <div class="sp-item">
+                        <div class="sp-id" hidden>
+                            <p>@m.Id</p>
+                        </div>
+                        <div class="sp-img">
+                            <img src="~/assets/img/support/@m.Image" id="img-id" />
+                        </div>
+                        <div class="sp-item-item">
+                            <div class="name dp-flex">
+                                <label>Name: </label>
+                                <p> @m.Name</p>
+                            </div>
+                            <div class="phone dp-flex">
+                                <label>Phone:</label>
+                                <p>@m.Phone</p>
+                            </div>
+                            <div class="email dp-flex">
+                                <label>Email:</label>
+                                <p>@m.Email</p>
+                            </div>
+                            <div class="position dp-flex">
+                                <label>Position:</label>
+                                <p>@m.Position</p>
+                            </div>
+                        </div>
+                        <div class="sp-item-btn">
+                            <div class="btn-edit btn-dialog-edit">
+                                <a>
+                                    Edit
+                                </a>
+                            </div>
+                            <a class="btn-delete" data-id="@m.Id">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
+                }
+            </div>
 
-    </table>
+        </div>
+    </div>
 
+    <div class="dialog-add hidden">
+        <div class="modal-o"></div>
+        <div class="dialog-body">
+            <div class="close-btn">
+                &times;
+            </div>
+            <div class="sp-form-top">
+                <h3>Add supporter</h3>
+            </div>
+            <div class="cp-add-form">
+                @using (Html.BeginForm("Create", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="sp-add-form-item">
+
+                        <div class="name">
+                            <input type="text" name="name" placeholder="Name" />
+                        </div>
+                        <div class="phone">
+                            <input type="text" name="phone" placeholder="Phone" />
+                        </div>
+                        <div class="email">
+                            <input type="text" name="email" placeholder="Email" />
+                        </div>
+                        <div class="position">
+                            <input type="text" name="position" placeholder="Position" />
+                        </div>
+                        <div class="image">
+                            <input type="file" name="image" placeholder="image" />
+                        </div>
+                        <div class="btn-add-cp">
+                            <button type="submit" class="btn-add-cp-item ">ADD</button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="dialog-edit hidden">
+        <div class="modal-o"></div>
+        <div class="dialog-body">
+            <div class="close-btn">
+                &times;
+            </div>
+            <div class="sp-form-top">
+                <h3>Edit supporter</h3>
+            </div>
+            <div class="cp-add-form">
+                @using (Html.BeginForm("Edit", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="sp-add-form-item">
+                        <div class="id">
+                            <input type="text" id="id" name="id" placeholder="ID" />
+                        </div>
+                        <div class="name">
+                            <input type="text" id="name" name="name" placeholder="Name" />
+                        </div>
+                        <div class="phone">
+                            <input type="text" id="phone" name="phone" placeholder="Phone" />
+                        </div>
+                        <div class="email">
+                            <input type="text" id="email" name="email" placeholder="Email" />
+                        </div>
+                        <div class="position">
+                            <input type="text" id="position" name="position" placeholder="Position" />
+                        </div>
+                        <div class="image">
+                            <input type="file" name="Image">
+                        </div>
+                        <div class="btn-add-cp">
+                            <button type="submit" class="btn-add-cp-item ">ADD</button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+    </div>
 </main>
+
+

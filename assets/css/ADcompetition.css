@@ -1,8 +1,8 @@
 ﻿.Competition {
     margin: 35px;
 }
-a:hover {
-    color:white !important;
+#survey a:hover {
+    color: white !important;
 }
 .table-scroll {
     overflow-x: scroll;

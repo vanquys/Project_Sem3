@@ -20,21 +20,12 @@ namespace Project_Sem3.Controllers
         {
             return View(db.Supports.ToList());
         }
-
-        // GET: Supports/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Support()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Support support = db.Supports.Find(id);
-            if (support == null)
-            {
-                return HttpNotFound();
-            }
-            return View(support);
+            return View(db.Supports.ToList());
         }
+
+
 
         // GET: Supports/Create
         public ActionResult Create()
@@ -47,74 +38,61 @@ namespace Project_Sem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Support support)
+        public ActionResult Create([Bind(Include = "name,phone,email,position,image")] Support support)
         {
             if (ModelState.IsValid)
             {
                 db.Supports.Add(support);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["SuccessMessage"] = "Supporter added successfully.";
+                return RedirectToAction("Index", "Supports");
             }
-
-            return View(support);
+            TempData["ErrorMessage"] = "Failed to add competition.";
+            return View("Index");
         }
 
-        // GET: Supports/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Support support = db.Supports.Find(id);
-            if (support == null)
-            {
-                return HttpNotFound();
-            }
-            return View(support);
-        }
+        
 
         // POST: Supports/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Email,Position")] Support support)
+        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Email,Position,Image")] Support support)
         {
             if (ModelState.IsValid)
             {
+                //Support support1 = db.Supports.SingleOrDefault(s => s.Id.Equals(support.Id));
+                //if(support.Image == null)
+                //{
+                //    support.Image = support1.Image;
+                //}
                 db.Entry(support).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["SuccessMessage"] = "Competition updated successfully.";
+                return RedirectToAction("Index", "Supports");
             }
-            return View(support);
+            TempData["ErrorMessage"] = "Failed to update competition.";
+            return View("Index");
         }
-
-        // GET: Supports/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Support support = db.Supports.Find(id);
-            if (support == null)
-            {
-                return HttpNotFound();
-            }
-            return View(support);
-        }
-
-        // POST: Supports/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //delete supporter
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             Support support = db.Supports.Find(id);
-            db.Supports.Remove(support);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Supports.Remove(support);
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted competition successfully." });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = "err: " + e.Message });
+            }
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

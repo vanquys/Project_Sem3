@@ -373,6 +373,8 @@
     <Content Include="assets\css\competition.css" />
     <Content Include="assets\css\ListUser.css" />
     <Content Include="assets\css\main.css" />
+    <Content Include="assets\css\st-sport.css" />
+    <Content Include="assets\css\Support.css" />
     <Content Include="assets\css\Survey.css" />
     <Content Include="assets\img\about-2.jpg" />
     <Content Include="assets\img\about.jpg" />
@@ -452,6 +454,7 @@
     <Content Include="assets\js\Competition.js" />
     <Content Include="assets\js\EditProfile.js" />
     <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\Support.js" />
     <Content Include="assets\js\survey.js" />
     <Content Include="assets\scss\Readme.txt" />
     <Content Include="assets\vendor\aos\aos.css" />
@@ -622,10 +625,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Admin\ListUser.cshtml" />
-    <Content Include="Views\Supports\Create.cshtml" />
-    <Content Include="Views\Supports\Delete.cshtml" />
-    <Content Include="Views\Supports\Details.cshtml" />
-    <Content Include="Views\Supports\Edit.cshtml" />
     <Content Include="Views\Supports\Index.cshtml" />
     <Content Include="Views\FAQs\Create.cshtml" />
     <Content Include="Views\FAQs\Delete.cshtml" />
@@ -635,6 +634,7 @@
     <Content Include="Views\Competitions\Competition.cshtml" />
     <Content Include="Views\Competitions\Survey.cshtml" />
     <Content Include="Views\Competitions\ADCompetition.cshtml" />
+    <Content Include="Views\Supports\Support.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
