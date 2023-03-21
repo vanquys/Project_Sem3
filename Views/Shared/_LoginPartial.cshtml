@@ -16,7 +16,7 @@
             <li><a href="~/competitions/Adcompetition" class="survey">Survey</a></li>
             <li><a href="~/Admin/ListUser" class="member">Member</a></li>
             <li><a href="~/Supports/index" class="support">Support</a></li>
-            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li><a href="~/FAQs/adFAQs" class="faq">FAQ’s</a></li>
             <li class="dropdown-child"></li>
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
@@ -42,7 +42,7 @@
         case "Employee":
             <li><a href="~/home/index" class="home">Home</a></li>
             <li><a href="~/competitions/competition" class="survey">Survey</a></li>
-            <li><a href="~/Supports/index" class="support">Support</a></li>
+            <li><a href="~/Supports/Support" class="support">Support</a></li>
             <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
@@ -67,7 +67,7 @@
         case "Student":
             <li><a href="~/home/index" class="home">Home</a></li>
             <li><a href="~/competitions/competition" class="survey">Survey</a></li>
-            <li><a href="~/Supports/index" class="support">Support</a></li>
+            <li><a href="~/Supports/Support" class="support">Support</a></li>
             <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
@@ -93,7 +93,7 @@
 
             <li><a href="~/home/index" class="home">Home</a></li>
             <li><a href="~/competitions/competition" class="survey">Survey</a></li>
-            <li><a href="~/Supports/index" class="support">Support</a></li>
+            <li><a href="~/Supports/Support" class="support">Support</a></li>
             <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
             <li class="dropdown-child"></li>
             <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
@@ -142,7 +142,7 @@
                     </div>
                     if (user.AspNetRoles.First().Name == "Admin")
                     {
-                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" hidden/>
+                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" hidden />
                     }
                     else
                     {
@@ -180,10 +180,9 @@
     </script>
 }
 else
-{
-    <li><a href="~/home/index" class="home">Home</a></li>
+{   <li><a href="~/home/index" class="home">Home</a></li>
     <li><a href="~/competitions/competition" class="survey">Survey</a></li>
-    <li><a href="~/Supports/index" class="support">Support</a></li>
+    <li><a href="~/Supports/Support" class="support">Support</a></li>
     <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
     <li class="dropdown-child"></li>
     <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>

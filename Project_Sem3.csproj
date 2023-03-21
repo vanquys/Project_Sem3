@@ -649,7 +649,6 @@
     <Content Include="Views\Admin\ListUser.cshtml" />
     <Content Include="Views\Supports\Index.cshtml" />
     <Content Include="Views\FAQs\Index.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Competitions\Competition.cshtml" />
     <Content Include="Views\Competitions\Survey.cshtml" />
     <Content Include="Views\Competitions\ADCompetition.cshtml" />
