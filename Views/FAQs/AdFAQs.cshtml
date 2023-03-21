@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Project_Sem3.Models.FAQ>
+
+<link rel="stylesheet" href="~/assets/css/FAQ.css">
+<script src="~/assets/js/AdFAQ.js"></script>
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
+<main id="faq">
+    <div class="Wrapper">
+        @using (Html.BeginForm("Create", "FAQs", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h3 class="text-center pt-3 pb-3">Create FAQs</h3>
+            <div class="form-group">
+                <label>Question</label>
+                <textarea name="Question" rows="3"></textarea>
+
+            </div>
+            <div class="form-group">
+                <label class="a" for="">Answer</label>
+                <textarea name="Answer" rows="5"></textarea>
+
+            </div>
+            <input type="submit" value="Create" class="shadow" id="btn-Create">
+        }
+    </div>
+    <hr>
+    <div class="container-lg mt-3">
+        <h2 class="text-center pt-5 pb-5 title">FAQs List</h2>
+        <div class="body-faqList container-lg">
+            <table class="table-list table table-striped table-bordered">
+                <tr class="text-center">
+                    <th>No</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th></th>
+                </tr>
+                @foreach (var m in Model)
+                {
+                    <tr class="ts-list">
+                        <td class="no">
+                            <p>@m.Id</p>
+                        </td>
+                        <td class="Question">
+                            <p>@m.Question</p>
+                        </td>
+                        <td class="Answer">
+                            <p>@m.Answer</p>
+                        </td>
+
+                        <td class="form-btn-ed">
+                            <a class="btn-edit btn-edit-faqs">
+                                Edit
+                            </a>
+                            <a class="btn-delete" data-id="@m.Id">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+
+                }
+            </table>
+        </div>
+    </div>
+
+    <div class="dialog-edit hidden-edit">
+        <div class="modal-edit"></div>
+        <div class="body-edit">
+            <div class="close-btn">
+                &times;
+            </div>
+            <div class="f-edit">
+                <h2 class="text-text">Edit ProFile</h2>
+                @using (Html.BeginForm("Edit", "FAQs", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input id="id" name="id" hidden />
+                    <div class="form-group-edit">
+                        <label for="name">Question</label>
+                        <textarea name="Question" id="question" rows="3"></textarea>
+
+                    </div>
+                    <div class="form-group-edit">
+                        <label for="name">Answer</label>
+                        <textarea name="Answer" id="answer" rows="5"></textarea>
+
+                    </div>
+
+                    <div class="frame">
+                        <button class="custom-btn btn-Edit-Faqs"><span>Submit</span></button>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</main>

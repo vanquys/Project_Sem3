@@ -9,7 +9,7 @@
 <link href="~/Content/model.css" type="text/css" rel="stylesheet" />
 <link href="~/assets/css/ListUser.css" type="text/css" rel="stylesheet" />
 <main id="member">
-    <h2 class="text-center m-5">Member</h2>
+    <h2 class="text-center main-title">Member</h2>
 
     <div class="listUser-table container-lg">
         <table class="table table-striped table-bordered">
@@ -31,7 +31,7 @@
                     <tr>
                         <td class="profile-item">
                             <div class="profile-item-avt">
-                                <div><img src="~/assets/img/avatar/avatar1.png" /></div>
+                                <div><img src="~/assets/img/avatar/@item.Image" /></div>
                                 <h6 class="profile-item-name">@Html.DisplayFor(modelItem => item.Name)</h6>
                             </div>
                             <div class="profile-item-infor">
@@ -73,11 +73,11 @@
                             {
                                 if (item.isResigned)
                                 {
-                                    <button data-id="@item.Id" class="btn btn-danger delete-btn">Delete</button>
+                                    <button data-id="@item.Id" class="shadow delete-btn">Delete</button>
                                 }
                                 else
                                 {
-                                    <a href="#" class="btn btn-default">No action</a>
+                                    <a href="#" class="btn btn-default ">No action</a>
                                 }
 
                             }

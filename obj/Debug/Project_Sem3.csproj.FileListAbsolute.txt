@@ -325,7 +325,6 @@ C:\Users\MSII\Desktop\Project_Sem3\obj\Debug\Project_Sem3.csproj.CoreCompileInpu
 C:\Users\MSII\Desktop\Project_Sem3\obj\Debug\Project_Sem3.csproj.CopyComplete
 C:\Users\MSII\Desktop\Project_Sem3\obj\Debug\Project_Sem3.dll
 C:\Users\MSII\Desktop\Project_Sem3\obj\Debug\Project_Sem3.pdb
-E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.AssemblyReference.cache
 E:\GitHub\Project_Sem3\bin\Microsoft.AspNetCore.Authentication.Abstractions.dll
 E:\GitHub\Project_Sem3\bin\Microsoft.AspNetCore.Authentication.Cookies.dll
 E:\GitHub\Project_Sem3\bin\Microsoft.AspNetCore.Authentication.Core.dll
@@ -402,5 +401,4 @@ E:\GitHub\Project_Sem3\bin\System.Memory.xml
 E:\GitHub\Project_Sem3\bin\System.Numerics.Vectors.xml
 E:\GitHub\Project_Sem3\bin\System.Runtime.CompilerServices.Unsafe.xml
 E:\GitHub\Project_Sem3\bin\System.Text.Encodings.Web.xml
-E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.Migrations.abc.resources
-E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.GenerateResource.cache
+E:\GitHub\Project_Sem3\obj\Debug\Project_Sem3.csproj.AssemblyReference.cache

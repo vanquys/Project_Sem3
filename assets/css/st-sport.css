@@ -225,6 +225,8 @@
     margin-bottom: 5px;
     color: #333;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom:20px;
 }
 
 .contact-form-container  input[type="text"],
