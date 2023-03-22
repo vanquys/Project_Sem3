@@ -10,11 +10,13 @@ using Project_Sem3.Models;
 
 namespace Project_Sem3.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FAQsController : Controller
     {
         private KSMTDbContext db = new KSMTDbContext();
 
         // GET: FAQs
+        [AllowAnonymous]
         public ActionResult Index()
         {
             if (TempData.ContainsKey("SuccessMessage"))
@@ -42,21 +44,7 @@ namespace Project_Sem3.Controllers
             return View(db.FAQ.ToList());
         }
       
-        // GET: FAQs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FAQ fAQ = db.FAQ.Find(id);
-            if (fAQ == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fAQ);
-        }
-
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Question,Answer")] FAQ fAQ)

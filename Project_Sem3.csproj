@@ -377,9 +377,6 @@
     <Content Include="assets\css\st-sport.css" />
     <Content Include="assets\css\Support.css" />
     <Content Include="assets\css\Survey.css" />
-    <Content Include="assets\img\about-2.jpg" />
-    <Content Include="assets\img\about.jpg" />
-    <Content Include="assets\img\apple-touch-icon.png" />
     <Content Include="assets\img\avatar\avatar1.png" />
     <Content Include="assets\img\blog\blog-1.jpg" />
     <Content Include="assets\img\blog\blog-2.jpg" />
@@ -405,7 +402,6 @@
     <Content Include="assets\img\blog\comments-4.jpg" />
     <Content Include="assets\img\blog\comments-5.jpg" />
     <Content Include="assets\img\blog\comments-6.jpg" />
-    <Content Include="assets\img\breadcrumbs-bg.jpg" />
     <Content Include="assets\img\clients\client-1.png" />
     <Content Include="assets\img\clients\client-2.png" />
     <Content Include="assets\img\clients\client-3.png" />
@@ -419,10 +415,6 @@
     <Content Include="assets\img\competition\images.jpg" />
     <Content Include="assets\img\competition\rf1.jpg" />
     <Content Include="assets\img\competition\rf2.jpg" />
-    <Content Include="assets\img\cta-bg.jpg" />
-    <Content Include="assets\img\favicon.png" />
-    <Content Include="assets\img\hero-bg-abstract.jpg" />
-    <Content Include="assets\img\hero-img.svg" />
     <Content Include="assets\img\home\1.jpg" />
     <Content Include="assets\img\home\10.jpg" />
     <Content Include="assets\img\home\11.jpg" />
@@ -450,7 +442,6 @@
     <Content Include="assets\img\portfolio\product-1.jpg" />
     <Content Include="assets\img\portfolio\product-2.jpg" />
     <Content Include="assets\img\portfolio\product-3.jpg" />
-    <Content Include="assets\img\stats-img.svg" />
     <Content Include="assets\img\support\Contact us-pana.png" />
     <Content Include="assets\img\support\sp-avarta-1.png" />
     <Content Include="assets\img\support\sp-avarta-2.png" />
@@ -647,7 +638,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Admin\ListUser.cshtml" />
-    <Content Include="Views\Supports\Index.cshtml" />
+    <Content Include="Views\Supports\AdSupport.cshtml" />
     <Content Include="Views\FAQs\Index.cshtml" />
     <Content Include="Views\Competitions\Competition.cshtml" />
     <Content Include="Views\Competitions\Survey.cshtml" />

@@ -10,11 +10,12 @@ using Project_Sem3.Models;
 
 namespace Project_Sem3.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CompetitionsController : Controller
     {
         private KSMTDbContext db = new KSMTDbContext();
 
-        // GET: Competitions
+        [AllowAnonymous]
         public ActionResult Competition()
         {
             if (TempData.ContainsKey("SuccessMessage"))
@@ -27,13 +28,14 @@ namespace Project_Sem3.Controllers
             }
             return View(db.Competitions.ToList());
         }
-
+        [Authorize(Roles = "Student, Employee")]
         public ActionResult Survey(int id)
         {
 
             return View(db.Competitions.Find(id));
         }
-        [HttpPost]
+        [Authorize(Roles = "Student, Employee")]
+       [HttpPost]
         public ActionResult CompleteSurvey(AnswerResult answerResult)
          {
             try {
@@ -133,6 +135,8 @@ namespace Project_Sem3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [Authorize(Roles ="Student, Employee")]
         public ActionResult Registration([Bind(Include = "UserId,ClassName,Name,Specification,Section")] Registration registration)
         {
             if (ModelState.IsValid)

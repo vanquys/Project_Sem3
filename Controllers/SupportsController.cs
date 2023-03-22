@@ -16,10 +16,11 @@ namespace Project_Sem3.Controllers
         private KSMTDbContext db = new KSMTDbContext();
 
         // GET: Supports
-        public ActionResult Index()
+        public ActionResult AdSupport()
         {
             return View(db.Supports.ToList());
         }
+        [AllowAnonymous]
         public ActionResult Support()
         {
             return View(db.Supports.ToList());
@@ -45,10 +46,10 @@ namespace Project_Sem3.Controllers
                 db.Supports.Add(support);
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "Supporter added successfully.";
-                return RedirectToAction("Index", "Supports");
+                return RedirectToAction("AdSupport", "Supports");
             }
             TempData["ErrorMessage"] = "Failed to add competition.";
-            return View("Index");
+            return View("AdSupport");
         }
 
         
@@ -70,10 +71,10 @@ namespace Project_Sem3.Controllers
                 db.Entry(support).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "Competition updated successfully.";
-                return RedirectToAction("Index", "Supports");
+                return RedirectToAction("AdSupport", "Supports");
             }
             TempData["ErrorMessage"] = "Failed to update competition.";
-            return View("Index");
+            return View("AdSupport");
         }
         //delete supporter
         [HttpPost]
