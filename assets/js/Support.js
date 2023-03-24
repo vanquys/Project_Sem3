@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < btnEdit.length; i++) {
         btnEdit[i].addEventListener('click', function () {
             const id = this.closest('.sp-item').querySelector('.sp-id p').textContent;
+            const currentImage = this.closest('.sp-item').querySelector('.sp-currentImage p').textContent;
             const name = this.closest('.sp-item').querySelector('.sp-item-item .name p').textContent;
             const phone = this.closest('.sp-item').querySelector('.phone p').textContent;
             const email = this.closest('.sp-item').querySelector('.email p').textContent;
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(id + name + phone + email + position)
 
             dialogEdit.querySelector('#id').value = id;
+            dialogEdit.querySelector('#currentImage').value = currentImage;
             dialogEdit.querySelector('#name').value = name;
             dialogEdit.querySelector('#phone').value = phone;
             dialogEdit.querySelector('#email').value = email;

@@ -1,10 +1,21 @@
 ﻿@model IEnumerable<Project_Sem3.Models.Support>
 
 <script src="~/assets/js/Support.js"></script>
-<link href="~/assets/css/Support.css" rel="stylesheet" />
+<link href="~/assets/css/ADSupport.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
+
+
 <main id="support" data-aos="fade-up">
     <div class="sp-top">
 
@@ -24,8 +35,8 @@
     </div>
 
 
-    <div class="sp-title">
-        <h3>Support team</h3>
+    <div class="section-header">
+        <h2>Support team</h2>
     </div>
     <div class="sp-table" data-aos="fade-up">
         <div class="container">
@@ -35,42 +46,43 @@
             <div class="sp-spter">
                 @foreach (var m in Model)
                 {
-                    <div class="sp-item">
-                        <div class="sp-id" hidden>
-                            <p>@m.Id</p>
-                        </div>
-                        <div class="sp-img">
-                            <img src="~/assets/img/support/@m.Image" id="img-id" />
-                        </div>
-                        <div class="sp-item-item">
-                            <div class="name dp-flex">
-                                <label>Name: </label>
-                                <p> @m.Name</p>
-                            </div>
-                            <div class="phone dp-flex">
-                                <label>Phone:</label>
-                                <p>@m.Phone</p>
-                            </div>
-                            <div class="email dp-flex">
-                                <label>Email:</label>
-                                <p>@m.Email</p>
-                            </div>
-                            <div class="position dp-flex">
-                                <label>Position:</label>
-                                <p>@m.Position</p>
-                            </div>
-                        </div>
-                        <div class="sp-item-btn">
-                            <div class="btn-edit btn-dialog-edit">
-                                <a>
-                                    Edit
-                                </a>
-                            </div>
-                            <a class="btn-delete" data-id="@m.Id">
-                                Delete
-                            </a>
+                <div class="sp-item" data-aos="fade-up">
+                    <div class="sp-id" hidden>
+                        <p>@m.Id</p>
+                    </div>
+                    <div class="sp-currentImage" hidden>
+                        <p>@m.Image</p>
+                    </div>
+                    <div class="sp-img">
+                        <img src="~/assets/img/support/@m.Image" id="img-id" />
+                        <div class="infor">
+                            <p class="infor-name"> @m.Name</p>
+                            <p class="infor-position">@m.Position</p>
+
                         </div>
                     </div>
+                    <div class="sp-item-item">
+                        
+                        <div class="phone dp-flex">
+                            <label>Phone:</label>
+                            <p>@m.Phone</p>
+                        </div>
+                        <div class="email dp-flex">
+                            <label>Email:</label>
+                            <p>@m.Email</p>
+                        </div>
+                    </div>
+                    <div class="sp-item-btn">
+                        <div class="btn-edit btn-dialog-edit">
+                            <a>
+                                Edit
+                            </a>
+                        </div>
+                        <a class="btn-delete" data-id="@m.Id">
+                            Delete
+                        </a>
+                    </div>
+                </div>
 
                 }
             </div>
@@ -81,83 +93,88 @@
     <div class="dialog-add hidden">
         <div class="modal-o"></div>
         <div class="dialog-body">
-            <div class="close-btn">
-                &times;
-            </div>
-            <div class="sp-form-top">
-                <h3>Add supporter</h3>
-            </div>
-            <div class="cp-add-form">
-                @using (Html.BeginForm("Create", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="sp-add-form-item">
+            <div class="dialog-bgr">
+                <div class="close-btn">
+                    &times;
+                </div>
+                <div class="section-header-dialog">
+                    <h2>Add support</h2>
+                </div>
+                <div class="cp-add-form">
+                    @using (Html.BeginForm("Create", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="sp-add-form-item">
 
-                        <div class="name">
-                            <input type="text" name="name" placeholder="Name" />
+                            <div class="name">
+                                <input type="text" name="name" placeholder="Name" required />
+                            </div>
+                            <div class="phone">
+                                <input type="text" name="phone" placeholder="Phone" required />
+                            </div>
+                            <div class="email">
+                                <input type="text" name="email" placeholder="Email" required />
+                            </div>
+                            <div class="position">
+                                <input type="text" name="position" placeholder="Position" required />
+                            </div>
+                            <div class="image">
+                                <input type="file" name="image" placeholder="image" required />
+                            </div>
+                            <div class="btn-add-cp">
+                                <button type="submit" class="btn-add-cp-item ">ADD</button>
+                            </div>
                         </div>
-                        <div class="phone">
-                            <input type="text" name="phone" placeholder="Phone" />
-                        </div>
-                        <div class="email">
-                            <input type="text" name="email" placeholder="Email" />
-                        </div>
-                        <div class="position">
-                            <input type="text" name="position" placeholder="Position" />
-                        </div>
-                        <div class="image">
-                            <input type="file" name="image" placeholder="image" />
-                        </div>
-                        <div class="btn-add-cp">
-                            <button type="submit" class="btn-add-cp-item ">ADD</button>
-                        </div>
-                    </div>
-                }
-            </div>
+                    }
+                </div>
 
+            </div>
         </div>
-
     </div>
 
     <div class="dialog-edit hidden">
         <div class="modal-o"></div>
-        <div class="dialog-body">
-            <div class="close-btn">
-                &times;
-            </div>
-            <div class="sp-form-top">
-                <h3>Edit supporter</h3>
-            </div>
-            <div class="cp-add-form">
-                @using (Html.BeginForm("Edit", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
+        <div class="dialog-body dialog-body-edit">
+            <div class="dialog-bgr">
+                <div class="close-btn">
+                    &times;
+                </div>
+                <div class="section-header-dialog">
+                    <h2>Edit support</h2>
+                </div>
+                <div class="cp-add-form">
+                    @using (Html.BeginForm("Edit", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
                     <div class="sp-add-form-item">
                         <div class="id">
-                            <input type="text" id="id" name="id" placeholder="ID" />
+                            <input type="text" id="id" name="id" placeholder="ID" readonly />
                         </div>
                         <div class="name">
-                            <input type="text" id="name" name="name" placeholder="Name" />
+                            <input type="text" id="name" name="name" placeholder="Name" required />
                         </div>
                         <div class="phone">
-                            <input type="text" id="phone" name="phone" placeholder="Phone" />
+                            <input type="text" id="phone" name="phone" placeholder="Phone" required />
                         </div>
                         <div class="email">
-                            <input type="text" id="email" name="email" placeholder="Email" />
+                            <input type="text" id="email" name="email" placeholder="Email" required />
                         </div>
                         <div class="position">
-                            <input type="text" id="position" name="position" placeholder="Position" />
+                            <input type="text" id="position" name="position" placeholder="Position" required />
                         </div>
                         <div class="image">
                             <input type="file" name="Image">
                         </div>
+                        <input name="currentImage" id="currentImage" />
+
                         <div class="btn-add-cp">
-                            <button type="submit" class="btn-add-cp-item ">ADD</button>
+                            <button type="submit" class="btn-add-cp-item ">SAVE</button>
                         </div>
                     </div>
-                }
-            </div>
+                    }
+                </div>
 
+            </div>
         </div>
 
     </div>

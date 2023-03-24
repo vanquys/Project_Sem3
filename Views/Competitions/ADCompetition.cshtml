@@ -40,7 +40,7 @@
             <div class="CP-top">
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="~/assets/img/Competition/cp-top.jpg" / data-aos="zoom-out" data-aos-delay="100">
+                        <img src="~/assets/img/Competition/cp-top.jpg"  data-aos="zoom-out" data-aos-delay="100">
                     </div>
                     <div class="col-md-7" data-aos="fade-up">
                         <h2>Competition</h2>
@@ -75,7 +75,7 @@
                     </tr>
                     @foreach (var m in Model)
                     {
-                        <tr class="ts">
+                        <tr class="ts" data-aos="fade-up">
                             <td class="no">
                                 <p>@m.Id</p>
                             </td>
@@ -115,10 +115,10 @@
             </div>
             
                 <h2>Mark</h2>
-                <div class="cp-mark table-scroll" data-aos="fade-up">
+                <div class="cp-mark table-scroll">
 
-                    <table class="table">
-                        <tr>
+                    <table class="table" >
+                        <tr  data-aos="fade-up">
                             <th>Roll ID</th>
                             <th>Name</th>
                             <th>CP-ID</th>
@@ -128,7 +128,7 @@
                         </tr>
                         @foreach (var m in listas)
                         {
-                            <tr>
+                            <tr  data-aos="fade-up">
                                 @using (Html.BeginForm("AddMark", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                                 {
                                     @Html.AntiForgeryToken()

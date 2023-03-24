@@ -21,221 +21,223 @@
         registration = db.Registrations.SingleOrDefault(r => r.UserId == userId);
     }
 }
-    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
-    {
-        <script>alert("@ViewBag.SuccessMessage");</script>
-    }
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
 
-    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-    {
-        <script>alert("@ViewBag.ErrorMessage");</script>
-    }
-    <main id="survey" data-aos="fade-up">
-        <div class="Competition">
-            <div class="container-fluid">
-                <div class="CP-top">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="~/assets/img/Competition/cp-top.jpg" / data-aos="zoom-out" data-aos-delay="100">
-                        </div>
-                        <div class="col-md-7" data-aos="fade-up">
-                            <h2>Competition</h2>
-                            <h6>
-                                Environmental survey is the process of gathering information about the environment and
-                                the impacts of human activities on it. It helps to assess the current state of the
-                                environment, predict the impacts of future activities, and provide solutions to
-                                protect and improve the environment.
-                            </h6>
-                        </div>
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
+<link href="~/assets/css/competition.css" rel="stylesheet" />
+
+<main id="survey" data-aos="fade-up">
+    <div class="Competition">
+        <div class="container-fluid">
+            <div class="CP-top">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="~/assets/img/Competition/cp-top.jpg" / data-aos="zoom-out" data-aos-delay="100">
+                    </div>
+                    <div class="col-md-7" data-aos="fade-up">
+                        <h2>Competition</h2>
+                        <h6>
+                            Environmental survey is the process of gathering information about the environment and
+                            the impacts of human activities on it. It helps to assess the current state of the
+                            environment, predict the impacts of future activities, and provide solutions to
+                            protect and improve the environment.
+                        </h6>
                     </div>
                 </div>
-                <div class="line2">
-                    <p></p>
-                </div>
-                <table class="table table-scroll" data-aos="fade-up">
-                    <tr>
-                        <th>No</th>
-                        <th>Description</th>
-                        <th>Time</th>
-                        <th>Contestant</th>
-                        <th>Status</th>
-                    </tr>
-                    @foreach (var m in Model)
-                    {
-                        <tr class="ts">
-                            <td class="no">
-                                <p class="id">@m.Id</p>
-                            </td>
-                            <td class="description">
-                                <p>@m.Description</p>
-                            </td>
-                            <td class="date">
-                                <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
-                            </td>
-                            <td class="contestant">
-                                <p>@m.AnswerResults.Count</p>
-                            </td>
-                            <td class="btn-rgt-cp">
-                                @if (@m.EndDate.CompareTo(DateTime.Now) <= 0)
-                                {
-                                    <a class="cp-btn-expired">
-                                        Expired
-                                    </a>
-                                }
+            </div>
+            <div class="line2">
+                <p></p>
+            </div>
+            <table class="table table-scroll" data-aos="fade-up">
+                <tr>
+                    <th>No</th>
+                    <th>Description</th>
+                    <th>Time</th>
+                    <th>Contestant</th>
+                    <th>Status</th>
+                </tr>
+                @foreach (var m in Model)
+                {
+                    <tr class="ts">
+                        <td class="no">
+                            <p class="id">@m.Id</p>
+                        </td>
+                        <td class="description">
+                            <p>@m.Description</p>
+                        </td>
+                        <td class="date">
+                            <p>@m.StartDate.ToString("dd/MM/yyyy") - @m.EndDate.ToString("dd/MM/yyyy")</p>
+                        </td>
+                        <td class="contestant">
+                            <p>@m.AnswerResults.Count</p>
+                        </td>
+                        <td class="btn-rgt-cp">
+                            @if (@m.EndDate.CompareTo(DateTime.Now) <= 0)
+                            {
+                                <a class="cp-btn-expired">
+                                    Expired
+                                </a>
+                            }
 
-                                else if (registration != null)
+                            else if (registration != null)
+                            {
+                                AnswerResult answerResult = m.AnswerResults.SingleOrDefault(a => a.IdRegistratedUser == registration.Id);
+                                if (answerResult != null)
                                 {
-                                    AnswerResult answerResult = m.AnswerResults.SingleOrDefault(a => a.IdRegistratedUser == registration.Id);
-                                    if (answerResult != null)
-                                    {
-                                        <span class="cp-btn-completed">
-                                            Completed
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <a class="cp-btn-join" onclick="surveyFunction(@m.Id)">
-                                            Join Now
-                                        </a>
-                                    }
+                                    <span class="cp-btn-completed">
+                                        Completed
+                                    </span>
                                 }
                                 else
                                 {
-                                    if (Request.IsAuthenticated)
-                                    {
-                                        <a class="cp-btn-rgt" data-competitionId="@m.Id" data-userId="@userId" data-name="@name">
-                                            Register
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a class="cp-btn-join" href="/Account/Login">
-                                            Login To Join
-                                        </a>
-                                    }
-                                }
-                            </td>
-                        </tr>
-                    }
-                </table>
-
-                <h3>Score</h3>
-
-                @if (Request.IsAuthenticated && registration != null)
-                {
-                    <div class="table-scroll" data-aos="fade-up">
-                        <table class="table">
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Answer</th>
-                                <th>Mark</th>
-                            </tr>
-                            @foreach (var m in listas)
-                            {
-                                if(m.IdRegistratedUser == registration.Id) { 
-                                    <tr class="ts">
-                                        <td class="no">
-                                            <p>@m.CompetitionId</p>
-                                        </td>
-                                        <td class="title">
-                                            <p>@m.Competition.Title</p>
-                                        </td>
-                                        <td class="answer">
-                                            <p>@m.Answer</p>
-                                        </td>
-                                        <td class="Mark">
-                                            <p>@m.Mark</p>
-                                        </td>
-                                    </tr>
+                                    <a class="cp-btn-join" onclick="surveyFunction(@m.Id)">
+                                        Join Now
+                                    </a>
                                 }
                             }
-                        </table>
-
-                    </div>
+                            else
+                            {
+                                if (Request.IsAuthenticated)
+                                {
+                                    <a class="cp-btn-rgt" data-competitionId="@m.Id" data-userId="@userId" data-name="@name">
+                                        Register
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="cp-btn-join" href="/Account/Login">
+                                        Login To Join
+                                    </a>
+                                }
+                            }
+                        </td>
+                    </tr>
                 }
+            </table>
 
-            </div>
-        </div>
-        <div class="references" data-aos="fade-up">
-            <h2>References</h2>
-            <a href="#">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="~/assets/img/competition/rf1.jpg" />
-                    </div>
-                    <div class="col-md-9">
-                        <h3>Assessment of environmental status and human impacts</h3>
-                        <p>
-                            This document assesses the current state of the environment and examines
-                            the impact of human activities on natural resources. It covers various aspects
-                            of the environment, such as air and water quality, land use, and biodiversity.
-                            The report aims to provide insights into the current environmental conditions and
-                            their relationship with ...
-                        </p>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="~/assets/img/Competition/images.jpg" />
-                    </div>
-                    <div class="col-md-9">
-                        <h3>The phenomenon of weather is becoming increasingly difficult to explain.</h3>
-                        <p>
-                            Although scientists have analyzed and studied extensively about the weather,
-                            there are still many different factors and impacts that can affect the weather.
-                        </p>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="~/assets/img/competition/rf2.jpg" />
-                    </div>
-                    <div class="col-md-9">
-                        <h3>The need for clean energy is challenging for us.</h3>
-                        <p>
-                            The need for clean energy is crucial for a sustainable future, but transitioning
-                            to it presents significant challenges such as investment in research, infrastructure,
-                            and technology, as well as complex policy and regulatory frameworks.
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="dialog hidden">
-            <div class="modal-o"></div>
-            <div class="dialog-body">
-                <div class="close-btn">
-                    &times;
-                </div>
-                @using (Html.BeginForm("Registration", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "f-rigister" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h2>Register Competition</h2>
-                    <hr />
-                    <label class="item" type="text" name="competitionId" id="dialog-competitionId"></label>
-                    <input class="item" type="text" name="Name" id="dialog-name" placeholder="Name" />
-                    <input class="item" type="text" name="UserId" id="dialog-roll" placeholder="Roll No. or Employee id" />
-                    <input class="item" type="text" name="ClassName" placeholder="Class" />
-                    <input class="item" type="text" name="Specification" placeholder="Specification" />
-                    <input class="item" type="text" name="Section" placeholder="Section" />
-                    <div class="btn-rgt">
-                        <button type="submit">Register</button>
-                    </div>
-                }
-            </div>
-        </div>
-    </main>
+            <h3>Score</h3>
 
-    <script>
-        function surveyFunction(id) {
-            window.location.href = '/Competitions/Survey?id=' + id;
-        }</script>
-    <script src="~/assets/js/Competition.js"></script>
-    <link href="~/assets/css/competition.css" rel="stylesheet" />
+            @if (Request.IsAuthenticated && registration != null)
+            {
+                <div class="table-scroll" data-aos="fade-up">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Answer</th>
+                            <th>Mark</th>
+                        </tr>
+                        @foreach (var m in listas)
+                        {
+                            if (m.IdRegistratedUser == registration.Id)
+                            {
+                                <tr class="ts">
+                                    <td class="no">
+                                        <p>@m.CompetitionId</p>
+                                    </td>
+                                    <td class="title">
+                                        <p>@m.Competition.Title</p>
+                                    </td>
+                                    <td class="answer">
+                                        <p>@m.Answer</p>
+                                    </td>
+                                    <td class="Mark">
+                                        <p>@m.Mark</p>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="references" data-aos="fade-up">
+        <h2>References</h2>
+        <a href="#">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/assets/img/competition/rf1.jpg" />
+                </div>
+                <div class="col-md-9">
+                    <h3>Assessment of environmental status and human impacts</h3>
+                    <p>
+                        This document assesses the current state of the environment and examines
+                        the impact of human activities on natural resources. It covers various aspects
+                        of the environment, such as air and water quality, land use, and biodiversity.
+                        The report aims to provide insights into the current environmental conditions and
+                        their relationship with ...
+                    </p>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/assets/img/Competition/images.jpg" />
+                </div>
+                <div class="col-md-9">
+                    <h3>The phenomenon of weather is becoming increasingly difficult to explain.</h3>
+                    <p>
+                        Although scientists have analyzed and studied extensively about the weather,
+                        there are still many different factors and impacts that can affect the weather.
+                    </p>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/assets/img/competition/rf2.jpg" />
+                </div>
+                <div class="col-md-9">
+                    <h3>The need for clean energy is challenging for us.</h3>
+                    <p>
+                        The need for clean energy is crucial for a sustainable future, but transitioning
+                        to it presents significant challenges such as investment in research, infrastructure,
+                        and technology, as well as complex policy and regulatory frameworks.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="dialog hidden">
+        <div class="modal-o"></div>
+        <div class="dialog-body">
+            <div class="close-btn">
+                &times;
+            </div>
+            @using (Html.BeginForm("Registration", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "f-rigister" }))
+            {
+                @Html.AntiForgeryToken()
+                <h2>Register Competition</h2>
+                <hr />
+                <label class="item" type="text" name="competitionId" id="dialog-competitionId"></label>
+                <input class="item" type="text" name="Name" id="dialog-name" placeholder="Name" />
+                <input class="item" type="text" name="UserId" id="dialog-roll" placeholder="Roll No. or Employee id" />
+                <input class="item" type="text" name="ClassName" placeholder="Class" />
+                <input class="item" type="text" name="Specification" placeholder="Specification" />
+                <input class="item" type="text" name="Section" placeholder="Section" />
+                <div class="btn-rgt">
+                    <button type="submit">Register</button>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+
+<script>
+    function surveyFunction(id) {
+        window.location.href = '/Competitions/Survey?id=' + id;
+    }</script>
+<script src="~/assets/js/Competition.js"></script>
 
 

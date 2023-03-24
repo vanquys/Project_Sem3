@@ -48,6 +48,7 @@
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
                 <ul class="dropdown-child">
                     <li><a class="editProfile">Edit Profile</a></li>
+                    <li><a class="editAccountSurvey">Edit Account Survey</a></li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
@@ -73,6 +74,7 @@
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
                 <ul class="dropdown-child">
                     <li><a class="editProfile">Edit Profile</a></li>
+                    <li><a class="editAccountSurvey">Edit Account Survey</a></li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
@@ -103,8 +105,8 @@
     }
 
     <div class="dialog-editProfile hidden">
-        <div class="modal-o"></div>
-        <div class="dialog-body">
+        <div class="Editprofile-modal-o"></div>
+        <div class="Editprofile-dialog-body">
             <div class="close-editProfile">
                 &times;
             </div>

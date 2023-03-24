@@ -6,14 +6,16 @@
 }
 .table-scroll {
     overflow-x: scroll;
+    margin-bottom:30px;
 }
 .Competition .CP-top {
     padding: 20px;
     background-image: url('../img/competition/cp-img-brg.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;
+    background-size: 100% 100%;  
 }
+
 .CP-top h6{
     color:white;
     line-height:1.5;
@@ -30,14 +32,15 @@
 }
 
 .Competition .CP-top h2 {
+    background-color: #ffffffab;
+    border-radius: 5px;
     color: green;
     text-align: center;
-    background-color: #ffffffab;
     padding: 6px;
-    border-radius: 5px;
+    font-weight: 700;
 }
 
-.Competition .line {
+.Competition .line1 {
     display: flex;
     margin: 50px 0;
     justify-content: center;
@@ -161,32 +164,38 @@ tr td:nth-child(odd) {
 .hidden {
     display: none;
 }
-
+  
 .modal-o {
     position: absolute;
-    width: 100%;
+    width: 100%;    
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
 .dialog-body {
-    background-color: #008374;
+    background-image:url('../img/competition/dialog-cp-bgr.jpg');  
     margin: auto;
     z-index: 1000;
     border-radius: 8px;
-    display:block;
-    width:50%;
+    display: block;
+    width: 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+.dialog-bgr{
+    border-radius: 5px;
+    background-color: #313e4885;
 }
 
 .close-btn {
     display: flex;
     justify-content: end;
     cursor: pointer;
-    color: black;
+    color: #eb5c4e;
     font-weight: 600;
     font-size: 20px;
     margin-right: 10px;
-   
 }
 
     .f-rigister {
@@ -256,18 +265,20 @@ tr td:nth-child(odd) {
     background-color: #ffffffba;
     border: none;
     border: 1px solid black;
-    padding: 2px;
-    border-radius:1px;
+    padding: 2px 10px;
+    border-radius:5px;  
 }
 .lb-add-cp {
-    font-size:20px;
+    font-size:16px;
+    color:white;
 }
 .cp-add-description {
     background-color: #ffffffba;
     border: none;
     border: 1px solid black;
     resize: none;
-    border-radius: 1px;
+    border-radius: 5px;
+    padding:2px 10px;
 }
 .btn-add-cp{
     display:grid;
@@ -277,12 +288,17 @@ tr td:nth-child(odd) {
     .btn-add:hover {
         background-color: #0aa593;
     }
-    .btn-add-cp .btn-add-cp-item {
-        border-radius: 5px;
-        background-color: #1e4a1fc2;
-        color: white;
-        border: none;
-        padding: 5px 20px;
+.btn-add-cp .btn-add-cp-item {
+    border-radius: 5px;
+    background-color: rgba(0, 131, 116, 0.8);
+    color: white;
+    border: none;
+    padding: 5px 30px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+    .btn-add-cp .btn-add-cp-item:hover {
+        background-color: rgb(0 149 132 / 80%); 
     }
 .ts td p {
     margin: 0;
@@ -291,19 +307,18 @@ tr td:nth-child(odd) {
 }
 .table {
     font-weight: 500;
-    border: 1px solid black;
+    border: 1px solid #7691898c;
 }
 .Competition .table {
     text-align: center;
-}
+}   
 
 table td {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #7691898c;
 }
 
 .ts .no {
     width: 5%;
-    border-bottom: 1px solid black;
 }
 
 .ts .description {
@@ -335,27 +350,27 @@ table td {
 .references img {
     border-radius: 5px;
 }
-.btn-edit {
+.Competition .btn-edit {
     display: block;
     background-color: #008374;
     border-radius: 5px;
     cursor: pointer;
-    padding: 2px;
+    padding: 5px;
     margin-bottom: 15px;
     color: white;
     width: 80%;
 }
-    .btn-edit:hover {
+    .Competition .btn-edit:hover {  
         background-color: #0ea291;
     }
-.btn-delete {
+.Competition .btn-delete {
     display: block;
     background-color: #c32f2f;
     border-radius: 5px;
     cursor: pointer;
-    padding: 2px;
+    padding: 5px;
     color: white;
-    width:80%;
+    width: 80%;
 }
     .btn-delete:hover {
         background-color: #df2525;
@@ -396,7 +411,7 @@ table td {
     width: 5%;
 }
 .cp-mark-answer {
-    width: 55%;
+    width: 50%;
     min-width: 300px;
 }
 .cp-mark-score input {   
@@ -406,7 +421,7 @@ table td {
     width: 5%;
 }    
 .cp-mark-btn {   
-    width: 5%;   
+    width: 10%;   
 }
 .cp-mark .btn-apply {
     display: block;
@@ -430,10 +445,18 @@ table td {
     padding: 5px;
     border: none;
     color: white;
+    width:100%;
 }
     .cp-mark .delete-answer:hover {
         background-color: #df3232;
     }
+.cp-add a {
+    background-color: #008374;
+    padding:10px 20px;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+}
 @media only screen and (max-width: 1200px) {
     .references .col-md-9 p {
         font-size: 15px;

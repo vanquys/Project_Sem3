@@ -18,15 +18,29 @@ namespace Project_Sem3.Controllers
         // GET: Supports
         public ActionResult AdSupport()
         {
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
+            else if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
+            }
             return View(db.Supports.ToList());
         }
         [AllowAnonymous]
         public ActionResult Support()
         {
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
+            else if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
+            }
             return View(db.Supports.ToList());
         }
-
-
 
         // GET: Supports/Create
         public ActionResult Create()
@@ -61,17 +75,24 @@ namespace Project_Sem3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Phone,Email,Position,Image")] Support support)
         {
+            var imgCurrent = Request["currentImage"];
+            if (support.Image == null)
+            {
+                support.Image = imgCurrent;
+            }
             if (ModelState.IsValid)
             {
-                //Support support1 = db.Supports.SingleOrDefault(s => s.Id.Equals(support.Id));
-                //if(support.Image == null)
-                //{
-                //    support.Image = support1.Image;
-                //}
-                db.Entry(support).State = EntityState.Modified;
-                db.SaveChanges();
-                TempData["SuccessMessage"] = "Competition updated successfully.";
-                return RedirectToAction("AdSupport", "Supports");
+                try {
+
+                    db.Entry(support).State = EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["SuccessMessage"] = "Competition updated successfully.";
+                    return RedirectToAction("AdSupport", "Supports");
+                } catch (Exception e) {
+                    TempData["ErrorMessage"] = "Err: " + e.Message;
+                    return View("AdSupport");
+                }
+                
             }
             TempData["ErrorMessage"] = "Failed to update competition.";
             return View("AdSupport");

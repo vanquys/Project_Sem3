@@ -23,14 +23,14 @@
     display: none;
 }
 
-.modal-o {
+.Editprofile-modal-o {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.dialog-body {
+.Editprofile-dialog-body {
     background-color: #008374;
     margin: auto;
     z-index: 100;
@@ -67,12 +67,25 @@
     margin-top: 16px;
     display: flex;
     justify-content: end;
+   
 }
+    .editProfile-btn-save button {
+         margin-top: 16px;
+        display: flex;
+        justify-content: end;
+        background-color: #36a79a;
+        border-radius: 5px;
+        padding: 4px 20px;
+        color: white;
+    }
+    .editProfile-btn-save button:hover{
+        background-color: #3cc1b2
+    }
 
-.editProfile-item-date {
-    display: grid;
-    margin-top: 8px;
-}
+        .editProfile-item-date {
+            display: grid;
+            margin-top: 8px;
+        }
 .ip-editProfile {
     border-radius: 5px;
     margin-top:5px;

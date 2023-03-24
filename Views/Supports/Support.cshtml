@@ -1,11 +1,27 @@
 ﻿@model IEnumerable<Project_Sem3.Models.Support>
-<link href="~/assets/css/st-sport.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/assets/css/main.css" />
+<link href="~/assets/css/Support.css" rel="stylesheet" />
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 @{
     ViewBag.Title = "Index";
 }
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
+
+
 <main id="support">
 
-    <div class="sp-top" data-aos="zoom-out" data-aos-delay="100">        
+    <div class="sp-top" data-aos="zoom-out" data-aos-delay="100">
         <div class="sp-top-top">
             <h2>Support</h2>
             <div class="sp-top-content">
@@ -20,38 +36,83 @@
         </div>
     </div>
 
-    <div class="sp-table" data-aos="fade-up">
-        <h2>Support team</h2>
-        <div class="container-fluid">
-            <div class="sp-spter">
+    <section id="team" class="team">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Support team</h2>
+            </div>
+            <div class="row gy-4">
                 @foreach (var m in Model)
                 {
-                    <div class="sp-item">
-
-                        <div class="sp-img">
-                            <img src="~/assets/img/support/@m.Image" />
-                        </div>
-                        <div class="sp-item-item">
-                            <div class="name sp-fz">
-                                <p>@m.Name</p>
+                    <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                        <div class="sp-member">
+                            <div class="sp-img">
+                                <img src="~/assets/img/support/@m.Image" />
                             </div>
-                            <div class="phone sp-fz">
-                                <p> @m.Phone</p>
+                            <div class="sp-item-item">
+                                <div class="name">
+                                    <p>@m.Name</p>
+                                </div>
+                                <div class="position">
+                                    <p> @m.Position</p>
+                                </div>
                             </div>
-                            <div class="email sp-fz">
-                                <p>@m.Email</p>
+                            <div class="sp-item-item-1">
+                                <div class="phone sp-fz">
+                                    <ion-icon name="call"></ion-icon>
+                                    <p> @m.Phone</p>
+                                </div>
+                                <div class="email sp-fz">
+                                    <ion-icon name="mail"></ion-icon>
+                                    <p class="sp-fz"> @m.Email</p>
+                                </div>
                             </div>
-                            <div class="position sp-fz">
-                                <p> @m.Position</p>
+                            <div class="sp-lchat-btn">
+                                <a>
+                                    Live Support
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 }
-            </div>
 
+            </div>
         </div>
-    </div>
+    </section>
+
+    @*<div class="sp-table" data-aos="fade-up">
+            <h2>Support team</h2>
+            <div class="container-fluid">
+                <div class="sp-spter">
+                    @foreach (var m in Model)
+                    {
+                        <div class="sp-item">
+
+                            <div class="sp-img">
+                                <img src="~/assets/img/support/@m.Image" />
+                            </div>
+                            <div class="sp-item-item">
+                                <div class="name sp-fz">
+                                    <p>@m.Name</p>
+                                </div>
+                                <div class="phone sp-fz">
+                                    <p> @m.Phone</p>
+                                </div>
+                                <div class="email sp-fz">
+                                    <p>@m.Email</p>
+                                </div>
+                                <div class="position sp-fz">
+                                    <p> @m.Position</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+
+            </div>
+        </div>*@
 
     <div class="contact-form-container" data-aos="fade-up">
         <div class="f-right">

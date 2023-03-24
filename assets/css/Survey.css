@@ -13,6 +13,15 @@
 }
 .sv-top .col-md-6{
     text-align:center;
+    align-items:flex-end;
+    display:grid;
+}
+    
+.sv-top .col-md-6 h6{
+    font-weight:600;
+}
+.sv-top .col-md-6 h2 {
+    font-weight: 800;
 }
 .sv-top .col-md-6 img{
     border-radius:5px;
@@ -87,7 +96,8 @@
     text-align:center;
 }
 .form-answer-img img {
-    width: 100%;
+    width: 90%;
+    border-radius:5px;
 }
 .form-answer .btn-form-sv {
     display: flex;

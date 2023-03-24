@@ -59,7 +59,6 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 
-
 section {
     padding: 60px 0;
     overflow: hidden;
@@ -1437,15 +1436,19 @@ section {
      Top-servey
 
  */
-
+.top-servey-item, .top-servey-row {
+    justify-content: center;
+}
 .top-servey {
     text-align: center;
     border-radius: 10px;
-    padding: 15px;
+    padding: 50px 15px 100px 15px;
     overflow: hidden;
     box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    min-width: 300px;
+    flex-wrap: wrap;
 }
 .top-servey-user {
     display: flex;
@@ -1454,17 +1457,18 @@ section {
     align-items: center;
 }
 
-.top-servey-user img {
-    border-radius: 10px;
-    overflow: hidden;
-    width: 35%;
-    border-radius: 50%;
-}
+    .top-servey-user img {
+        border-radius: 45px;
+        overflow: hidden;
+        width: 90px;
+        object-fit: cover;
+        height: 90px;
+    }
 .top-servey-user h4 {
     font-weight: 700;
     margin-top: 16px;
     margin-bottom: 2px;
-    font-size: 20px;
+    font-size: 15px;
 }
     .top-servey-user div {
         height: 100%;
@@ -1506,6 +1510,7 @@ section {
     font-weight: 600;
     margin-top: 15px;
 }
+/* */
 
     /*-------------------------------------------------------------
 # Our Team Section

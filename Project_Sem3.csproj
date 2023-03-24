@@ -327,6 +327,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\ADSupport.css" />
     <Content Include="assets\css\EditProfile.css" />
     <Content Include="assets\assetsLogin\css\main.css" />
     <Content Include="assets\assetsLogin\css\util.css" />
@@ -375,7 +376,6 @@
     <Content Include="assets\css\FAQ.css" />
     <Content Include="assets\css\ListUser.css" />
     <Content Include="assets\css\main.css" />
-    <Content Include="assets\css\st-sport.css" />
     <Content Include="assets\css\Support.css" />
     <Content Include="assets\css\Survey.css" />
     <Content Include="assets\img\avatar\avatar1.png" />
@@ -413,6 +413,8 @@
     <Content Include="assets\img\clients\client-8.png" />
     <Content Include="assets\img\competition\cp-img-brg.jpg" />
     <Content Include="assets\img\competition\cp-top.jpg" />
+    <Content Include="assets\img\competition\dialog-cp-bgr.jpg" />
+    <Content Include="assets\img\competition\Forest-bro.png" />
     <Content Include="assets\img\competition\images.jpg" />
     <Content Include="assets\img\competition\rf1.jpg" />
     <Content Include="assets\img\competition\rf2.jpg" />
@@ -436,6 +438,7 @@
     <Content Include="assets\img\home\hinh-anh-bao-ve-moi-truong-19.jpg" />
     <Content Include="assets\img\home\Logo.png" />
     <Content Include="assets\img\home\Untitled.png" />
+    <Content Include="assets\img\Logo.png" />
     <Content Include="assets\img\portfolio\app-1.jpg" />
     <Content Include="assets\img\portfolio\app-2.jpg" />
     <Content Include="assets\img\portfolio\app-3.jpg" />
@@ -449,15 +452,18 @@
     <Content Include="assets\img\portfolio\product-2.jpg" />
     <Content Include="assets\img\portfolio\product-3.jpg" />
     <Content Include="assets\img\support\Contact us-pana.png" />
+    <Content Include="assets\img\support\dialog-bgr.jpg" />
     <Content Include="assets\img\support\sp-avarta-1.png" />
     <Content Include="assets\img\support\sp-avarta-2.png" />
     <Content Include="assets\img\support\sp-avarta-3.png" />
     <Content Include="assets\img\support\sp-top-bgr.jpg" />
     <Content Include="assets\img\survey\60.jpg" />
+    <Content Include="assets\img\survey\Completed steps-pana.png" />
     <Content Include="assets\img\survey\images.png" />
     <Content Include="assets\img\survey\Lovepik_com-400254893-pink-flowers.png" />
     <Content Include="assets\img\survey\nik-OouFKZynpAM-unsplash.jpg" />
     <Content Include="assets\img\survey\philippe-leone-CR06GzANXmo-unsplash.jpg" />
+    <Content Include="assets\img\survey\sv-img.png" />
     <Content Include="assets\img\survey\Untitled.png" />
     <Content Include="assets\img\team\team-1.jpg" />
     <Content Include="assets\img\team\team-2.jpg" />
