@@ -11,9 +11,11 @@ using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Project_Sem3.Controllers
 {
+    
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        
         KSMTDbContext db = new KSMTDbContext();
         // GET: Admin
         public ActionResult Index()

@@ -13,9 +13,13 @@
     line-height: 2;
     color: #bfffaa;
 }
-.sp-top-content h1 {
-    color: #364fff;
+.sp-top-content h2 {
+    font-family: unset;
+    color: #ffffff;
     text-align: center;
+    font-weight: 700;
+    margin-bottom: 36px;
+    font-size: 38px;
 }
 .sp-spter {
     display: flex;
@@ -67,6 +71,7 @@
     padding: 30px 0;
     color: cornflowerblue;
     background-color: #008374;
+    font-weight:700;
 }
 .sp-item-btn{
     display:grid;

@@ -1,9 +1,31 @@
-﻿@model IEnumerable<Project_Sem3.Models.AnswerResult>
+﻿@using Project_Sem3.Models
+@using System.Data.SqlClient;
+@using System.Data;
+
 <link rel="stylesheet" href="~/assets/css/main.css" />
 @if (!string.IsNullOrEmpty(ViewBag.alertMessage))
 {
     <script>alert("@ViewBag.alertMessage");</script>
 }
+
+@{
+    KSMTDbContext db = new KSMTDbContext();
+    int competitionCount = db.Competitions.Count();
+    int answerResultCount = db.AnswerResults.Count();
+    int userCount = db.Registrations.Count();
+
+
+    // procedure
+    string connectionString = @"data source=MSI\SQLEXPRESS;initial catalog=KSMT;user id=sa;password=123;MultipleActiveResultSets=True;App=EntityFramework";
+    SqlConnection connection = new SqlConnection(connectionString);
+    connection.Open();
+    SqlCommand command = new SqlCommand("SelectTopMark", connection);
+    command.CommandType = CommandType.StoredProcedure;
+    SqlDataReader reader = command.ExecuteReader();
+
+
+}
+
 <main id="home">
     <section id="hero" class="hero">
         <div class="container position-relative">
@@ -75,7 +97,7 @@
             <div class="row gy-4">
                 <div class="col-lg-6">
                     <h3>Organizing surveys at schools and some locations.</h3>
-                    <img src="~/assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+                    <img src="~/assets/img/home/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
                     <p>We organize surveys at schools with the purpose of guiding young people, especially students, on environmental issues. This is a very important contribution to environmental issues in the future. We have organized many surveys and received active participation from students.</p>
                     <p>In addition, we also organize many surveys at other locations, at offline events on environmental issues, or just a random survey right on the street. We have surveyed many people of different ages, different social classes, and from that, we can evaluate and further disseminate information to them about environmental protection - an issue that deserves much attention nowadays.</p>
                 </div>
@@ -118,24 +140,27 @@
             <div class="row gy-4 align-items-center">
 
                 <div class="col-lg-6">
-                    <img src="~/assets/img/stats-img.svg" alt="" class="img-fluid">
+                    <img src="~/assets/img/home/stats-img.svg" alt="" class="img-fluid">
                 </div>
 
                 <div class="col-lg-6">
 
                     <div class="stats-item d-flex align-items-center">
-                        <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                        <p><strong>Happy Clients</strong> consequuntur quae diredo para mesta</p>
+                        <span data-purecounter-start="100" data-purecounter-end="@competitionCount" data-purecounter-duration="1.5" class="purecounter"></span>
+                        <p>
+                            <strong>Surveys Were Held</strong>
+                            is our effort to protect the environment
+                        </p>
                     </div><!-- End Stats Item -->
 
                     <div class="stats-item d-flex align-items-center">
-                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                        <p><strong>Projects</strong> adipisci atque cum quia aut</p>
+                        <span data-purecounter-start="100" data-purecounter-end="@userCount" data-purecounter-duration="1.5" class="purecounter"></span>
+                        <p><strong>People Participated</strong> your concern is our motivation</p>
                     </div><!-- End Stats Item -->
 
                     <div class="stats-item d-flex align-items-center">
-                        <span data-purecounter-start="0" data-purecounter-end="453" data-purecounter-duration="1" class="purecounter"></span>
-                        <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
+                        <span data-purecounter-start="100" data-purecounter-end="@answerResultCount" data-purecounter-duration="1.5" class="purecounter"></span>
+                        <p><strong>Surveys Completed</strong> Let's join hands to protect the green environment</p>
                     </div><!-- End Stats Item -->
 
                 </div>
@@ -145,9 +170,97 @@
         </div>
     </section><!-- End Stats Counter Section -->
     <!-- ======= Call To Action Section ======= -->
+    <section id="top-servey" class="top-servey">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Our Team</h2>
+            </div>
+            <div class="row gy-4">
+
+                @if (reader.Read())
+                {
+                    <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                        <div class="top-servey">
+                            <div class="top-servey-user">
+                                <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                <div class="">
+                                    <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
+                                    <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                </div>
+                            </div>
+                            <div class="top-servey-mark">
+                                <div class="top-servey-medal">
+                                    <img src="~/assets/img/home/goodMedal.png" />
+                                    <h4>Good Medal</h4>
+                                </div>
+
+                                <span>
+                                    Survey Completed: <b>@db.Registrations.Find(reader.GetInt32(0)).AnswerResults.Count()</b>
+                                </span>
+                                <span>Total Score: <b>@reader.GetDouble(1).ToString()</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    if (reader.Read())
+                    {
+                        <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                            <div class="top-servey">
+                                <div class="top-servey-user">
+                                    <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                    <div>
+                                        <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
+                                        <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                    </div>
+                                </div>
+                                <div class="top-servey-mark">
+                                    <div class="top-servey-medal">
+                                        <img src="~/assets/img/home/silverMedal.png" />
+                                        <h4>Silver Medal</h4>
+                                    </div>
+
+                                    <span>
+                                        Survey Completed: <b>@db.Registrations.Find(reader.GetInt32(0)).AnswerResults.Count()</b>
+                                    </span>
+                                    <span>Total Score: <b>@reader.GetDouble(1).ToString()</b></span>
+                                </div>
+                            </div>
+                        </div>
+                        if (reader.Read())
+                        {
+                            
+                            <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                                <div class="top-servey">
+                                    <div class="top-servey-user">
+                                        <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                        <div>
+                                            <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
+                                            <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                        </div>
+                                    </div>
+                                    <div class="top-servey-mark">
+                                        <div class="top-servey-medal">
+                                            <img src="~/assets/img/home/copperMedal.png" />
+                                            <h4>Copper Medal</h4>
+                                        </div>
+
+                                        <span>
+                                            Survey Completed: <b>@db.Registrations.Find(reader.GetInt32(0)).AnswerResults.Count()</b>
+                                        </span>
+                                        <span>Total Score: <b>@reader.GetDouble(1).ToString()</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+</section>
     <!-- ======= Our Team Section ======= -->
     <section id="team" class="team">
         <div class="container" data-aos="fade-up">
+
 
             <div class="section-header">
                 <h2>Our Team</h2>

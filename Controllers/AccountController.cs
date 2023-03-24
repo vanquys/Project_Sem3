@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -18,7 +19,7 @@ namespace Project_Sem3.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        KSMTDbContext db = new KSMTDbContext();
+            KSMTDbContext db = new KSMTDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 

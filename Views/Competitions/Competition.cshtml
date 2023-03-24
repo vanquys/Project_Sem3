@@ -36,9 +36,9 @@
                 <div class="CP-top">
                     <div class="row">
                         <div class="col-md-5">
-                            <img src="~/assets/img/Competition/cp-top.jpg" />
+                            <img src="~/assets/img/Competition/cp-top.jpg" / data-aos="zoom-out" data-aos-delay="100">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7" data-aos="fade-up">
                             <h2>Competition</h2>
                             <h6>
                                 Environmental survey is the process of gathering information about the environment and
@@ -49,10 +49,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="line">
+                <div class="line2">
                     <p></p>
                 </div>
-                <table class="table table-scroll">
+                <table class="table table-scroll" data-aos="fade-up">
                     <tr>
                         <th>No</th>
                         <th>Description</th>
@@ -120,9 +120,10 @@
                 </table>
 
                 <h3>Score</h3>
+
                 @if (Request.IsAuthenticated && registration != null)
                 {
-                    <div class="table-scroll">
+                    <div class="table-scroll" data-aos="fade-up">
                         <table class="table">
                             <tr>
                                 <th>ID</th>
@@ -156,7 +157,7 @@
 
             </div>
         </div>
-        <div class="references">
+        <div class="references" data-aos="fade-up">
             <h2>References</h2>
             <a href="#">
                 <div class="row">
