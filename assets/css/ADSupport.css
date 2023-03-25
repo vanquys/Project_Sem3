@@ -25,7 +25,7 @@
 .sp-spter {
     display: flex;
     margin-bottom: 80px;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 .sp-spter label{

@@ -262,7 +262,7 @@ tr td:nth-child(odd) {
 .Competition .table {
     text-align: center;
     margin-bottom: 50px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    box-shadow: rgb(122 122 122 / 30%) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 1px 5px;  
 }
 
 .Competition table td {

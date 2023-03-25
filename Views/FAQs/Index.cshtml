@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Project_Sem3.Models.FAQ>
+@{ int num = 1;}
+
 @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
 {
     <script>alert("@ViewBag.SuccessMessage");</script>
@@ -21,7 +23,7 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-@m.Id">
-                                        <span class="num"> @m.Id.</span>
+                                        <span class="num"> @num.</span>
                                         @m.Question
                                     </button>
                                 </h3>
@@ -31,6 +33,7 @@
                                     </div>
                                 </div>
                             </div><!-- # Faq item-->
+                            num = num + 1;
                         }
                     </div>
 
