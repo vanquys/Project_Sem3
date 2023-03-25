@@ -10,7 +10,6 @@ using Project_Sem3.Models;
 
 namespace Project_Sem3.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class CompetitionsController : Controller
     {
         private KSMTDbContext db = new KSMTDbContext();
@@ -54,6 +53,8 @@ namespace Project_Sem3.Controllers
                 return RedirectToAction("Competition", "Competitions");
             }
         }
+        [Authorize(Roles = "Admin")]
+
         public ActionResult ADCompetition()
         {
             if (TempData.ContainsKey("SuccessMessage"))
@@ -70,6 +71,8 @@ namespace Project_Sem3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Create([Bind(Include = "Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
         {
             if (ModelState.IsValid)
@@ -85,6 +88,8 @@ namespace Project_Sem3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Edit([Bind(Include = "id,Title,Description,StartDate,EndDate,Question,RightAnswer")] Competition competition)
         {
             if (ModelState.IsValid)
@@ -100,7 +105,11 @@ namespace Project_Sem3.Controllers
 
 
         // POST: Competitions/Delete/5
+        
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
+
         public ActionResult Delete(int id)
         {
             Competition competition = db.Competitions.Find(id);
@@ -117,6 +126,8 @@ namespace Project_Sem3.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public ActionResult DeleteAnswer(int iduser, int idcp)
         {
             AnswerResult answerResult = db.AnswerResults.FirstOrDefault(a => a.IdRegistratedUser == iduser && a.CompetitionId == idcp);
@@ -153,6 +164,8 @@ namespace Project_Sem3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+
         public ActionResult AddMark([Bind(Include = "IdRegistratedUser,CompetitionId,Answer,Mark,Date")] AnswerResult answerResult)
         {
             if (ModelState.IsValid)
@@ -173,7 +186,7 @@ namespace Project_Sem3.Controllers
             }
             return View(answerResult);
         }
-
+        [AllowAnonymous]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
