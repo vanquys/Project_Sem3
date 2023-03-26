@@ -1,4 +1,4 @@
-﻿.dialog-editProfile{
+﻿.dialog-editAccountSurvey, .dialog-editProfile {
     position: fixed;
     top: 0;
     right: 0;
@@ -37,7 +37,7 @@
     border-radius: 8px;
 }
 
-.close-editProfile {
+.close-editProfile, .close-editAccountSurvey {
     display: flex;
     justify-content: end;
     cursor: pointer;
@@ -48,7 +48,7 @@
     width: 98%;
 }
 
-    .close-editProfile:hover {
+    .close-editProfile:hover, .close-editAccountSurvey:hover {
         color: white;
     }
 .editProfile-item {
@@ -66,10 +66,10 @@
 .editProfile-btn-save {
     margin-top: 16px;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
    
 }
-    .editProfile-btn-save button {
+    .edit-btn-save {
          margin-top: 16px;
         display: flex;
         justify-content: end;
@@ -78,8 +78,21 @@
         padding: 4px 20px;
         color: white;
     }
-    .editProfile-btn-save button:hover{
-        background-color: #3cc1b2
+        .edit-btn-save:hover {
+            background-color: #3cc1b2
+        }
+.edit-btn-delete {
+    margin-top: 16px;
+    display: flex;
+    justify-content: end;
+    background-color: #c40038;
+    border-radius: 5px;
+    padding: 4px 20px;
+    color: white;
+}
+
+    .edit-btn-delete:hover {
+        background-color: #e20645
     }
 
         .editProfile-item-date {

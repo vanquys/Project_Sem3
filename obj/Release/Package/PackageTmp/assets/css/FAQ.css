@@ -1,0 +1,515 @@
+.Wrapper {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+    .Wrapper form {
+        border: 1px solid #dadce0;
+        border-radius: 5px;
+        padding: 25px 30px;
+        background-color: #008374;
+        width: 65%;
+    }
+
+.Wrapper .form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+    .Wrapper .form-group textarea {
+        resize: none;
+        width: 100%;
+        border-radius: 5px;
+        background-color: #f6fffec4;
+        color: #495057;
+
+    }
+
+.Wrapper .form-group-answer {
+  margin-bottom: 1rem;
+}
+
+.Wrapper .form-group-answer {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group-answer .a {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[name="Answer"] {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.form-group label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#btn-Create {
+    display: block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #066036;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    float: right;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+    #btn-Create:hover {
+        background-color: #1c764c;
+    }
+    @media only screen and (max-width: 768px) {
+        .Wrapper form {
+  }
+
+  .Wrapper .form-group input {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+table {
+  border-collapse: collapse;
+
+  font-size: 14px;
+  width: 100%;
+}
+
+thead {
+  background-color: #333;
+  color: #fff;
+}
+
+th {
+  font-weight: bold;
+  padding: 12px 15px;
+  text-align: center;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.custom-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-btn a {
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+
+
+.custom-btn a:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+
+
+
+/* vvv */
+.dialog-edit {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  z-index: 1;
+}
+
+.hidden-edit {
+  display: none;
+}
+
+.dialog-edit .modal-edit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(42, 36, 36, 0.84);
+}
+
+.dialog-edit .body-edit {
+  background-color: #008374;
+  margin: auto;
+  z-index: 100000;
+  border-radius: 8px;
+  width: 40%;
+}
+
+.dialog-edit .close-btn {
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+  color: black !important;
+  font-weight: 600;
+  font-size: 37px;
+  margin-right: 25px;
+}
+
+.dialog-edit .f-edit {
+  display: grid;
+  padding: 15px 40px;
+}
+
+.dialog-edit .f-edit .text-text {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dialog-edit .form-group-edit {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.dialog-edit .form-group-edit label {
+  display: block;
+  top: 0;
+  left: 0;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000;
+  pointer-events: none;
+  transition: all 0.3s ease-out;
+}
+
+    .dialog-edit .form-group-edit textarea {
+        resize: none;
+        width: 100%;
+        border-radius: 5px;
+        background: #f6fffec4;
+    }
+
+
+
+/*table*/
+
+.table-list {
+    font-weight: 600;
+    min-width:800px;
+}
+
+
+.body-faqList {
+  overflow-x: scroll;
+}
+
+
+
+
+.table-list .ts-list .no {
+  width: 5%;
+}
+
+ .table-list .ts-list .no p {
+  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 10px
+}
+
+ .table-list .ts-list .Answer {
+  width: 60%;
+  min-width: 300px;
+
+}
+
+.table-list .ts-list .question {
+  width: 25%;
+}
+
+
+.table-list .ts-list .form-btn-ed {
+  width: 10%;
+}
+
+ .references img {
+  border-radius: 5px;
+}
+
+
+
+.btn-edit {
+    display: block;
+    background-color: #008374;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+    .btn-edit:hover {
+        background-color: #059786;
+        color:white;
+    }
+
+.btn-delete {
+    display: block;
+    background-color: #b73014;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+.form-btn-ed .btn-delete:hover {
+    background-color: #d44f34;
+    color: white;
+}
+
+/* btn */
+
+.dialog-edit .frame {
+  width: 90%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.dialog-edit .frame button {
+  margin: 20px;
+}
+
+.dialog-edit .frame .custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0 25px;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+    7px 7px 20px 0px rgba(0, 0, 0, .1),
+    4px 4px 5px 0px rgba(0, 0, 0, .1);
+  outline: none;
+}
+
+.btn-Edit-Faqs {
+  background-color: #4dccc6;
+  background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+
+.btn-Edit-Faqs:hover {
+  background-color: #89d8d3;
+  background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+
+.btn-Edit-Faqs span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-Edit-Faqs:before,
+.btn-Edit-Faqs:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .9),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, .9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+
+ .btn-Edit-Faqs:before {
+  height: 0%;
+  width: .1px;
+}
+
+ .btn-Edit-Faqs:after {
+  width: 0%;
+  height: .1px;
+}
+
+.btn-Edit-Faqs:hover:before {
+  height: 100%;
+}
+
+.btn-Edit-Faqs:hover:after {
+  width: 100%;
+}
+
+.dialog-edit .frame .btn-Edit-Faqs span:before,
+.btn-Edit-Faqs span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .9),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, .9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+
+.dialog-edit .frame .btn-Edit-Faqs span:before {
+  width: .1px;
+  height: 0%;
+}
+
+.dialog-edit .frame .btn-Edit-Faqs span:after {
+  width: 0%;
+  height: .1px;
+}
+
+.dialog-edit .frame .btn-Edit-Faqs span:hover:before {
+  height: 100%;
+}
+
+.dialog-edit .frame .btn-Edit-Faqs span:hover:after {
+  width: 100%;
+}
+
+
+
+ @media only screen and (max-width: 480px) {
+  .Wrapper form {
+    border: 1px solid #dadce0;
+    border-radius: 5px;
+    background-color: #008374;
+    width: 80%;
+  }
+
+  .Wrapper .form-group input {
+    height: 32px;
+    width: 100%;
+    font-size: 20px;
+  }
+  input[name="Question"]{
+    min-width: 200px;
+  }
+
+  input[name="Answer"] {
+    height: auto;
+    min-width: 350px;
+  }
+
+  .dialog-edit .f-edit {
+    padding: 15px;
+  }
+   
+    .container .table-list .ts-list .question {
+        width: 100%;
+    }
+  .container .table-list .ts-list .Answer {
+    width: 100%;
+ 
+  }
+  .container .table-list .ts-list .form-btn-ed {
+ 
+    width: 100%;
+  }
+
+  .dialog-edit .body-edit {
+    background-color: #008374;
+    margin: auto;
+    z-index: 100000;
+    border-radius: 8px;
+    width: 90%;
+  }
+}
+
+
+
+@media only screen and (max-width: 992px) {
+  .Wrapper form {
+  }
+  .dialog-edit .body-edit {
+    background-color: #008374;
+    margin: auto;
+    z-index: 100000;
+    border-radius: 8px;
+    width: 95%;
+  }
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .Wrapper form {
+    border: 1px solid #dadce0;
+    border-radius: 5px;
+    background-color: #008374;
+    width: 90%;
+  }
+
+  .Wrapper .form-group input {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .Wrapper form {
+  }
+
+  .Wrapper .form-group input {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .container .table-list .ts-list .no {
+    width: 5%;
+  }
+  .container .table-list .ts-list .question {
+    width: 35%;
+  }
+  .container .table-list .ts-list .Answer {
+    width: 50%;
+    min-width: 300px;
+  }
+}
+
+.btn-Edit-Faqs span {
+    display:inline;
+}

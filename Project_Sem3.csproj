@@ -378,7 +378,16 @@
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\Support.css" />
     <Content Include="assets\css\Survey.css" />
-    <Content Include="assets\img\avatar\avatar1.png" />
+    <Content Include="assets\img\avatar\avatar1.jpg" />
+    <Content Include="assets\img\avatar\avatar10.jpg" />
+    <Content Include="assets\img\avatar\avatar2.jpg" />
+    <Content Include="assets\img\avatar\avatar3.jfif" />
+    <Content Include="assets\img\avatar\avatar4.jfif" />
+    <Content Include="assets\img\avatar\avatar5.jfif" />
+    <Content Include="assets\img\avatar\avatar6.jfif" />
+    <Content Include="assets\img\avatar\avatar7.jfif" />
+    <Content Include="assets\img\avatar\avatar8.jpg" />
+    <Content Include="assets\img\avatar\avatar9.jpg" />
     <Content Include="assets\img\blog\blog-1.jpg" />
     <Content Include="assets\img\blog\blog-2.jpg" />
     <Content Include="assets\img\blog\blog-3.jpg" />

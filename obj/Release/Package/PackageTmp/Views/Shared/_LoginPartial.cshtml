@@ -1,0 +1,224 @@
+﻿@using Microsoft.AspNet.Identity
+@using Project_Sem3.Models
+
+@if (Request.IsAuthenticated)
+{
+    <link rel="stylesheet" type="text/css" href="~/assets/css/EditProfile.css" />
+    <script src="~/assets/js/EditProfile.js"></script>
+    KSMTDbContext db = new KSMTDbContext();
+    String patternPass = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&amp;*]).{6,}$";
+    var userId = User.Identity.GetUserId();
+    var user = db.AspNetUsers.Find(userId);
+    var registration = db.Registrations.FirstOrDefault(r => r.UserId.Equals(userId));
+
+    switch (user.AspNetRoles.First().Name)
+    {
+        case "Admin":
+            <li><a href="~/home/index" class="home">Home</a></li>
+            <li><a href="~/competitions/Adcompetition" class="survey">Survey</a></li>
+            <li><a href="~/Admin/ListUser" class="member">Member</a></li>
+            <li><a href="~/Supports/AdSupport" class="support">Support</a></li>
+            <li><a href="~/FAQs/adFAQs" class="faq">FAQ’s</a></li>
+            <li class="dropdown-child"></li>
+            <li class="dropdown">
+                <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
+                <ul class="dropdown-child " style="z-index:1;">
+                    <li><a class="editProfile">Edit Profile</a></li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+                    }
+
+                </ul>
+            </li>
+
+            <li class="dropdown-child-mobie"><a class="editProfile">Edit Profile</a></li>
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <li class="dropdown-child-mobie"><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+            }
+
+            break;
+        case "Employee":
+            <li><a href="~/home/index" class="home">Home</a></li>
+            <li><a href="~/competitions/competition" class="survey">Survey</a></li>
+            <li><a href="~/Supports/Support" class="support">Support</a></li>
+            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li class="dropdown">
+                <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
+                <ul class="dropdown-child" style="z-index:1;">
+                    <li><a class="editProfile">Edit Profile</a></li>
+                    @if (registration != null)
+                    {
+                        <li><a class="editAccountSurvey">Edit Account Survey</a></li>
+                    }
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+                    }
+
+                </ul>
+            </li>
+            if (registration != null)
+            {
+<li class="dropdown-child-mobie"><a class="editAccountSurvey">Edit Account Survey</a></li>
+            }
+            <li class="dropdown-child-mobie"><a class="editProfile">Edit Profile</a></li>
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <li class="dropdown-child-mobie"><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+            }
+            break;
+
+        default:
+
+            <li><a href="~/home/index" class="home">Home</a></li>
+            <li><a href="~/competitions/competition" class="survey">Survey</a></li>
+            <li><a href="~/Supports/Support" class="support">Support</a></li>
+            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li class="dropdown-child"></li>
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            break;
+
+    }
+
+
+    // dialog Edit Profile
+    <div class="dialog-editProfile hidden">
+        <div class="Editprofile-modal-o"></div>
+        <div class="Editprofile-dialog-body">
+            <div class="close-editProfile">
+                &times;
+            </div>
+            <div class="editProfile-form">
+                @using (Html.BeginForm("EditProfile", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="editProfile-image">
+                        <div class="editProfile-image-img">
+                            <img id="myImage" src="~/assets/img/Avatar/@user.Image" alt="Your Avatar">
+                            <br>
+                            <input type="file" name="Image" onchange="loadImage(event)">
+                        </div>
+                        <div class="editProfile-image-name">
+                            <h5>@user.Name</h5>
+                        </div>
+
+                    </div>
+                    <div class="line">
+
+                    </div>
+
+                    <div class="editProfile-item">
+                        <label>Name</label>
+                        <input class="ip-editProfile" type="text" name="Name" value="@user.Name" required pattern="^[\p{L} ]+$" />
+                    </div>
+
+                    <div class="editProfile-item">
+                        <label>New Password</label>
+                        <input class="ip-editProfile" type="password" name="NewPassword" placeholder="leave blank if no changes" pattern="@patternPass" />
+                    </div>
+                    <div class="editProfile-item">
+                        <label>Comfirm Password</label>
+                        <input class="ip-editProfile" type="password" name="ConfirmPassword" placeholder="leave blank if no changes" />
+                    </div>
+                    if (user.AspNetRoles.First().Name == "Admin")
+                    {
+                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" hidden />
+                    }
+                    else
+                    {
+                        <div class="editProfile-item editProfile-checkbox">
+                            <label class="editProfile-checkbox_label">Resign</label>
+                            @if (user.isResigned)
+                            {
+                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" checked />
+                            }
+                            else
+                            {
+                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" />
+                            }
+                        </div>
+
+                    }
+
+                    <div class="editProfile-item">
+                        <label>Input Curent Password to Change </label>
+                        <input class="ip-editProfile" type="password" name="CurrentPassword" placeholder="*********" required />
+                    </div>
+                    <div class="line"></div>
+                    <div class="editProfile-btn-save">
+                        <button class="edit-btn-save" type="submit">Save</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    //  Edit Account Survey
+    if (registration != null)
+    {
+        <div class="dialog-editAccountSurvey hidden">
+            <div class="Editprofile-modal-o"></div>
+            <div class="Editprofile-dialog-body">
+                <div class="close-editAccountSurvey">
+                    &times;
+                </div>
+                <div class="editProfile-form">
+                    @using (Html.BeginForm("EditAccountSurvey", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        //
+                        <input name="Id" value="@registration.Id" hidden />
+                        //
+                        <div class="editProfile-item">
+                            <label>Name</label>
+                            <input class="ip-editProfile" type="text" name="Name" value="@registration.Name" required />
+                        </div>
+
+                        <div class="editProfile-item">
+                            <label>Class</label>
+                            <input class="ip-editProfile" name="ClassName" placeholder="Your class name" value="@registration.ClassName" required />
+                        </div>
+                        <div class="editProfile-item">
+                            <label>Specification</label>
+                            <input class="ip-editProfile" name="Specification" placeholder="Your specification" value="@registration.Specification"  required/>
+                        </div>
+                        <div class="editProfile-item">
+                            <label>Section</label>
+                            <input class="ip-editProfile" name="Section" placeholder="Your section" value="@registration.Section" required/>
+                        </div>
+                        <div class="line"></div>
+                        <div class="editProfile-btn-save">
+                            <button class="edit-btn-delete" type="submit" data-id="@registration.Id">Delete</button>
+                            <button class="edit-btn-save float-end" type="submit">Save</button>
+                        </div>
+
+
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+        function loadImage(event) {
+            var image = document.getElementById('myImage');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+}
+else
+{ <li><a href="~/home/index" class="home">Home</a></li>
+    <li><a href="~/competitions/competition" class="survey">Survey</a></li>
+    <li><a href="~/Supports/Support" class="support">Support</a></li>
+    <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+    <li class="dropdown-child"></li>
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}

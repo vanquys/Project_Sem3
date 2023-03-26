@@ -105,15 +105,60 @@ namespace Project_Sem3.Controllers
             {
                 TempData["ErrorMessage"] = "Failed to Change: " + e.Message ;
             }
+            return RedirectToAction("Idex", "Home");
+
+        }
+
+        //
+
+        [HttpPost]
+        public async Task<ActionResult> EditAccountSurvey()
+        {
+            int id = Convert.ToInt32(Request["id"]);
+            var name = Request["Name"];
+            var className = Request["ClassName"];
+            var specification = Request["Specification"];
+            var section = Request["Section"];
+            Registration registration = db.Registrations.Find(id);
+            try
+            {
+                registration.Name = name;
+                registration.Section = section;
+                registration.Specification = specification;
+                registration.ClassName = className;
+
+                db.Entry(registration).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["SuccessMessage"] = "successfully  !";
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = "Failed to Change: " + e.Message;
+            }
             return RedirectToAction("Index", "Home");
 
         }
 
 
-
         //
-        // GET: /Account/Login
-        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> DeleteAccountSurvey(int id)
+        {
+            Registration registration = db.Registrations.Find(id);
+            try
+            {
+                db.Registrations.Remove(registration);
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted survey account successfully." });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = "err: " + e.Message });
+            }
+        }
+            //
+            // GET: /Account/Login
+            [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -129,11 +174,9 @@ namespace Project_Sem3.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Isvalid login attempt");
                 return View(model);
             }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -145,7 +188,7 @@ namespace Project_Sem3.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Isvalid login attempt.");
                     return View(model);
             }
         }
@@ -371,12 +414,6 @@ namespace Project_Sem3.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form

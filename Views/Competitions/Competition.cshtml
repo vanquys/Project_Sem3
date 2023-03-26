@@ -38,7 +38,7 @@
             <div class="CP-top">
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="~/assets/img/Competition/cp-top.jpg"  data-aos="zoom-out" data-aos-delay="100">
+                        <img src="~/assets/img/Competition/cp-top.jpg" data-aos="zoom-out" data-aos-delay="100">
                     </div>
                     <div class="col-md-7" data-aos="fade-up">
                         <h2>Competition</h2>
@@ -121,11 +121,13 @@
                 }
             </table>
 
-            <h3>Score</h3>
+
 
             @if (Request.IsAuthenticated && registration != null)
             {
-                <div class="table-scroll" >
+                <h3>Score</h3>
+
+                <div class="table-scroll">
                     <table class="table" data-aos="fade-up">
                         <tr>
                             <th>ID</th>

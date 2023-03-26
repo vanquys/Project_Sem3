@@ -7,7 +7,15 @@
 {
     <script>alert("@ViewBag.alertMessage");</script>
 }
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
 
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
 @{
     KSMTDbContext db = new KSMTDbContext();
     int competitionCount = db.Competitions.Count();
@@ -166,7 +174,7 @@
                 </div>
 
             </div>
-           
+
         </div>
     </section><!-- End Stats Counter Section -->
     <!-- ======= Call To Action Section ======= -->
@@ -227,7 +235,7 @@
                         </div>
                         if (reader.Read())
                         {
-                            
+
                             <div class="top-servey-item col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                                 <div class="top-servey">
                                     <div class="top-servey-user">
@@ -256,7 +264,7 @@
             </div>
 
         </div>
-</section>
+    </section>
     <!-- ======= Our Team Section ======= -->
     <section id="team" class="team">
         <div class="container" data-aos="fade-up">

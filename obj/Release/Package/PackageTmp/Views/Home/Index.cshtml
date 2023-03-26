@@ -1,0 +1,514 @@
+﻿@using Project_Sem3.Models
+@using System.Data.SqlClient;
+@using System.Data;
+
+<link rel="stylesheet" href="~/assets/css/main.css" />
+@if (!string.IsNullOrEmpty(ViewBag.alertMessage))
+{
+    <script>alert("@ViewBag.alertMessage");</script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <script>alert("@ViewBag.SuccessMessage");</script>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script>alert("@ViewBag.ErrorMessage");</script>
+}
+@{
+    KSMTDbContext db = new KSMTDbContext();
+    int competitionCount = db.Competitions.Count();
+    int answerResultCount = db.AnswerResults.Count();
+    int userCount = db.Registrations.Count();
+
+
+    // procedure
+    string connectionString = @"data source=MSI\SQLEXPRESS;initial catalog=KSMT;user id=sa;password=123;MultipleActiveResultSets=True;App=EntityFramework";
+    SqlConnection connection = new SqlConnection(connectionString);
+    connection.Open();
+    SqlCommand command = new SqlCommand("SelectTopMark", connection);
+    command.CommandType = CommandType.StoredProcedure;
+    SqlDataReader reader = command.ExecuteReader();
+
+
+}
+
+<main id="home">
+    <section id="hero" class="hero">
+        <div class="container position-relative">
+            <div class="row gy-5" data-aos="fade-in">
+                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+                    <h2>Welcome to <span>Green</span></h2>
+                    <p>Let's join hands for a clean and beautiful planet, nature is an indispensable part, let's protect it together.</p>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#about" class="btn-get-started">Get Started</a>
+                        <a href="https://www.youtube.com/watch?v=qetZJiQa-z8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <img src="~/assets/img/home/Happy Earth-bro.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+                </div>
+            </div>
+        </div>
+
+        <div class="icon-boxes position-relative">
+            <div class="container position-relative">
+                <div class="row gy-4 mt-5">
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-easel"></i></div>
+                            <h4 class="title"><a href="" class="stretched-link">Competition</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-gem"></i></div>
+                            <h4 class="title"><a href="" class="stretched-link">Contact us</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-geo-alt"></i></div>
+                            <h4 class="title"><a href="" class="stretched-link">Our location</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-command"></i></div>
+                            <h4 class="title"><a href="" class="stretched-link">Join Us</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>About Us</h2>
+                <p>We are an organization specialized in conducting environmental surveys at schools and some other locations, with the desire to promote environmental protection and contribute to making our world a better place to live</p>
+            </div>
+
+            <div class="row gy-4">
+                <div class="col-lg-6">
+                    <h3>Organizing surveys at schools and some locations.</h3>
+                    <img src="~/assets/img/home/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+                    <p>We organize surveys at schools with the purpose of guiding young people, especially students, on environmental issues. This is a very important contribution to environmental issues in the future. We have organized many surveys and received active participation from students.</p>
+                    <p>In addition, we also organize many surveys at other locations, at offline events on environmental issues, or just a random survey right on the street. We have surveyed many people of different ages, different social classes, and from that, we can evaluate and further disseminate information to them about environmental protection - an issue that deserves much attention nowadays.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content ps-0 ps-lg-5">
+                        <p class="fst-italic">
+                            Our surveys aim to draw general and practical conclusions:
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check-circle-fill"></i> The current state of the environment is how?</li>
+                            <li><i class="bi bi-check-circle-fill"></i> What are the measures to protect the environment?</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Are you really protecting the environment? How do you promote environmental protection? And how to address environmental pollution?</li>
+                        </ul>
+                        <p>
+                            Besides, the issues that we are facing are becoming increasingly significant, and environmental pollution is always a pressing issue in today's society. Let's join hands to protect the environment where we live.
+                        </p>
+
+                        <div class="position-relative mt-4">
+                            <img src="~/assets/img/home/hinh-anh-bao-ve-moi-truong-19.jpg" class="img-fluid rounded-4" alt="">
+                            <a href="https://www.youtube.com/watch?v=qetZJiQa-z8" class="glightbox play-btn"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
+    <!-- ======= Clients Section ======= -->
+    <section class="home-banner">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="~/assets/img/home/Untitled.png" />
+            </div>
+        </div>
+    </section><!-- End Clients Section -->
+    <!-- ======= Stats Counter Section ======= -->
+    <section id="stats-counter" class="stats-counter">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row gy-4 align-items-center">
+
+                <div class="col-lg-6">
+                    <img src="~/assets/img/home/stats-img.svg" alt="" class="img-fluid">
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div class="stats-item d-flex align-items-center">
+                        <span data-purecounter-start="100" data-purecounter-end="@competitionCount" data-purecounter-duration="1.5" class="purecounter"></span>
+                        <p>
+                            <strong>Surveys Were Held</strong>
+                            is our effort to protect the environment
+                        </p>
+                    </div><!-- End Stats Item -->
+
+                    <div class="stats-item d-flex align-items-center">
+                        <span data-purecounter-start="100" data-purecounter-end="@userCount" data-purecounter-duration="1.5" class="purecounter"></span>
+                        <p><strong>People Participated</strong> your concern is our motivation</p>
+                    </div><!-- End Stats Item -->
+
+                    <div class="stats-item d-flex align-items-center">
+                        <span data-purecounter-start="100" data-purecounter-end="@answerResultCount" data-purecounter-duration="1.5" class="purecounter"></span>
+                        <p><strong>Surveys Completed</strong> Let's join hands to protect the green environment</p>
+                    </div><!-- End Stats Item -->
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Stats Counter Section -->
+    <!-- ======= Call To Action Section ======= -->
+    <section id="top-servey" class="top-servey">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Trophies & Awards</h2>
+            </div>
+            <div class="row gy-4 top-servey-row">
+
+                @if (reader.Read())
+                {
+                    <div class="top-servey-item col-xl-4 col-md-6 d-flex " data-aos="fade-up" data-aos-delay="100">
+                        <div class="top-servey">
+                            <div class="top-servey-user">
+                                <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                <div class="">
+                                    <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
+                                    <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                </div>
+                            </div>
+                            <div class="top-servey-mark">
+                                <div class="top-servey-medal">
+                                    <img src="~/assets/img/home/goodMedal.png" />
+                                    <h4>Good Medal</h4>
+                                </div>
+
+                                <span>
+                                    Survey Completed: <b>@db.Registrations.Find(reader.GetInt32(0)).AnswerResults.Count()</b>
+                                </span>
+                                <span>Total Score: <b>@reader.GetDouble(1).ToString()</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    if (reader.Read())
+                    {
+                        <div class="top-servey-item col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                            <div class="top-servey">
+                                <div class="top-servey-user">
+                                    <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                    <div>
+                                        <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
+                                        <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                    </div>
+                                </div>
+                                <div class="top-servey-mark">
+                                    <div class="top-servey-medal">
+                                        <img src="~/assets/img/home/silverMedal.png" />
+                                        <h4>Silver Medal</h4>
+                                    </div>
+
+                                    <span>
+                                        Survey Completed: <b>@db.Registrations.Find(reader.GetInt32(0)).AnswerResults.Count()</b>
+                                    </span>
+                                    <span>Total Score: <b>@reader.GetDouble(1).ToString()</b></span>
+                                </div>
+                            </div>
+                        </div>
+                        if (reader.Read())
+                        {
+
+                            <div class="top-servey-item col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                                <div class="top-servey">
+                                    <div class="top-servey-user">
+                                        <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                        <div>
+                                            <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
+                                            <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                        </div>
+                                    </div>
+                                    <div class="top-servey-mark">
+                                        <div class="top-servey-medal">
+                                            <img src="~/assets/img/home/copperMedal.png" />
+                                            <h4>Copper Medal</h4>
+                                        </div>
+
+                                        <span>
+                                            Survey Completed: <b>@db.Registrations.Find(reader.GetInt32(0)).AnswerResults.Count()</b>
+                                        </span>
+                                        <span>Total Score: <b>@reader.GetDouble(1).ToString()</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+    </section>
+    <!-- ======= Our Team Section ======= -->
+    <section id="team" class="team">
+        <div class="container" data-aos="fade-up">
+
+
+            <div class="section-header">
+                <h2>Our Team</h2>
+            </div>
+
+            <div class="row gy-4">
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member">
+                        <img src="~/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                        <h4>Walter White</h4>
+                        <span>Web Development</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member">
+                        <img src="~/assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                        <h4>Sarah Jhinson</h4>
+                        <span>Marketing</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member">
+                        <img src="~/assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                        <h4>William Anderson</h4>
+                        <span>Content</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member">
+                        <img src="~/assets/img/team/team-4.jpg" class="img-fluid" alt="">
+                        <h4>Amanda Jepson</h4>
+                        <span>Accountant</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Team Member -->
+
+            </div>
+
+        </div>
+    </section><!-- End Our Team Section -->
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio sections-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Picture</h2>
+            </div>
+
+            <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+
+
+                <div class="row gy-4 portfolio-container">
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/1.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/1.jpg" class="img-fluid" alt=""></a>
+
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/2.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/2.jpg" class="img-fluid" alt=""></a>
+
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/3.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/3.jpg" class="img-fluid" alt=""></a>
+
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-books">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/4.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/4.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/5.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/5.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/6.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/6.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/7.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/7.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-books">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/8.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/8.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/9.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/9.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/10.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/10.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/11.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/11.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-xl-4 col-md-6 portfolio-item filter-books">
+                        <div class="portfolio-wrap">
+                            <a href="~/assets/img/home/12.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="~/assets/img/home/12.jpg" class="img-fluid" alt=""></a>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                </div><!-- End Portfolio Container -->
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Section -->
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Contact</h2>
+            </div>
+
+            <div class="row gx-lg-0 gy-4">
+
+                <div class="col-lg-4">
+
+                    <div class="info-container d-flex flex-column align-items-center justify-content-center">
+                        <div class="info-item d-flex">
+                            <i class="bi bi-geo-alt flex-shrink-0"></i>
+                            <div>
+                                <h4>Location:</h4>
+                                <p>
+                                    88 Yen Bai HaiChau1
+                                    VNPT DaNang Town
+                                    VietNam
+                                </p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex">
+                            <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div>
+                                <h4>Email:</h4>
+                                <p>project@sem3.com</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex">
+                            <i class="bi bi-phone flex-shrink-0"></i>
+                            <div>
+                                <h4>Call:</h4>
+                                <p>+1 5589 55488 55</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex">
+                            <i class="bi bi-clock flex-shrink-0"></i>
+                            <div>
+                                <h4>Open Hours:</h4>
+                                <p>Mon-Sat: 11AM - 23PM</p>
+                            </div>
+                        </div><!-- End Info Item -->
+                    </div>
+
+                </div>
+
+                <div class="col-lg-8">
+                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="message" rows="7" placeholder="Message" required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div><!-- End Contact Form -->
+
+            </div>
+
+        </div>
+    </section><!-- End Contact Section -->
+</main>
