@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Project_Sem3.Models.FAQ>
 @{ int num = 1;}
+<link rel="stylesheet" href="~/assets/css/FAQ.css">
 
 @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
 {
@@ -13,6 +14,34 @@
 
 <main id="faq">
     <section id="faq" class="faq">
+        <div class="faq-container">
+            <div class="wrapper">
+                <div class="row d_flex grig" style="align-items:center;">
+                    <div class="col-md-6">
+                        <div class="bgr-image">
+                            <figure><img src="~/assets/img/faq/FaqsBgr.jpeg" data-aos="zoom-out" data-aos-delay="100" /></figure>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6"  data-aos="fade-up">
+                        <div class="faq-content">
+                            <div class="h-title">
+                                <h3><span>Frequently </span>Asked<em>Ques</em>tions</h3>
+                                <div class="p-title">
+                                    <p>
+                                        This is a list of frequently used questions and answers to answer questions
+                                        spectrum
+                                        about a particular product, service, or topic.Using FAQs also helps to reduce the number of questions sent to the support department
+                                        support
+                                        customers of a company or organization.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container" data-aos="fade-up">
             <div class="row gy-4">
                 <div class="col-lg-12">
@@ -20,7 +49,7 @@
                     <div class="accordion accordion-flush" id="faqlist" data-aos="fade-up" data-aos-delay="100">
                         @foreach (var m in Model)
                         {
-                            <div class="accordion-item">
+                            <div class="accordion-item" data-aos="fade-up">
                                 <h3 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-@m.Id">
                                         <span class="num"> @num.</span>
@@ -39,7 +68,6 @@
 
                 </div>
             </div>
-
         </div>
     </section>
 </main>

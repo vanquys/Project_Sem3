@@ -37,15 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // dialog
     for (i = 0; i < closebtns.length; i++) {
         closebtns[i].addEventListener("click", function () {
-            dialogAdd.classList.add('hidden')
-            dialogEdit.classList.add('hidden')
+            dialogAdd.classList.remove('showDialog')
+            dialogEdit.classList.remove('showDialog')
 
         });
     }
 
     for (i = 0; i < btnAdd.length; i++) {
         btnAdd[i].addEventListener("click", function () {
-            dialogAdd.classList.remove('hidden')
+            dialogAdd.classList.add('showDialog')
         });
     }
 
@@ -67,8 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             var endParts = end.split("/");
             var endDate = new Date(endParts[2], endParts[1] - 1, endParts[0]);
             var formatEndDate = endDate.toISOString().slice(0, 10);
-             
-            dialogEdit.classList.remove('hidden')
+           
 
             dialogEdit.querySelector('#id').value = id;
             dialogEdit.querySelector('#title').value = title;
@@ -77,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
             dialogEdit.querySelector('#endDate').value = formatEndDate;
             dialogEdit.querySelector('#question').value = question;
             dialogEdit.querySelector('#RightAnswer').value = answer;
+
+            dialogEdit.classList.add('showDialog')
         });
     }
 

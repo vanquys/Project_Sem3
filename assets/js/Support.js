@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set up event listeners for closing dialogs
     for (var i = 0; i < closeBtns.length; i++) {
         closeBtns[i].addEventListener('click', function () {
-            dialogAdd.classList.add('hidden');
-            dialogEdit.classList.add('hidden');
+            dialogAdd.classList.remove('showDialog');
+            dialogEdit.classList.remove('showDialog');
         });
     }
     
@@ -26,21 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
         btnEdit[i].addEventListener('click', function () {
             const id = this.closest('.sp-item').querySelector('.sp-id p').textContent;
             const currentImage = this.closest('.sp-item').querySelector('.sp-currentImage p').textContent;
-            const name = this.closest('.sp-item').querySelector('.sp-item-item .name p').textContent;
+            const name = this.closest('.sp-item').querySelector('.infor-name').textContent;
             const phone = this.closest('.sp-item').querySelector('.phone p').textContent;
             const email = this.closest('.sp-item').querySelector('.email p').textContent;
-            const position = this.closest('.sp-item').querySelector('.position p').textContent;
-
-            dialogEdit.classList.remove('hidden');
-
-            console.log(id + name + phone + email + position)
-
+            const position = this.closest('.sp-item').querySelector('.infor-position').textContent;
             dialogEdit.querySelector('#id').value = id;
             dialogEdit.querySelector('#currentImage').value = currentImage;
             dialogEdit.querySelector('#name').value = name;
             dialogEdit.querySelector('#phone').value = phone;
             dialogEdit.querySelector('#email').value = email;
             dialogEdit.querySelector('#position').value = position;
+
+            dialogEdit.classList.add('showDialog');
+
         });
     }
 
@@ -48,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (var i = 0; i < btnAdd.length; i++) {
         btnAdd[i].addEventListener('click', function () {
-            dialogAdd.classList.remove('hidden');
+            dialogAdd.classList.add('showDialog');
         });
     }
 

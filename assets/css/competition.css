@@ -3,29 +3,31 @@
 }
 .table-scroll {
     overflow-x: scroll;
-}  
-.Competition .CP-top {
-    padding: 20px;
+}
+.CP-top {
     background-image: url('../img/competition/cp-img-brg.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;   
-} 
+    background-size: 100% 300px;
+}
+.cp-top-bgr {
+    background-color: #407e5933;
+    padding: 27px 46px;
+}
 .CP-top h6 {
-    color: white;   
+    color: white;     
     line-height: 1.5;
 }
 .CP-top p {
     background-color: #418b2236;    
     padding: 5px;  
 }
-.Competition .CP-top .col-md-5 {
+.CP-top .col-md-5 {
     display: grid;
     justify-content: center;
     align-items: center;
 }
 
-.Competition .CP-top h2 {
+.CP-top h2 {
     color: green;
     text-align: center;
     background-color: #ffffffab;
@@ -112,9 +114,9 @@ tr td:nth-child(odd) {
     cursor:pointer;
     padding:7px;
 }
-.cp-btn-join:hover {
-    color:black;
-} 
+    .cp-btn-join:hover {
+        background-color: #00a18e;
+    } 
 .references .row {
     margin-bottom: 60px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -139,11 +141,13 @@ tr td:nth-child(odd) {
         display: flex;
     }
 
-      
 
-    .references h3 {
-        margin-bottom: 0;
-    }
+
+.references h3 {
+    margin-bottom: 0;
+    color: #d6d6d6;
+    font-size: 23px;
+}
 
     .references a {
         color: white;
@@ -153,18 +157,30 @@ tr td:nth-child(odd) {
             color: bisque;
         }
 
-.dialog {
+.dialog-cp-rgt {
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
+    bottom: 0;    
     left: 0;
     display: flex;
-    z-index: 1000;
+    z-index: -1;
+    opacity:0;
 }
-
-.hidden {
-    display: none;
+    .dialog-cp-rgt h3 {
+        font-size: 33px;
+        text-align: center;
+        font-family: system-ui;
+        color: #0aceb8c4;
+    }
+.dialog-bgr {
+    border-radius: 5px;
+    background-color: #313e4878;
+}
+.showDialog {
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
+    z-index: 1000;
 }
 
 .modal-o {
@@ -175,10 +191,16 @@ tr td:nth-child(odd) {
 }
 
 .dialog-body {
-    background-color: #008374;
+    background-image: url('../img/competition/dialog-cp-bgr.jpg');
     margin: auto;
-    z-index: 1000;
+    z-index: 10000;
     border-radius: 8px;
+    display: block;
+    max-width: 500px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: white;
 }
 
 .close-btn {
@@ -193,21 +215,21 @@ tr td:nth-child(odd) {
 
 .f-rigister {
     display: grid;
-    padding: 15px 100px;
+    padding: 15px 60px;
 }
 
     .f-rigister .item {
         margin-top: 25px;
-        padding: 6px 0;
+        padding: 6px 20px;
         border-top: none;
         border-left: none;
         border-right: none;
-        background-color: #008374;
-        border-color: black;
+        background-color: #626c6470;
+        color: #ffffffff;
     }
 
         .f-rigister .item::placeholder {
-            color: darkslategrey;
+            color: #ffffffb8;
         }
 
         .f-rigister .item:focus {
@@ -217,9 +239,18 @@ tr td:nth-child(odd) {
     .f-rigister .btn-rgt {
         display: flex;
         justify-content: end;
-        margin-top: 30px;
+        margin-top: 30px;  
     }
-
+        .f-rigister .btn-rgt button {
+            padding: 5px 12px;
+            background-color: #008374;
+            border: none;
+            border-radius: 5px;
+            color: #cdc3c3;
+        }
+            .f-rigister .btn-rgt button:hover {
+                background-color: #049988;
+            }
         .f-rigister .btn-rgt a {
             color: wheat;
             text-decoration: none;
@@ -298,12 +329,20 @@ tr td:nth-child(odd) {
 .ts .answer{
     width:50%;
 }
-.ts .Mark{
+.ts .Mark{  
     width:10%;
+}
+.references .col-md-9 p {
+    color: #c8c8c8;
+    font-family: monospace;
+}
+.references h2 {
+    color: #efefefe3;
+    font-size: 36px;
 }
 @media only screen and (max-width: 1200px) {
     .references .col-md-9 p {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .references img {
@@ -314,9 +353,7 @@ tr td:nth-child(odd) {
         font-size: 13px;
         padding:5px;
     }
-    .CP-top h6 {
-        font-size:15px;
-    }
+    
 }
 
 @media only screen and (max-width: 990px) {
@@ -324,7 +361,7 @@ tr td:nth-child(odd) {
         font-size: 12px;
     }
     .CP-top h6 {
-        font-size: 13px;
+        font-size: 14px;
     }
     .references h3 {
         font-size: 20px;
@@ -341,7 +378,7 @@ tr td:nth-child(odd) {
         width: 60%;
     }
     .references h3 {
-        font-size: 19px;
+        font-size: 20px;
     }
 }
 
@@ -354,7 +391,12 @@ tr td:nth-child(odd) {
     .ts a {
         font-size: 12px;
     }
-    
+    .references .col-md-9 p {
+        font-size: 13px;
+    }
+    .references {
+        padding:25px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -369,19 +411,27 @@ tr td:nth-child(odd) {
     .Competition .table {
         font-size: 12px;
     }
-
+    .CP-top{
+        background-size:100% 100%;
+    }
+    
     .CP-top p {
         font-size: 13px;
         margin-top: 6px;
     }
 
-    .CP-top h2 {
-        margin-top: 7px;
-        font-size: 25px;
-    }
-
-    .references .col-md-9 p {
-        font-size: 10px;
+        .CP-top h2 {
+            margin: 10px 50px;
+            font-size: 25px;
+        }
+        .CP-top h6{
+            text-align:center;
+        }
+        .references .col-md-9 p {
+            font-size: 10px;
+        }
+    .section-header h2{
+        font-size:28px;
     }
 
     .references .content h3 {
@@ -398,6 +448,10 @@ tr td:nth-child(odd) {
     .btn-rgt-cp .cp-btn-join {
         font-size: 6px;
     }
+    .Competition .section-header h2{
+        font-size:28px;
+    }
+    
 }
  
 @media only screen and (max-width: 544px) {
@@ -411,6 +465,18 @@ tr td:nth-child(odd) {
     .ts a {
         font-size: 11px;
         padding: 1px;
+    }
+    .CP-top h6{
+        font-size:12px;
+    }
+    .CP-top h2{
+        font-size:22px;
+    }
+    .Competition .section-header h2{
+        font-size:25px;
+    }
+    .section-header h2 {
+        font-size: 25px;
     }
 }
 

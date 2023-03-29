@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Project_Sem3.Models.FAQ>
 
-<link rel="stylesheet" href="~/assets/css/FAQ.css">
+<link rel="stylesheet" href="~/assets/css/AdFAQ.css">
 <script src="~/assets/js/AdFAQ.js"></script>
 @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
 {
@@ -13,22 +13,9 @@
 }
 <main id="faq">
     <div class="Wrapper">
-        @using (Html.BeginForm("Create", "FAQs", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            <h3 class="text-center pt-3 pb-3">Create FAQs</h3>
-            <div class="form-group">
-                <label>Question</label>
-                <textarea name="Question" rows="3"></textarea>
-
-            </div>
-            <div class="form-group">
-                <label class="a" for="">Answer</label>
-                <textarea name="Answer" rows="5"></textarea>
-
-            </div>
-            <input type="submit" value="Create" class="shadow" id="btn-Create">
-        }
+        <a class="btn-add">
+            Add FAQ
+        </a>
     </div>
     <hr>
     <div class="container-lg mt-3">
@@ -68,7 +55,35 @@
             </table>
         </div>
     </div>
+    <div class="dialog-add hidden-add">
+        <div class="modal-add"></div>
+        <div class="body-edit">
+            <div class="close-btn">
+                &times;
+            </div>
+            <div class="f-add">
+                <h2 class="text-text">Add FAQs</h2>
+                <input id="id" name="id" hidden />
+                <div class="form-group-add">
+                    <label for="name">Question</label>
+                    <textarea name="Question" id="question" rows="2"></textarea>
 
+                </div>
+                <div class="form-group-add">
+                    <label for="name">Answer</label>
+                    <textarea name="Answer" id="answer" rows="3"></textarea>
+
+                </div>
+
+                <div class="frame">
+                    <button class="custom-btn btn-add-Faqs"><span>Submit</span></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit -->
     <div class="dialog-edit hidden-edit">
         <div class="modal-edit"></div>
         <div class="body-edit">

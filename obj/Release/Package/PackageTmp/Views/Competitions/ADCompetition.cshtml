@@ -34,34 +34,37 @@
     <script>alert("@ViewBag.ErrorMessage");</script>
 }
   
-<main id="survey" >
-    <div class="Competition">
-        <div class="container-fluid">
-            <div class="CP-top">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img src="~/assets/img/Competition/cp-top.jpg"  data-aos="zoom-out" data-aos-delay="100">
-                    </div>
-                    <div class="col-md-7" data-aos="fade-up">
-                        <h2>Competition</h2>
-                        <h6>
-                            Environmental survey is the process of gathering information about the environment and
-                            the impacts of human activities on it. It helps to assess the current state of the
-                            environment, predict the impacts of future activities, and provide solutions to
-                            protect and improve the environment.
-                        </h6>
-                    </div>
+<main id="survey">
+    <div class="CP-top">
+        <div class="cp-top-bgr">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/assets/img/Competition/cp-top.jpg" data-aos="zoom-out" data-aos-delay="100">
+                </div>
+                <div class="col-md-8" data-aos="fade-up">
+                    <h2>Competition</h2>
+                    <h6>
+                        Environmental survey is the process of gathering information about the environment and
+                        the impacts of human activities on it. It helps to assess the current state of the
+                        environment, predict the impacts of future activities, and provide solutions to
+                        protect and improve the environment.
+                    </h6>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="Competition">
+        <div class="container-fluid">
+
             <div class="line1">
                 <p></p>
             </div>
             <div class="cp-add">
-                <a class="btn-add btn-dialog-add data-aos="fade-up"">
+                <a class="btn-add btn-dialog-add data-aos=" fade-up"">
                     ADD COMPETITION +
                 </a>
             </div>
-            <div class="table-scroll" data-aos="fade-up">
+            <div class="table-scroll">
                 <table class="table">
                     <tr>
                         <th>No</th>
@@ -113,45 +116,48 @@
                 </table>
 
             </div>
-            
-                <h2>Mark</h2>
-                <div class="cp-mark table-scroll">
 
-                    <table class="table" >
-                        <tr  data-aos="fade-up">
-                            <th>Roll ID</th>
-                            <th>Name</th>
-                            <th>CP-ID</th>
-                            <th>Answer</th>
-                            <th>Score</th>
-                            <th>Status</th>
+            <div class="section-header">
+                <h2>Score</h2>
+            </div>
+            <div class="cp-mark table-scroll">
+
+                <table class="table">
+                    <tr data-aos="fade-up">
+                        <th>Roll ID</th>
+                        <th>Name</th>
+                        <th>CP-ID</th>
+                        <th>Answer</th>
+                        <th>Score</th>
+                        <th>Status</th>
+                    </tr>
+                    @foreach (var m in listas)
+                    {
+                        <tr data-aos="fade-up">
+                            @using (Html.BeginForm("AddMark", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input name="Date" value="@m.Date" hidden />
+                                <input name="IdRegistratedUser" value="@m.IdRegistratedUser" hidden />
+                                <input name="CompetitionId" value="@m.CompetitionId" hidden />
+                                <input name="Answer" value="@m.Answer" hidden />
+
+                                <td class="cp-mark-uid">@m.IdRegistratedUser</td>
+                                <td class="cp-mark-uname">@m.Registration.Name</td>
+                                <td class="cp-mark-compe">@m.CompetitionId</td>
+                                <td class="cp-mark-answer">@m.Answer</td>
+                                <td class="cp-mark-score"><input name="Mark" value="@m.Mark" /></td>
+                                <td class="cp-mark-btn">
+                                    <button type="submit" class="btn-apply">Apply</button>
+                                    <button data-iduser="@m.IdRegistratedUser" data-idcp="@m.CompetitionId" class="delete-answer">Delete</button>
+                                </td>
+                            }
                         </tr>
-                        @foreach (var m in listas)
-                        {
-                            <tr  data-aos="fade-up">
-                                @using (Html.BeginForm("AddMark", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <input name="Date" value="@m.Date" hidden />
-                                    <input name="IdRegistratedUser" value="@m.IdRegistratedUser" hidden />
-                                    <input name="CompetitionId" value="@m.CompetitionId" hidden />
-                                    <input name="Answer" value="@m.Answer" hidden />    
-                                    <td class="cp-mark-uid">@m.IdRegistratedUser</td>
-                                    <td class="cp-mark-uname">@m.Registration.Name</td>
-                                    <td class="cp-mark-compe">@m.CompetitionId</td>
-                                    <td class="cp-mark-answer">@m.Answer</td>
-                                    <td class="cp-mark-score"><input name="Mark" value="@m.Mark" /></td>
-                                    <td class="cp-mark-btn">
-                                        <button type="submit" class="btn-apply">Apply</button>
-                                        <button data-iduser="@m.IdRegistratedUser" data-idcp="@m.CompetitionId" class="delete-answer">Delete</button>
-                                    </td>
-                                }
-                            </tr>
-                                
-                            
-                        }
-                    </table>
-                </div>
+
+
+                    }
+                </table>
+            </div>
         </div>
     </div>
     <div class="references" data-aos="fade-up">
@@ -204,50 +210,50 @@
         </a>
     </div>
 
-    <div class="dialog-add hidden table-scroll">
+    <div class="dialog-add hidden">
         <div class="modal-o"></div>
         <div class="dialog-body">
-            <div class="close-btn">
-                <p>&times;</p>
-            </div>
-            <div class="cp-add-form">
-                @using (Html.BeginForm("Create", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="line">
-
-                    </div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp dialog-title">Title</label>
-                        <input class="ip-add-cp dialog-title" type="text" name="Title" />
-                    </div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp">Description</label>
-                        <textarea class="cp-add-description dialog-description" name="Description" rows="3"></textarea>
-                    </div>
-                    <div class="cp-add-item-date">
-                        <div class="item-date">
-                            <label class="lb-add-cp">Start Date</label>
-                            <input class="ip-add-cp" name="StartDate" type="date" />
+            <div class="dialog-bgr">
+                <div class="close-btn">
+                    <p>&times;</p>
+                </div>
+                <div class="cp-add-form">
+                    @using (Html.BeginForm("Create", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp dialog-title">Title</label>
+                            <input class="ip-add-cp dialog-title" type="text" name="Title" />
                         </div>
-                        <div class="item-date">
-                            <label class="lb-add-cp">End Date</label>
-                            <input class="ip-add-cp" name="EndDate" type="date" />
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp">Description</label>
+                            <textarea class="cp-add-description dialog-description" name="Description" rows="2"></textarea>
                         </div>
+                        <div class="cp-add-item-date">
+                            <div class="item-date">
+                                <label class="lb-add-cp">Start Date</label>
+                                <input class="ip-add-cp" name="StartDate" type="date" />
+                            </div>
+                            <div class="item-date">
+                                <label class="lb-add-cp">End Date</label>
+                                <input class="ip-add-cp" name="EndDate" type="date" />
+                            </div>
 
-                    </div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp">Question</label>
-                        <textarea class="cp-add-description dialog-question" name="Question" rows="2"></textarea>
-                    </div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp">Answer</label>
-                        <textarea class="cp-add-description dialog-answer" name="RightAnswer" rows="4"></textarea>
-                    </div>
-                    <div class="btn-add-cp">
-                        <button class="btn-add-cp-item" type="submit">ADD</button>
-                    </div>
-                }
+                        </div>
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp">Question</label>
+                            <textarea class="cp-add-description dialog-question" name="Question" rows="2"></textarea>
+                        </div>
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp">Answer</label>
+                            <textarea class="cp-add-description dialog-answer" name="RightAnswer" rows="2"></textarea>
+                        </div>
+                        <div class="btn-add-cp">
+                            <button class="btn-add-cp-item" type="submit">ADD</button>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -255,52 +261,54 @@
     <div class="dialog-edit hidden">
         <div class="modal-o"></div>
         <div class="dialog-body">
-            <div class="close-btn">
-                &times;
-            </div>
-            <div class="cp-add-form">
-                @using (Html.BeginForm("Edit", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
+            <div class="dialog-bgr">
+                <div class="close-btn">
+                    &times;
+                </div>
+                <div class="cp-add-form">
+                    @using (Html.BeginForm("Edit", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <h2>Edit competition</h2>
-                    <div class="cp-add-item" hidden>
-                        <label class="lb-add-cp"></label>
-                        <input class="ip-add-cp" id="id" name="id" type="text" />
-                    </div>
-                    <div class="line"></div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp"></label>
-                        <input class="ip-add-cp" id="title" name="title" type="text" />
-                    </div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp">Description</label>
-                        <textarea class="cp-add-description" id="description" name="description" rows="4"></textarea>
-                    </div>
-                    <div class="cp-add-item-date">
-                        <div class="item-date">
-                            <label class="lb-add-cp">Start Date</label>
-                            <input class="ip-add-cp" id="startDate" name="StartDate" type="date" />
+                        <h2>Edit competition</h2>
+                        <div class="cp-add-item" hidden>
+                            <label class="lb-add-cp"></label>
+                            <input class="ip-add-cp" id="id" name="id" type="text" />
                         </div>
-                        <div class="item-date">
-                            <label class="lb-add-cp">End Date</label>
-                            <input class="ip-add-cp" name="EndDate" id="endDate" type="date" />
+                        <div class="line"></div>
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp"></label>
+                            <input class="ip-add-cp" id="title" name="title" type="text" />
                         </div>
-                    </div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp">Question</label>
-                        <textarea class="cp-add-description" name="question" id="question" rows="4"></textarea>
-                    </div>
-                    <div class="cp-add-item">
-                        <label class="lb-add-cp">Answer</label>
-                        <textarea class="cp-add-description" name="RightAnswer" id="RightAnswer" rows="2"></textarea>
-                    </div>
-                    <div class="btn-add-cp">
-                        <button type="submit" class="btn-add-cp-item btn__edit-save">Save</button>
-                    </div>
-                }
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp">Description</label>
+                            <textarea class="cp-add-description" id="description" name="description" rows="2"></textarea>
+                        </div>
+                        <div class="cp-add-item-date">
+                            <div class="item-date">
+                                <label class="lb-add-cp">Start Date</label>
+                                <input class="ip-add-cp" id="startDate" name="StartDate" type="date" />
+                            </div>
+                            <div class="item-date">
+                                <label class="lb-add-cp">End Date</label>
+                                <input class="ip-add-cp" name="EndDate" id="endDate" type="date" />
+                            </div>
+                        </div>
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp">Question</label>
+                            <textarea class="cp-add-description" name="question" id="question" rows="2"></textarea>
+                        </div>
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp">Answer</label>
+                            <textarea class="cp-add-description" name="RightAnswer" id="RightAnswer" rows="2"></textarea>
+                        </div>
+                        <div class="btn-add-cp">
+                            <button type="submit" class="btn-add-cp-item btn__edit-save">Save</button>
+                        </div>
+                    }
+                </div>
             </div>
-            
+
         </div>
 
     </div>

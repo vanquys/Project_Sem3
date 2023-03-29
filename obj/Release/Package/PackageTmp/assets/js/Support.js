@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
         btnEdit[i].addEventListener('click', function () {
             const id = this.closest('.sp-item').querySelector('.sp-id p').textContent;
             const currentImage = this.closest('.sp-item').querySelector('.sp-currentImage p').textContent;
-            const name = this.closest('.sp-item').querySelector('.sp-item-item .name p').textContent;
+            const name = this.closest('.sp-item').querySelector('.infor-name').textContent;
             const phone = this.closest('.sp-item').querySelector('.phone p').textContent;
             const email = this.closest('.sp-item').querySelector('.email p').textContent;
-            const position = this.closest('.sp-item').querySelector('.position p').textContent;
+            const position = this.closest('.sp-item').querySelector('.infor-position').textContent;
 
             dialogEdit.classList.remove('hidden');
 

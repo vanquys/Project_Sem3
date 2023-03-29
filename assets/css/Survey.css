@@ -10,12 +10,14 @@
 .sv-top ul li{
     list-style-type:none;
     margin-top: 30px;
+    color:#fffff6
 }
-.sv-top .col-md-6{
-    text-align:center;
-    align-items:flex-end;
-    display:grid;
-}
+    .sv-top .col-md-6 {
+        text-align: center;
+        align-items: flex-end;
+        display: grid;
+        justify-items: center;
+    }
     
 .sv-top .col-md-6 h6{
     font-weight:600;
@@ -34,19 +36,17 @@
     padding:10px 30px;
 }
 .sv-content-top .title {
-    display: flex;
-    align-items: center;
     background-color: #008374;
     padding: 10px;
     border-radius: 5px;
     margin-top:20px;
 }
-.sv-content-top .title h3 {
-    display: flex;
-    align-items: center;
-    margin:0;
-    font-size:20px;
-}
+    .sv-content-top .title h3 {
+        margin: 0;
+        font-size: 25px;
+        color: #f1f1f1;
+        text-align: center;
+    }
 .sv-content-top .time {
     display: flex;
     align-items: center;
@@ -66,13 +66,17 @@
     margin-top:40px;
     padding:10px 30px;
 }
-.sv-content .question h2{
-    margin-bottom:20px;
-    font-size:19px;
-}
-.sv-content .question p {
-    padding:0 50px;
-}  
+    .sv-content .question h2 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .sv-content .question p {
+        font-size: 18px;
+        padding: 0 50px;
+        font-weight: 600;
+        color: #690000;
+    }  
 .form-answer{
     
 }
@@ -104,16 +108,17 @@
     justify-content: end;
     margin-top: 25px;
 }
-.form-answer .btn-form-sv button {
-    background-color: #008374;
-    border: none;
-    padding: 7px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius:5px;
-}
-.form-answer .btn-form-sv button:hover {
-    color:white;
-}
+    .form-answer .btn-form-sv button {
+        background-color: #008374;
+        border: none;
+        padding: 7px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 5px;
+        color: #e8e8e8;
+    }
+        .form-answer .btn-form-sv button:hover {
+            background-color: #0ba392;
+        }
 .sv-bottom {
     text-align: center;
     margin-top: 30px;

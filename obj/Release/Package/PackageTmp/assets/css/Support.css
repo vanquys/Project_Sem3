@@ -1,9 +1,8 @@
 ﻿.sp-top {
-    background-image: url('../img/support/sp-top-bgr.jpg');
+    background-image: url('../img/support/ivan-bandura-QfefrzHQAdM-unsplash.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-    padding:50px;
+    background-size: 100% 300px;
+    padding: 50px;
 }
 .sp-top-top {
     background-color: rgb(0 0 0 / 64%);
@@ -11,12 +10,25 @@
     text-align:center;
 }
     .sp-top-top h2 {
-        color: white;      
-        font-weight:700;
+        color: white;
+        font-weight: 700;
+    }
+.sp-line {
+    display: flex;
+    margin: 5px 0;
+    width: 100%;
+    justify-content:center;
+}
+
+    .sp-line p {
+        content: "";
+        border: 1px solid #b8ccd3;
+        width: 80%;
     }
 .sp-top-content p {
     line-height: 2;
     color: #bfffaa;
+    font-family: var(--font-primary);
 }
 .sp-top-content h1 {
     color: #364fff;
@@ -236,12 +248,11 @@
 }
 
 .contact-form-container {
-    padding:40px 0;
-    width:55%;
+    width: 60%;
     margin: 0 auto;
+    margin-bottom: 40px;
     font-family: Arial, sans-serif;
-    display:flex;
-    margin-top:20px;
+    display: flex;
 }
 .contact-form-container .f-right{
     width:50%;
@@ -276,7 +287,7 @@
 
 .contact-form-container  label {
     margin-bottom: 5px;
-    color: #333;
+    color: #333;  
     font-weight: bold;
     margin-top: 10px;
     margin-bottom:20px;
@@ -326,7 +337,12 @@ textarea:focus {
 .sp-item-item{
     display:grid;
     justify-content:center;
-    line-height:1;
+    line-height:1;  
+}
+@media only screen and (max-width: 1199px){
+    .sp-item-menber{
+        justify-content:center;
+    }
 }
 @media only screen and (max-width:798px) {
     .sp-top p{
@@ -341,7 +357,36 @@ textarea:focus {
     .contact-form-container {
         width: 73%;
     }
+    .sp-top {
+        background-size: 100% 100%;
+    }
+    .section-header h2 {
+        font-size: 28px;
+    }
+    section-header-contact {
+    text-align: center;
+    padding-bottom: 0;
+    }    
 
+        .section-header-contact h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+            .section-header-contact h2:after {
+                content: "";
+                position: absolute;
+                display: block;
+                width: 50px;
+                height: 3px;
+                background: var(--color-primary);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+            }
 }
 @media only screen and (max-width:620px){
     .sp-spter{
@@ -396,7 +441,9 @@ textarea:focus {
 @media only screen and (max-width:460px) {
       
     .contact-form-container .form-group label {
-        font-size:13px
+        font-size:13px;
+        margin:0;
+        
     }
     .contact-form-container .form-group input::placeholder {
         font-size:13px;

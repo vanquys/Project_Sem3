@@ -33,26 +33,32 @@
 <link href="~/assets/css/competition.css" rel="stylesheet" />
 
 <main id="survey" data-aos="fade-up">
-    <div class="Competition">
-        <div class="container-fluid">
-            <div class="CP-top">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img src="~/assets/img/Competition/cp-top.jpg"  data-aos="zoom-out" data-aos-delay="100">
-                    </div>
-                    <div class="col-md-7" data-aos="fade-up">
-                        <h2>Competition</h2>
-                        <h6>
-                            Environmental survey is the process of gathering information about the environment and
-                            the impacts of human activities on it. It helps to assess the current state of the
-                            environment, predict the impacts of future activities, and provide solutions to
-                            protect and improve the environment.
-                        </h6>
-                    </div>
+    <div class="CP-top">
+        <div class="cp-top-bgr">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="~/assets/img/Competition/cp-top.jpg" / data-aos="zoom-out" data-aos-delay="100">
+                </div>
+                <div class="col-md-7" data-aos="fade-up">
+                    <h2>Competition</h2>
+                    <h6>
+                        Environmental survey is the process of gathering information about the environment and
+                        the impacts of human activities on it. It helps to assess the current state of the
+                        environment, predict the impacts of future activities, and provide solutions to
+                        protect and improve the environment.
+                    </h6>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="Competition">
+        <div class="container-fluid">
+
             <div class="line2">
                 <p></p>
+            </div>
+            <div class="section-header">
+                <h2>Join Now</h2>
             </div>
             <table class="table table-scroll" data-aos="fade-up">
                 <tr>
@@ -121,11 +127,14 @@
                 }
             </table>
 
-            <h3>Score</h3>
+
 
             @if (Request.IsAuthenticated && registration != null)
             {
-                <div class="table-scroll" >
+                <div class="section-header">
+                    <h2>Score</h2>
+                </div>
+                <div class="table-scroll">
                     <table class="table" data-aos="fade-up">
                         <tr>
                             <th>ID</th>
@@ -161,7 +170,9 @@
         </div>
     </div>
     <div class="references" data-aos="fade-up">
-        <h2>References</h2>
+        <div class="section-header">
+            <h2>References</h2>
+        </div>
         <a href="#">
             <div class="row">
                 <div class="col-md-3">
@@ -209,18 +220,21 @@
             </div>
         </a>
     </div>
-    <div class="dialog hidden">
-        <div class="modal-o"></div>
-        <div class="dialog-body">
+
+</main>
+<div class="dialog-cp-rgt hidden">
+    <div class="modal-o"></div>
+    
+    <div class="dialog-body">
+        <div class="dialog-bgr">
             <div class="close-btn">
                 &times;
             </div>
             @using (Html.BeginForm("Registration", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "f-rigister" }))
             {
                 @Html.AntiForgeryToken()
-                <h2>Register Competition</h2>
-                <hr />
-                <label class="item" type="text" name="competitionId" id="dialog-competitionId"></label>
+                <h3>Register Competition</h3>
+                <label class="item hidden" type="text" name="competitionId" id="dialog-competitionId"></label>
                 <input class="item" type="text" name="Name" id="dialog-name" placeholder="Name" />
                 <input class="item" type="text" name="UserId" id="dialog-roll" placeholder="Roll No. or Employee id" />
                 <input class="item" type="text" name="ClassName" placeholder="Class" />
@@ -232,8 +246,7 @@
             }
         </div>
     </div>
-</main>
-
+</div>
 <script>
     function surveyFunction(id) {
         window.location.href = '/Competitions/Survey?id=' + id;

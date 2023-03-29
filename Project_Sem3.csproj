@@ -327,6 +327,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\AdFAQ.css" />
     <Content Include="assets\css\ADSupport.css" />
     <Content Include="assets\css\EditProfile.css" />
     <Content Include="assets\assetsLogin\css\main.css" />
@@ -427,6 +428,8 @@
     <Content Include="assets\img\competition\images.jpg" />
     <Content Include="assets\img\competition\rf1.jpg" />
     <Content Include="assets\img\competition\rf2.jpg" />
+    <Content Include="assets\img\faq\FaqsBgr.jpeg" />
+    <Content Include="assets\img\home\hero-img.svg" />
     <Content Include="assets\img\home\1.jpg" />
     <Content Include="assets\img\home\10.jpg" />
     <Content Include="assets\img\home\11.jpg" />
@@ -460,6 +463,7 @@
     <Content Include="assets\img\portfolio\product-1.jpg" />
     <Content Include="assets\img\portfolio\product-2.jpg" />
     <Content Include="assets\img\portfolio\product-3.jpg" />
+    <Content Include="assets\img\home\stats-img.svg" />
     <Content Include="assets\img\support\Contact us-pana.png" />
     <Content Include="assets\img\support\dialog-bgr.jpg" />
     <Content Include="assets\img\support\sp-avarta-1.png" />

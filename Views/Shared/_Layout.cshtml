@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Impact Bootstrap Template - Index</title>
+    <title>Green Survey</title>
+    <link rel="shortcut icon" href="~/assets/img/Logo.png" />
     <meta content="" name="description">
 
     <!-- Favicons -->
@@ -28,7 +29,8 @@
 
     <!-- Template Main CSS File -->
     <link href="~/assets/css/main.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="~/assets/css/EditProfile.css" />
+    <script src="~/assets/js/EditProfile.js"></script>
     <!-- =======================================================
     * Template Name: Impact - v1.2.0
     * Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
@@ -37,7 +39,137 @@
     ======================================================== -->
 </head>
 
+
+@using Microsoft.AspNet.Identity
+@using Project_Sem3.Models
+@{
+    KSMTDbContext db = new KSMTDbContext();
+    var userId = User.Identity.GetUserId();
+    String patternPass = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&amp;*]).{6,}$";
+    var user = db.AspNetUsers.Find(userId);
+    var registration = db.Registrations.FirstOrDefault(r => r.UserId.Equals(userId));
+}
 <body>
+    @*
+        dialog Edit
+    *@
+
+    <div class="dialog-editProfile">
+        <div class="Editprofile-modal-o"></div>
+        <div class="Editprofile-dialog-body">
+            <div class="close-editProfile">
+                &times;
+            </div>
+            <div class="editProfile-form">
+                @using (Html.BeginForm("EditProfile", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="editProfile-image">
+                        <div class="editProfile-image-img">
+                            <img id="myImage" src="~/assets/img/Avatar/@user.Image" alt="Your Avatar">
+                            <br>
+                            <input type="file" name="Image" onchange="loadImage(event)">
+                        </div>
+                        <div class="editProfile-image-name">
+                            <h5>@user.Name</h5>
+                        </div>
+
+                    </div>
+                    <div class="line">
+
+                    </div>
+
+                    <div class="editProfile-item">
+                        <label>Name</label>
+                        <input class="ip-editProfile" type="text" name="Name" value="@user.Name" required pattern="^[\p{L} ]+$" />
+                    </div>
+
+                    <div class="editProfile-item">
+                        <label>New Password</label>
+                        <input class="ip-editProfile" type="password" name="NewPassword" placeholder="leave blank if no changes" pattern="@patternPass" />
+                    </div>
+                    <div class="editProfile-item">
+                        <label>Comfirm Password</label>
+                        <input class="ip-editProfile" type="password" name="ConfirmPassword" placeholder="leave blank if no changes" />
+                    </div>
+                    if (user.AspNetRoles.First().Name == "Admin")
+                    {
+                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" hidden />
+                    }
+                    else
+                    {
+                        <div class="editProfile-item editProfile-checkbox">
+                            <label class="editProfile-checkbox_label">Resign</label>
+                            @if (user.isResigned)
+                            {
+                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" checked />
+                            }
+                            else
+                            {
+                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" />
+                            }
+                        </div>
+
+                    }
+
+                    <div class="editProfile-item">
+                        <label>Input Curent Password to Change </label>
+                        <input class="ip-editProfile" type="password" name="CurrentPassword" placeholder="*********" required />
+                    </div>
+                    <div class="line"></div>
+                    <div class="editProfile-btn-save">
+                        <button class="edit-btn-save" type="submit">Save</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (registration != null)
+    {
+    <div class="dialog-editAccountSurvey">
+        <div class="Editprofile-modal-o"></div>
+        <div class="Editprofile-dialog-body">
+            <div class="close-editAccountSurvey">
+                &times;
+            </div>
+            <div class="editProfile-form">
+                @using (Html.BeginForm("EditAccountSurvey", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    //
+                    <input name="Id" value="@registration.Id" hidden />
+                    //
+                    <div class="editProfile-item">
+                        <label>Name</label>
+                        <input class="ip-editProfile" type="text" name="Name" value="@registration.Name" required />
+                    </div>
+
+                    <div class="editProfile-item">
+                        <label>Class</label>
+                        <input class="ip-editProfile" name="ClassName" placeholder="Your class name" value="@registration.ClassName" required />
+                    </div>
+                    <div class="editProfile-item">
+                        <label>Specification</label>
+                        <input class="ip-editProfile" name="Specification" placeholder="Your specification" value="@registration.Specification" required />
+                    </div>
+                    <div class="editProfile-item">
+                        <label>Section</label>
+                        <input class="ip-editProfile" name="Section" placeholder="Your section" value="@registration.Section" required />
+                    </div>
+                    <div class="line"></div>
+                    <div class="editProfile-btn-save">
+                        <button class="edit-btn-delete" type="submit" data-id="@registration.Id">Delete</button>
+                        <button class="edit-btn-save float-end" type="submit">Save</button>
+                    </div>
+
+
+                }
+            </div>
+        </div>
+    </div>
+    }
 
     <!-- ======= Header ======= -->
     <section id="topbar" class="topbar d-flex align-items-center">
@@ -58,9 +190,9 @@
     <header id="header" class="header d-flex align-items-center">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="../Home/index" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                 <img src="~/assets/img/logo.png" alt=""> 
+                <img src="~/assets/img/logo.png" alt="">
                 <h1>Green<span>.</span></h1>
             </a>
             <nav id="navbar" class="navbar">
@@ -105,7 +237,7 @@
                     </ul>
                 </div>
 
-               
+
 
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                     <h4>Contact Us</h4>
@@ -127,7 +259,7 @@
                 &copy; Copyright <strong><span>Green</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                
+
                 Designed by <a href="#">T2Q</a>
             </div>
         </div>

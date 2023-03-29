@@ -8,36 +8,41 @@
     overflow-x: scroll;
     margin-bottom:30px;
 }
-.Competition .CP-top {
-    padding: 20px;
+.CP-top {
     background-image: url('../img/competition/cp-img-brg.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;  
+    background-size: 100% 300px;
 }
-
-.CP-top h6{
+.cp-top-bgr {
+    background-color: #407e5933;
+    padding: 27px 46px;
+}
+.CP-top h6{  
     color:white;
     line-height:1.5;
+    font-size:17px;
 }
 .CP-top p {
     background-color: #418b2236;
     padding: 5px;
 }
 
-.Competition .CP-top .col-md-5 {
+.CP-top .col-md-4 {
     display: grid;  
-    justify-content: center;
+    justify-content: center;  
     align-items: center;
 }
-
-.Competition .CP-top h2 {
+.CP-top .col-md-4 img{
+    border-radius:10px;
+}
+    .CP-top h2 {
     background-color: #ffffffab;
     border-radius: 5px;
     color: green;
     text-align: center;
     padding: 6px;
     font-weight: 700;
+    font-size:35px;
 }
 
 .Competition .line1 {
@@ -46,7 +51,7 @@
     justify-content: center;
 }
 
-.Competition .line p{
+.Competition .line1 p{
     content: " ";
     border: 1px solid black;
     width: 70%;
@@ -149,7 +154,7 @@ tr td:nth-child(odd) {
     bottom: 0;
     left: 0;
     display: flex;
-    z-index: 1000;
+    z-index: 10000;
 }
 .dialog-edit {
     position: fixed;
@@ -158,7 +163,7 @@ tr td:nth-child(odd) {
     bottom: 0;
     left: 0;
     display: flex;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 .hidden {
@@ -178,24 +183,27 @@ tr td:nth-child(odd) {
     z-index: 1000;
     border-radius: 8px;
     display: block;
-    width: 50%;
+    width: 500px;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
 }
-.dialog-bgr{
+.dialog-bgr {
     border-radius: 5px;
-    background-color: #313e4885;
+    background-color: #576774ad;
 }
 
 .close-btn {
     display: flex;
     justify-content: end;
-    cursor: pointer;
     color: #eb5c4e;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 900;
+    font-size: 24px;
     margin-right: 10px;
+}
+.close-btn p{
+    cursor: pointer;
+    margin:0;
 }
 
     .f-rigister {
@@ -241,16 +249,24 @@ tr td:nth-child(odd) {
 
 .cp-add-form {
     display: grid;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-bottom: 30px;
     
 }
-
-.cp-add-item-date {
-    display: flex;
-    justify-content:space-between;
-}
+    .cp-add-form h2 {
+        color: white;
+        font-weight: 600;
+        text-align: center;
+        color: #c7cbc8;
+        font-size: 32px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+    .cp-add-item-date {
+        display: flex;
+        justify-content: space-between;
+    }
 
 .item-date {
     display: grid;
@@ -271,6 +287,7 @@ tr td:nth-child(odd) {
 .lb-add-cp {
     font-size:16px;
     color:white;
+    font-weight:500;
 }
 .cp-add-description {
     background-color: #ffffffba;
@@ -502,7 +519,7 @@ table td {
 }
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 901px) {
     .Competition .table {
         font-size: 13px;
     }
@@ -514,9 +531,21 @@ table td {
         
         font-size: 13px;
     }
+    .CP-top h6{
+        font-size:15px;
+    }
+    .CP-top h2{
+        font-size:27px;
+    }
+    .cp-top-bgr{
+        padding:25px 35px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
+    .CP-top {
+        background-size: 100% 100%;;
+    }
     .references .col-md-9 {
         margin-top: 15px;
     }
@@ -524,7 +553,13 @@ table td {
     .references img {
         width: 30%;
     }
-
+    .cp-add a{
+        font-size:13px;
+        padding:7px;
+    }
+    .section-header h2{
+        font-size:28px;
+    }
     .Competition .table {
         font-size: 12px;
     }
@@ -535,7 +570,7 @@ table td {
     }
 
     .CP-top h2 {
-        margin-top: 7px;
+        margin: 10px 50px;
         font-size: 25px;
     }
 
@@ -557,6 +592,10 @@ table td {
     .dialog-body {
         width: 70%;
     }
+    .CP-top h6{
+        margin:10px;
+        text-align:center;
+    }
 }
 @media only screen and (max-width: 627px) {
     .ts td a {
@@ -564,6 +603,9 @@ table td {
     }
     .btn-rgt-cp-ad .btn-edit, .btn-rgt-cp-ad .btn-delete {
         font-size: 10px;
+    }
+    .CP-top h6{
+        font-size:13px;
     }
 }
     @media only screen and (max-width: 544px) {
@@ -575,7 +617,10 @@ table td {
             font-size: 17px;
         }
         .dialog-body {
-            width: 90%;
+            width: 100%;
+        }
+        .cp-add a {
+            font-size: 10px;
         }
     }
 
@@ -601,5 +646,7 @@ table td {
             display: flex;
             flex-direction:column;  
         }
-
+        .lb-add-cp{
+            font-size:14px;
+        }
     }

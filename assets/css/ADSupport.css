@@ -1,8 +1,7 @@
 ﻿.sp-top {
-    background-image: url('../img/support/sp-top-bgr.jpg');
+    background-image: url('../img/support/ivan-bandura-QfefrzHQAdM-unsplash.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;   
+    background-size: 100% 300px;   
     padding:50px;
     text-align:center;  
     margin-bottom:30px;
@@ -12,8 +11,8 @@
     padding: 20px 10px;
 }
     .sp-top-top h2 {
-       color:white;
-       font-weight:700;
+       color:white;    
+       font-weight:700;  
     }
         .sp-top-content p { 
     line-height: 2; 
@@ -126,7 +125,8 @@
     bottom: 0;
     left: 0;
     display: flex;
-    z-index: 1000;
+    z-index: -1;
+    opacity:0;
 }
 
 .dialog-edit {
@@ -136,12 +136,10 @@
     bottom: 0;
     left: 0;
     display: flex;
-    z-index: 1000;
+    z-index: -1;
+    opacity:0;
 }
 
-.hidden {
-    display: none;
-}
 
 .modal-o {  
     position: absolute;  
@@ -151,11 +149,10 @@
 }
 .dialog-bgr {
     border-radius: 5px;
-    background-color: #313e4885;
+    background-color: #303f4bb5;
 }
 .dialog-body {  
     margin: auto;
-    z-index: 1000;  
     border-radius: 8px;
     display: block;
     width: 50%;
@@ -168,7 +165,11 @@
     background-size: 100% 100%;
     background-color: #008374;
 }
-
+.showDialog {
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
+    z-index: 1000;
+}
 .close-btn {
     display: flex;
     justify-content: end;
@@ -240,26 +241,94 @@
     padding-bottom: 20px;
     text-align: center;
 }
+@media only screen and (max-width:972px) {
+    .sp-top-content p {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width:860px) {
+    .dialog-body {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .sp-top {
+        background-size: 100% 100%;
+    }
+
+    .section-header h2 {
+        font-size: 28px;
+    }
+
+    .dialog-body {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .sp-top-content p {
+        font-size: 13px;
+    }
+
+    .sp-top {
+        padding: 30px;
+    }
+
+    .dialog-body {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width:535px) {
+    .sp-item-item {
+        font-size: 15px;
+    }
+
+    .sp-item-btn {
+        font-size: 15px;
+    }
+
+    .dialog-body {
+        width: 90%;
+    }
+}
 
 @media only screen and (max-width: 475px) {
-    .sp-item {
-        flex-direction: column;
+    .sp-add-form-item {
         width:300px;
     }
-    .sp-item-btn {
-        display:block;
+    .sp-item {
+        flex-direction: column;
+        width: 300px;
     }
+
+    .sp-item-btn {
+        display: block;
+    }
+
     .btn-delete {
         display: inline;
         margin-left: 10px;
     }
+
     .btn-edit {
         display: inline;
         width: 70px;
         margin-right: 10px;
         padding: 5px 20px;
     }
-    .sp-item-item{
-        margin:10px auto;
+
+    .sp-item-item {
+        margin: 10px auto;
+    }
+
+    .section-header h2 {
+        font-size: 25px;
+    }
+
+    .dialog-body {
+        width: 100%;
     }
 }
