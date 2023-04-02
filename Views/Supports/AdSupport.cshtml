@@ -1,10 +1,16 @@
 ﻿@model IEnumerable<Project_Sem3.Models.Support>
-
+@using Project_Sem3.Models
 <script src="~/assets/js/Support.js"></script>
 <link href="~/assets/css/ADSupport.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
+
+    KSMTDbContext db = new KSMTDbContext();
+    ImageProcessViewModel imageProcess = new ImageProcessViewModel();
 }
+<script>
+    console.log("hello");
+</script>
 @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
 {
     <script>alert("@ViewBag.SuccessMessage");</script>
@@ -46,43 +52,60 @@
             <div class="sp-spter">
                 @foreach (var m in Model)
                 {
-                <div class="sp-item" data-aos="fade-up">
-                    <div class="sp-id" hidden>
-                        <p>@m.Id</p>
-                    </div>
-                    <div class="sp-currentImage" hidden>
-                        <p>@m.Image</p>
-                    </div>
-                    <div class="sp-img">
-                        <img src="~/assets/img/support/@m.Image" id="img-id" />
-                        <div class="infor">
-                            <p class="infor-name"> @m.Name</p>
-                            <p class="infor-position">@m.Position</p>
+                    string imageUrl = "";
 
+                    if (m.Image != null)
+                    {
+                        imageUrl= imageProcess.getImageUrl(m.Image);
+                    }
+                    byte[] imageData = m.Image;
+
+                    <div class="sp-item" data-aos="fade-up">
+                        <div class="sp-id" hidden>
+                            <p>@m.Id</p>
                         </div>
-                    </div>
-                    <div class="sp-item-item">
-                        
-                        <div class="phone dp-flex">
-                            <label>Phone:</label>
-                            <p>@m.Phone</p>
+                        @if (m.Image != null)
+                        {
+                            <div class="sp-currentImage" hidden>
+                                <p name="Image">@Convert.ToBase64String(@imageData)</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="sp-currentImage" hidden>
+                                <p name="Image"></p>
+                            </div>
+                        }
+                        <div class="sp-img">
+                            <img src="@imageUrl" id="img-id" />
+                            <div class="infor">
+                                <p class="infor-name"> @m.Name</p>
+                                <p class="infor-position">@m.Position</p>
+
+                            </div>
                         </div>
-                        <div class="email dp-flex">
-                            <label>Email:</label>
-                            <p>@m.Email</p>
+                        <div class="sp-item-item">
+
+                            <div class="phone dp-flex">
+                                <label>Phone:</label>
+                                <p>@m.Phone</p>
+                            </div>
+                            <div class="email dp-flex">
+                                <label>Email:</label>
+                                <p>@m.Email</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sp-item-btn">
-                        <div class="btn-edit btn-dialog-edit">
-                            <a>
-                                Edit
+                        <div class="sp-item-btn">
+                            <div class="btn-edit btn-dialog-edit">
+                                <a>
+                                    Edit
+                                </a>
+                            </div>
+                            <a class="btn-delete" data-id="@m.Id">
+                                Delete
                             </a>
                         </div>
-                        <a class="btn-delete" data-id="@m.Id">
-                            Delete
-                        </a>
                     </div>
-                </div>
 
                 }
             </div>
@@ -101,7 +124,7 @@
                     <h2>Add support</h2>
                 </div>
                 <div class="cp-add-form">
-                    @using (Html.BeginForm("Create", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    @using (Html.BeginForm("Create", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="sp-add-form-item">
@@ -110,16 +133,16 @@
                                 <input type="text" name="name" placeholder="Name" required />
                             </div>
                             <div class="phone">
-                                <input type="text" name="phone" placeholder="Phone" required />
+                                <input type="number" name="phone" placeholder="Phone" required />
                             </div>
                             <div class="email">
-                                <input type="text" name="email" placeholder="Email" required />
+                                <input type="email" name="email" placeholder="Email" required />
                             </div>
                             <div class="position">
                                 <input type="text" name="position" placeholder="Position" required />
                             </div>
                             <div class="image">
-                                <input type="file" name="image" placeholder="image" required />
+                                <input type="file" id="image" name="image" placeholder="image"  required />
                             </div>
                             <div class="btn-add-cp">
                                 <button type="submit" class="btn-add-cp-item ">ADD</button>
@@ -143,34 +166,34 @@
                     <h2>Edit support</h2>
                 </div>
                 <div class="cp-add-form">
-                    @using (Html.BeginForm("Edit", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    @using (Html.BeginForm("Edit", "Supports", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                    <div class="sp-add-form-item">
-                        <div class="id">
-                            <input type="text" id="id" name="id" placeholder="ID" readonly />
-                        </div>
-                        <div class="name">
-                            <input type="text" id="name" name="name" placeholder="Name" required />
-                        </div>
-                        <div class="phone">
-                            <input type="text" id="phone" name="phone" placeholder="Phone" required />
-                        </div>
-                        <div class="email">
-                            <input type="text" id="email" name="email" placeholder="Email" required />
-                        </div>
-                        <div class="position">
-                            <input type="text" id="position" name="position" placeholder="Position" required />
-                        </div>
-                        <div class="image">
-                            <input type="file" name="Image">
-                        </div>
-                        <input name="currentImage" id="currentImage" />
+                        <div class="sp-add-form-item">
+                            <div class="id">
+                                <input type="text" id="id" name="id" placeholder="ID" readonly />
+                            </div>
+                            <div class="name">
+                                <input type="text" id="name" name="name" placeholder="Name" required />
+                            </div>
+                            <div class="phone">
+                                <input type="number" id="phone" name="phone" placeholder="Phone" required />
+                            </div>
+                            <div class="email">
+                                <input type="email" id="email" name="email" placeholder="Email" required />
+                            </div>
+                            <div class="position">
+                                <input type="text" id="position" name="position" placeholder="Position" required />
+                            </div>
+                            <div class="image">
+                                <input type="file" name="image">
+                            </div>
+                            <input name="currentImage" id="currentImage" hidden />
 
-                        <div class="btn-add-cp">
-                            <button type="submit" class="btn-add-cp-item ">SAVE</button>
+                            <div class="btn-add-cp">
+                                <button type="submit" class="btn-add-cp-item ">SAVE</button>
+                            </div>
                         </div>
-                    </div>
                     }
                 </div>
 

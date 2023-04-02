@@ -181,7 +181,6 @@ E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.csproj.CoreCompileInputs.cache
 E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.csproj.CopyComplete
 E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.dll
 E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.pdb
-E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.csproj.AssemblyReference.cache
 E:\C#\Project_Sem3\bin\Project_Sem3.dll.config
 E:\C#\Project_Sem3\bin\Project_Sem3.dll
 E:\C#\Project_Sem3\bin\Project_Sem3.pdb
@@ -365,3 +364,4 @@ E:\C#\Project_Sem3\obj\Release\Project_Sem3.csproj.CoreCompileInputs.cache
 E:\C#\Project_Sem3\obj\Release\Project_Sem3.csproj.CopyComplete
 E:\C#\Project_Sem3\obj\Release\Project_Sem3.dll
 E:\C#\Project_Sem3\obj\Release\Project_Sem3.pdb
+E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.csproj.AssemblyReference.cache

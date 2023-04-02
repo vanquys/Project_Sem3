@@ -11,59 +11,58 @@
 
 }
 <main id="survey">
-    @using (Html.BeginForm("CompleteSurvey", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-    {
+    @using (Html.BeginForm("CompleteSurvey", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "survey-form", role = "form" })) { 
         @Html.AntiForgeryToken()
-        <div class="sv-top">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6" data-aos="zoom-out" data-aos-delay="100">
-                        <ul>
-                            <li><h6>1. Time: 10min</h6></li>
-                            <li><h6>2. Submit when complelte</h6></li>
-                            <li><h6>3, scores will be available within 2-3 days</h6></li>
-                            <li><h6>4. Good luck</h6></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-up">
-                        <img src="~/assets/img/survey/60.jpg" />
-                    </div>
+    <div class="sv-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6" data-aos="zoom-out" data-aos-delay="100">
+                    <ul>
+                        <li><h6>1. Time: 10min</h6></li>
+                        <li><h6>2. Submit when complelte</h6></li>
+                        <li><h6>3, scores will be available within 2-3 days</h6></li>
+                        <li><h6>4. Good luck</h6></li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-up">
+                    <img src="~/assets/img/survey/60.jpg" />
                 </div>
             </div>
         </div>
-        <div class="sv-content" data-aos="fade-up">
-            <div class="sv-content-top">
-                <div class="time">
-                    <p id="countdown"></p>
-                </div>
-                <div class="title">
-                    <h3>@Model.Title</h3>
-                </div>
+    </div>
+    <div class="sv-content" data-aos="fade-up">
+        <div class="sv-content-top">
+            <div class="time">
+                <p id="countdown"></p>
             </div>
-            <div class="question">
-                <h2>Questiton:</h2>
-                <p>
-                    @Model.Question
-                </p>
+            <div class="title">
+                <h3>@Model.Title</h3>
             </div>
         </div>
-        <div class="form-answer" data-aos="fade-up">
-            <div class="container">
-                <div class="sv-form">
-                    <textarea class="sv-textarea" rows="10" name="Answer"></textarea>
-                    <input name="IdRegistratedUser" id="IdRegistratedUser" value="@idRegistration" hidden />
-                    <input name="CompetitionId" id="CompetitionId" value="@Model.Id"  hidden />
-                    <div class="btn-form-sv">
-                        <button type="submit">Complete</button>
-                    </div>
-                </div>
-                <div class="form-answer-img">
-                    <img src="~/assets/img/survey/philippe-leone-CR06GzANXmo-unsplash.jpg" />
+        <div class="question">
+            <h2>Questiton:</h2>
+            <p>
+                @Model.Question
+            </p>
+        </div>
+    </div>
+    <div class="form-answer" data-aos="fade-up">
+        <div class="container">
+            <div class="sv-form">
+                <textarea class="sv-textarea" rows="10" name="Answer"></textarea>
+                <input name="IdRegistratedUser" id="IdRegistratedUser" value="@idRegistration" hidden />
+                <input name="CompetitionId" id="CompetitionId" value="@Model.Id" hidden />
+                <div class="btn-form-sv">
+                    <button type="submit">Complete</button>
                 </div>
             </div>
+            <div class="form-answer-img">
+                <img src="~/assets/img/survey/philippe-leone-CR06GzANXmo-unsplash.jpg" />
+            </div>
         </div>
-        <div class="sv-bottom">
-            <img src="~/assets/img/survey/Untitled.png" />
-        </div>
+    </div>
+    <div class="sv-bottom">
+        <img src="~/assets/img/survey/Untitled.png" />
+    </div>
     }
 </main>

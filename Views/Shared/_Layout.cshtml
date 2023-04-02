@@ -48,127 +48,169 @@
     String patternPass = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&amp;*]).{6,}$";
     var user = db.AspNetUsers.Find(userId);
     var registration = db.Registrations.FirstOrDefault(r => r.UserId.Equals(userId));
+    ImageProcessViewModel imageProcess = new ImageProcessViewModel();
 }
 <body>
     @*
         dialog Edit
     *@
+    @if (Request.IsAuthenticated)
+    {
 
-    <div class="dialog-editProfile">
-        <div class="Editprofile-modal-o"></div>
-        <div class="Editprofile-dialog-body">
-            <div class="close-editProfile">
-                &times;
-            </div>
-            <div class="editProfile-form">
-                @using (Html.BeginForm("EditProfile", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="editProfile-image">
-                        <div class="editProfile-image-img">
-                            <img id="myImage" src="~/assets/img/Avatar/@user.Image" alt="Your Avatar">
-                            <br>
-                            <input type="file" name="Image" onchange="loadImage(event)">
-                        </div>
-                        <div class="editProfile-image-name">
-                            <h5>@user.Name</h5>
-                        </div>
+        <div class="dialog-editProfile">
+            <div class="Editprofile-modal-o"></div>
+            <div class="Editprofile-dialog-body">
+                <div class="dialogEditProfile-top">
+                    <ul class="nav nav-tabs border-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="tab" href="#item-1">Infomation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#item-2">Password</a>
+                        </li>
+                    </ul><div class="close-editProfile">
+                        &times;
+                    </div>
+                </div>
+                <div class="editProfile-form tab-content">
+                    <div id="item-1" class="tab-pane fade show active">
+                        @using (Html.BeginForm("EditProfile", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+                        {
+                            string imageUrl = "";
 
-                    </div>
-                    <div class="line">
-
-                    </div>
-
-                    <div class="editProfile-item">
-                        <label>Name</label>
-                        <input class="ip-editProfile" type="text" name="Name" value="@user.Name" required pattern="^[\p{L} ]+$" />
-                    </div>
-
-                    <div class="editProfile-item">
-                        <label>New Password</label>
-                        <input class="ip-editProfile" type="password" name="NewPassword" placeholder="leave blank if no changes" pattern="@patternPass" />
-                    </div>
-                    <div class="editProfile-item">
-                        <label>Comfirm Password</label>
-                        <input class="ip-editProfile" type="password" name="ConfirmPassword" placeholder="leave blank if no changes" />
-                    </div>
-                    if (user.AspNetRoles.First().Name == "Admin")
-                    {
-                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" hidden />
-                    }
-                    else
-                    {
-                        <div class="editProfile-item editProfile-checkbox">
-                            <label class="editProfile-checkbox_label">Resign</label>
-                            @if (user.isResigned)
+                            if (user.Image != null)
                             {
-                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" checked />
+                                imageUrl = imageProcess.getImageUrl(user.Image);
+                            }
+                            @Html.AntiForgeryToken()
+                            <div class="editProfile-image">
+                                <div class="editProfile-image-img">
+                                    <img id="myImage" src="@imageUrl" alt="Your Avatar">
+                                    <br>
+                                    <input type="file" name="Image" onchange="loadImage(event)">
+                                </div>
+                                <p name="currentAvatar" hidden>@Convert.ToBase64String(user.Image)</p>
+                                <div class="editProfile-image-name">
+                                    <h5>@user.Name</h5>
+                                    <p>@user.AspNetRoles.SingleOrDefault().Name</p>
+                                </div>
+
+                            </div>
+                            <div class="line">
+
+                            </div>
+
+                            <div class="editProfile-item">
+                                <label>Name</label>
+                                <input class="ip-editProfile" type="text" name="Name" value="@user.Name" required pattern="^[\p{L} ]+$" />
+                            </div>
+                            if (user.AspNetRoles.First().Name == "Admin")
+                            {
+                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" hidden />
                             }
                             else
                             {
-                                <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" />
+                                <div class="editProfile-item editProfile-checkbox">
+                                    <label class="editProfile-checkbox_label">Resign</label>
+                                    @if (user.isResigned)
+                                    {
+                                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" checked />
+                                    }
+                                    else
+                                    {
+                                        <input class="editProfile-checkbox_input" type="checkbox" name="isResigned" />
+                                    }
+                                </div>
+
                             }
-                        </div>
 
-                    }
+                            <div class="editProfile-item">
+                                <label>Input Curent Password to Change </label>
+                                <input class="ip-editProfile" type="password" name="CurrentPassword" placeholder="*********" required />
+                            </div>
+                            <div class="line"></div>
+                            <div class="editProfile-btn-save">
+                                <button class="edit-btn-save" type="submit">Save</button>
+                            </div>
 
-                    <div class="editProfile-item">
-                        <label>Input Curent Password to Change </label>
-                        <input class="ip-editProfile" type="password" name="CurrentPassword" placeholder="*********" required />
+                        }
                     </div>
-                    <div class="line"></div>
-                    <div class="editProfile-btn-save">
-                        <button class="edit-btn-save" type="submit">Save</button>
+                    <div id="item-2" class="tab-pane fade show">
+                        @using (Html.BeginForm("EditPassword", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+                        {
+                            
+                            @Html.AntiForgeryToken()
+                          
+
+                            <div class="editProfile-item">
+                                <label>New Password</label>
+                                <input class="ip-editProfile" type="password" name="NewPassword" placeholder="enter your new password " pattern="@patternPass" />
+                            </div>
+                            <div class="editProfile-item">
+                                <label>Comfirm Password</label>
+                                <input class="ip-editProfile" type="password" name="ConfirmPassword" placeholder="confirm your new password " />
+                            </div>
+
+                            <div class="editProfile-item">
+                                <label>Input Curent Password to Change </label>
+                                <input class="ip-editProfile" type="password" name="CurrentPassword" placeholder="*********" required />
+                            </div>
+                            <div class="line"></div>
+                            <div class="editProfile-btn-save">
+                                <button class="edit-btn-save" type="submit">Save</button>
+                            </div>
+                        }
                     </div>
-                }
+                </div>
             </div>
         </div>
-    </div>
 
-    @if (registration != null)
-    {
-    <div class="dialog-editAccountSurvey">
-        <div class="Editprofile-modal-o"></div>
-        <div class="Editprofile-dialog-body">
-            <div class="close-editAccountSurvey">
-                &times;
+        if (registration != null)
+        {
+            <div class="dialog-editAccountSurvey">
+                <div class="Editprofile-modal-o"></div>
+                <div class="Editprofile-dialog-body">
+                    <div class="close-editAccountSurvey">
+                        &times;
+                    </div>
+
+                    <div class="editProfile-form">
+                        @using (Html.BeginForm("EditAccountSurvey", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            //
+                            <input name="Id" value="@registration.Id" hidden />
+                            //
+                            <div class="editProfile-item">
+                                <label>Name</label>
+                                <input class="ip-editProfile" type="text" name="Name" value="@registration.Name" required />
+                            </div>
+
+                            <div class="editProfile-item">
+                                <label>Class</label>
+                                <input class="ip-editProfile" name="ClassName" placeholder="Your class name" value="@registration.ClassName" required />
+                            </div>
+                            <div class="editProfile-item">
+                                <label>Specification</label>
+                                <input class="ip-editProfile" name="Specification" placeholder="Your specification" value="@registration.Specification" required />
+                            </div>
+                            <div class="editProfile-item">
+                                <label>Section</label>
+                                <input class="ip-editProfile" name="Section" placeholder="Your section" value="@registration.Section" required />
+                            </div>
+                            <div class="line"></div>
+                            <div class="editProfile-btn-save">
+                                <button class="edit-btn-delete" type="submit" data-id="@registration.Id">Delete</button>
+                                <button class="edit-btn-save float-end" type="submit">Save</button>
+                            </div>
+
+
+                        }
+                    </div>
+                </div>
             </div>
-            <div class="editProfile-form">
-                @using (Html.BeginForm("EditAccountSurvey", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-
-                    //
-                    <input name="Id" value="@registration.Id" hidden />
-                    //
-                    <div class="editProfile-item">
-                        <label>Name</label>
-                        <input class="ip-editProfile" type="text" name="Name" value="@registration.Name" required />
-                    </div>
-
-                    <div class="editProfile-item">
-                        <label>Class</label>
-                        <input class="ip-editProfile" name="ClassName" placeholder="Your class name" value="@registration.ClassName" required />
-                    </div>
-                    <div class="editProfile-item">
-                        <label>Specification</label>
-                        <input class="ip-editProfile" name="Specification" placeholder="Your specification" value="@registration.Specification" required />
-                    </div>
-                    <div class="editProfile-item">
-                        <label>Section</label>
-                        <input class="ip-editProfile" name="Section" placeholder="Your section" value="@registration.Section" required />
-                    </div>
-                    <div class="line"></div>
-                    <div class="editProfile-btn-save">
-                        <button class="edit-btn-delete" type="submit" data-id="@registration.Id">Delete</button>
-                        <button class="edit-btn-save float-end" type="submit">Save</button>
-                    </div>
-
-
-                }
-            </div>
-        </div>
-    </div>
+        }
     }
 
     <!-- ======= Header ======= -->

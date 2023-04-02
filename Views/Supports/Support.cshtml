@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Project_Sem3.Models.Support>
+    @using Project_Sem3.Models
 <link rel="stylesheet" href="~/assets/css/main.css" />
 <link href="~/assets/css/Support.css" rel="stylesheet" />
 
@@ -7,6 +8,7 @@
 
 @{
     ViewBag.Title = "Index";
+    ImageProcessViewModel imageProcess = new ImageProcessViewModel();
 }
 @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
 {
@@ -45,10 +47,11 @@
             <div class="row gy-4 sp-item-menber">
                 @foreach (var m in Model)
                 {
+                    string url = imageProcess.getImageUrl(m.Image);
                     <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                         <div class="sp-member">
                             <div class="sp-img">
-                                <img src="~/assets/img/support/@m.Image" />
+                                <img src="@url" />
                             </div>
                             <div class="sp-item-item">
                                 <div class="name">
@@ -84,38 +87,7 @@
         </div>
     </section>
 
-    @*<div class="sp-table" data-aos="fade-up">
-            <h2>Support team</h2>
-            <div class="container-fluid">
-                <div class="sp-spter">
-                    @foreach (var m in Model)
-                    {
-                        <div class="sp-item">
-
-                            <div class="sp-img">
-                                <img src="~/assets/img/support/@m.Image" />
-                            </div>
-                            <div class="sp-item-item">
-                                <div class="name sp-fz">
-                                    <p>@m.Name</p>
-                                </div>
-                                <div class="phone sp-fz">
-                                    <p> @m.Phone</p>
-                                </div>
-                                <div class="email sp-fz">
-                                    <p>@m.Email</p>
-                                </div>
-                                <div class="position sp-fz">
-                                    <p> @m.Position</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    }
-                </div>
-
-            </div>
-        </div>*@
+    
     <div class="section-header">
         <h2> Contact us</h2>
     </div>

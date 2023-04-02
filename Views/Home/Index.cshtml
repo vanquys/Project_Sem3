@@ -16,6 +16,7 @@
 {
     <script>alert("@ViewBag.ErrorMessage");</script>
 }
+
 @{
     KSMTDbContext db = new KSMTDbContext();
     int competitionCount = db.Competitions.Count();
@@ -187,10 +188,11 @@
 
                 @if (reader.Read())
                 {
+                    ImageProcessViewModel imageProcess = new ImageProcessViewModel();
                     <div class="top-servey-item col-xl-4 col-md-6 d-flex " data-aos="fade-up" data-aos-delay="100">
                         <div class="top-servey">
                             <div class="top-servey-user">
-                                <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                <img src="~/assets/img/avatar/" class="img-fluid" alt="">
                                 <div class="">
                                     <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
                                     <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
@@ -214,10 +216,10 @@
                         <div class="top-servey-item col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                             <div class="top-servey">
                                 <div class="top-servey-user">
-                                    <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                    <img src="~/assets/img/avatar/" class="img-fluid" alt="">
                                     <div>
                                         <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
-                                        <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                         <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
                                     </div>
                                 </div>
                                 <div class="top-servey-mark">
@@ -235,14 +237,15 @@
                         </div>
                         if (reader.Read())
                         {
-
+                            byte[] imgByte = db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image;
+                            string image3Url = imageProcess.getImageUrl(imgByte);
                             <div class="top-servey-item col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                                 <div class="top-servey">
                                     <div class="top-servey-user">
-                                        <img src="~/assets/img/avatar/@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image" class="img-fluid" alt="">
+                                        <img src="" class="img-fluid" alt="">
                                         <div>
                                             <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
-                                            <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                             <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
                                         </div>
                                     </div>
                                     <div class="top-servey-mark">
@@ -483,7 +486,7 @@
                 </div>
 
                 <div class="col-lg-8">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form class="php-email-form" onsubmit="showAlert()" id="form-contact">
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -500,10 +503,9 @@
                         </div>
                         <div class="my-3">
                             <div class="loading">Loading</div>
-                            <div class="error-message"></div>
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                         </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
+                        <div class="text-center"><button type="submit" >Send Message</button></div>
                     </form>
                 </div><!-- End Contact Form -->
 
@@ -512,3 +514,11 @@
         </div>
     </section><!-- End Contact Section -->
 </main>
+<script>
+    function showAlert() {
+        // Hiển thị thông báo alert
+        alert("Your message has been sent ");
+        var form = document.getElementById("form-contact");
+        form.reset();
+        return false;
+    }</script>

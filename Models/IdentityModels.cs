@@ -11,11 +11,11 @@ namespace Project_Sem3.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
-        public string Image { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public byte[] Image { get; set; }   
+        public DateTime BirthDate { get; set; }
         public DateTime? CreateDate { get; set; }
 
-        public bool? isResigned { get; set; }
+        public bool isResigned { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

@@ -15,9 +15,20 @@ var x = setInterval(function () {
 	// Hiển thị thời gian còn lại trong một thẻ p
 	document.getElementById("countdown").innerHTML = minutes + " Min " + seconds + " Sec ";
 
-	// Nếu thời gian đếm ngược kết thúc, hiển thị thông báo
-	if (distance < 0) {
-		clearInterval(x);
-		document.getElementById("countdown").innerHTML = "End!";
+	// thông báo còn 5 phút
+
+	if (distance < 300000 && distance > 299000) {
+		alert("5 min remain!");
 	}
-}, 1000);
+
+	// thông báo còn 2 phút
+
+	if (distance < 120000 && distance > 119000) {
+		alert("2 min remain!");
+	}
+
+	// Tư động submit sau khi hết giờ
+	if (distance < 0) {
+		$("#survey-form").submit();
+	}
+}, 1000););

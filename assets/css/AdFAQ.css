@@ -1,199 +1,133 @@
 
-main {
-    color: #566787;
-    background: #f5f5f5;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 13px;
-}
-
-.table-responsive {
-    margin: 30px 0;
-}
-
-.table-wrapper {
-    min-width: 1000px;
-    background: #fff;
-    padding: 20px 25px;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-
-.table-title {
-    padding-bottom: 15px;
+.faq-container {
     background: #008374;
-    color: #fff;
-    padding: 16px 30px;
-    margin: -20px -25px 10px;
-    border-radius: 3px 3px 0 0;
+    padding: 20px 0;
 }
 
-    .table-title h2 {
-        margin: 5px 0 0;
-        font-size: 24px;
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    clear: both;
+    width: 100%;
+    max-width: 1480px;
+}
+
+.bgr-image {
+    width: 100%;
+    margin-right: 5%;
+}
+
+    .bgr-image figure {
+        position: relative;
     }
 
-    .table-title .btn {
-        color: #566787;
-        float: right;
-        font-size: 13px;
-        background: #fff;
-        border: none;
-        min-width: 50px;
-        border-radius: 2px;
-        border: none;
-        outline: none !important;
-        margin-left: 10px;
-    }
-
-        .table-title .btn:hover, .table-title .btn:focus {
-            color: #566787;
-            background: #f2f2f2;
+        .bgr-image figure img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 2;
+            padding: 38px 120px;
         }
 
-        .table-title .btn i {
-            float: left;
-            font-size: 21px;
-            margin-right: 5px;
+        .bgr-image figure::before {
+            position: absolute;
+            content: "";
+            background: #fff;
+            width: 40%;
+            height: 100%;
+            left: 70px;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
         }
 
-        .table-title .btn span {
-            float: left;
-            margin-top: 2px;
-        }
+    
 
-table.table tr th, table.table tr td {
-    border-color: #e9e9e9;
-    padding: 12px 15px;
-    vertical-align: middle;
+.wrapper .h-title {
 }
 
-    table.table tr th:first-child {
-        width: 60px;
-    }
-
-    table.table tr th:last-child {
-        width: 100px;
-    }
-
-table.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #fcfcfc;
-}
-
-table.table-striped.table-hover tbody tr:hover {
-    background: #f5f5f5;
-}
-
-table.table th i {
-    font-size: 13px;
-    margin: 0 5px;
-    cursor: pointer;
-}
-
-table.table td:last-child i {
-    opacity: 0.9;
-    font-size: 22px;
-    margin: 0 5px;
-}
-
-table.table td a {
-    font-weight: bold;
-    color: #566787;
-    display: inline-block;
-    text-decoration: none;
-}
-
-    table.table td a:hover {
-        color: #2196F3;
-    }
-
-    table.table td a.btn-edit-faqs {
-        color: #2196F3;
-    }
-
-    table.table td a.delete {
-        color: #F44336;
-    }
-
-table.table td i {
-    font-size: 19px;
-}
-
-table.table .avatar {
-    border-radius: 50%;
-    vertical-align: middle;
-    margin-right: 10px;
-}
-
-.status {
-    font-size: 30px;
-    margin: 2px 2px 0 0;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 10px;
-}
-
-.text-success {
-    color: #10c469;
-}
-
-.text-info {
-    color: #62c9e8;
-}
-
-.text-warning {
-    color: #FFC107;
-}
-
-.text-danger {
-    color: #ff5b5b;
-}
-
-.pagination {
-    float: right;
-    margin: 0 0 5px;
-}
-
-    .pagination li a {
-        border: none;
-        font-size: 13px;
-        min-width: 30px;
-        min-height: 30px;
-        color: #999;
-        margin: 0 2px;
-        line-height: 30px;
-        border-radius: 2px !important;
+    .wrapper .h-title h3 {
+        font-weight: 700;
         text-align: center;
-        padding: 0 6px;
+        font-size: 35px;
     }
 
-        .pagination li a:hover {
-            color: #666;
+        .wrapper .h-title h3 span {
+            font-weight: 1000;
+            word-spacing: 3px;
+            line-height: 2em;
+            color: rgba(255, 255, 255, 0.79);
         }
 
-    .pagination li.active a, .pagination li.active a.page-link {
-        background: #03A9F4;
-    }
-
-        .pagination li.active a:hover {
-            background: #0397d6;
+        .wrapper .h-title h3:before {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 1px;
+            content: "";
+            left: 50%;
+            margin-left: -30px;
+            background-color: #777;
         }
 
-    .pagination li.disabled i {
-        color: #ccc;
-    }
-
-    .pagination li i {
-        font-size: 16px;
-        padding-top: 6px
-    }
-
-.hint-text {
-    float: left;
-    margin-top: 10px;
-    font-size: 13px;
+.cf-title-03 h3 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5em;
+    padding-bottom: 15px;
+    position: relative;
 }
 
-/* add */
+    .cf-title-03 h3:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 5px;
+        width: 55px;
+        background-color: #111;
+    }
+
+    .cf-title-03 h3:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 2px;
+        height: 1px;
+        width: 95%;
+        max-width: 255px;
+        background-color: #333;
+    }
+
+cf-title-03 {
+    padding: 30px 0;
+}
+.faq-top{
+    margin-bottom:50px;
+}
+.faq-top .row{
+    width:100%;
+    text-align:center;
+}
+.faq-btn-add{
+    justify-content:end;
+    display:grid;
+}
+    .faq-btn-add p {
+        padding: 8px 30px;
+        background-color: #008374;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #efede9;
+    }
+    .faq-btn-add p:hover {
+        background-color: #019584;
+    }
 .dialog-add {
     position: fixed;
     top: 0;
@@ -201,98 +135,12 @@ table.table .avatar {
     bottom: 0;
     left: 0;
     display: flex;
-    z-index: 1;
+    opacity: 0;
+    z-index: -1;
+    align-items:center;
+    justify-content:center;
 }
 
-.hidden-add {
-    display: none;
-}
-
-.dialog-add .modal-add {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(42, 36, 36, 0.84);
-}
-
-.dialog-add .body-add {
-    background-color: #008374;
-    margin: auto;
-    z-index: 100000;
-    border-radius: 8px;
-    width: 35%;
-    height: 460px;
-}
-
-.dialog-add .close-btn {
-    display: flex;
-    justify-content: end;
-    cursor: pointer;
-    color: black !important;
-    font-weight: 600;
-    font-size: 37px;
-    margin-right: 25px;
-}
-
-.dialog-add .f-add {
-    display: grid;
-    padding: 15px 40px;
-}
-
-    .dialog-add .f-add .text-text {
-        text-align: center;
-        margin-bottom: 30px;
-        color: #000;
-    }
-
-.dialog-add .form-group-add {
-    position: relative;
-    margin-bottom: 1.5rem;
-}
-
-    .dialog-add .form-group-add label {
-        display: block;
-        top: 0;
-        left: 0;
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #000;
-        pointer-events: none;
-        transition: all 0.3s ease-out;
-    }
-
-    .dialog-add .form-group-add textarea {
-        resize: none;
-        width: 100%;
-        border-radius: 5px;
-        background: #f6fffec4;
-    }
-
-.dialog-add .frame {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.dialog-add .custom-btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-    .dialog-add .custom-btn:hover {
-        background-color: #0056b3;
-    }
-
-/* add */
-
-/* edit */
 .dialog-edit {
     position: fixed;
     top: 0;
@@ -300,173 +148,146 @@ table.table .avatar {
     bottom: 0;
     left: 0;
     display: flex;
-    z-index: 1;
+    z-index: -1;
+    opacity: 0;
 }
 
-.hidden-edit {
-    display: none;
+.showDialog {
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
+    z-index: 1000;
 }
 
-.dialog-edit .modal-edit {
+
+.modal-o {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(42, 36, 36, 0.84);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.dialog-edit .body-edit {
-    background-image: url("image/FaqsBgr.jpeg");
+.dialog-body {
+    background-image: url('../img/competition/dialog-cp-bgr.jpg');
     margin: auto;
-    z-index: 100000;
+    z-index: 1000;
     border-radius: 8px;
-    width: 35%;
-    height: 460px;
+    width: 500px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 
-.dialog-edit .close-btn {
+.dialog-bgr {
+    border-radius: 5px;
+    background-color: #576774ad;
+}
+
+.close-btn {
     display: flex;
     justify-content: end;
-    cursor: pointer;
-    color: black !important;
-    font-weight: 600;
-    font-size: 37px;
-    margin-right: 25px;
+    color: #eb5c4e;
+    font-weight: 900;
+    font-size: 24px;
+    margin-right: 10px;
 }
 
-.dialog-edit .f-edit {
-    display: grid;
-    padding: 15px 40px;
-}
-
-    .dialog-edit .f-edit .text-text {
-        text-align: center;
-        margin-bottom: 30px;
-        color: #000;
+    .close-btn p {
+        cursor: pointer;
+        margin: 0;
     }
 
-.dialog-edit .form-group-edit {
+.cp-add-form{
+    padding:20px;
+}
+.cp-add-item{
+    display:grid;
+}
+.lb-add-cp{
+    margin-bottom:8px;
+    font-weight:500;
+
+}
+.cp-add-item textarea{
+    resize:none;
+    margin-bottom:20px;
+    
+    padding:5px 7px;;
+}
+/*.form-btn-ed{position:relative;}
+.form-btn-ed div {
     position: relative;
-    margin-bottom: 1.5rem;
+    top:20%;
+}*/
+.btn-add-cp {
+    justify-content: end;
+    display: grid;
+    color: #efede9;
 }
-
-    .dialog-edit .form-group-edit label {
-        display: block;
-        top: 0;
-        left: 0;
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #000;
-        pointer-events: none;
-        transition: all 0.3s ease-out;
-    }
-
-    .dialog-edit .form-group-edit textarea {
-        resize: none;
-        width: 100%;
+    .btn-add-cp button {
+        background-color: #008374;
+        border: none;
         border-radius: 5px;
-        background: #f6fffec4;
+        padding:7px 25px;
     }
-
-.dialog-edit .frame {
-    text-align: center;
-    margin-top: 20px;
+        .btn-add-cp button:hover {
+            background-color: #019584;
+        }
+.faq-add-title{
+    display:grid;
+    justify-content:center;
 }
-
-.custom-btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 20px;
+.faq-add-title h2{
+    font-weight:600;
+}
+.btn-edit-faqs {
     cursor: pointer;
-    transition: all 0.3s ease;
+    background-color: #008374;
+    width: 100%;
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #efede9;
 }
-
-    .custom-btn:hover {
-        background-color: #0056b3;
+    .btn-edit-faqs:hover {
+        background-color: #029987;
+        color:white;
     }
-
-
-
-@media (max-width: 768px) {
-    .dialog-edit .body-edit {
-        width: 80%;
-        height: auto;
-    }
-
-    .dialog-edit .f-edit {
-        padding: 15px;
-    }
-
-    .dialog-edit .close-btn {
-        font-size: 24px;
-        margin-right: 10px;
-    }
-
-    .dialog-edit .form-group-edit label {
-        font-size: 16px;
-        margin-bottom: 5px;
-    }
-
-    /* add */
-    .dialog-add .body-add {
-        width: 80%;
-        height: auto;
-    }
-
-    .dialog-add .f-add {
-        padding: 15px;
-    }
-
-    .dialog-add .close-btn {
-        font-size: 24px;
-        margin-right: 10px;
-    }
-
-    .dialog-add .form-group-add label {
-        font-size: 16px;
-        margin-bottom: 5px;
-    }
+.btn-delete {
+    color: white;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    background-color: #8f0000;
+    padding: 5px 10px;
 }
-
-
-@media (max-width: 480px) {
-    .dialog-edit .body-edit {
-        width: 100%;
-        height: auto;
-        border-radius: 0;
+    .btn-delete:hover {
+        background-color: #9b0303;
+        color: #efede9;
+    }
+.table-scroll {
+    overflow-x: scroll;
+    margin-bottom: 30px;
+}
+.table-list {
+    min-width: 600px;
+}
+@media only screen and (max-width: 500px){
+    .bgr-image figure img {
+        padding: 38px 60px;
     }
 
-    .dialog-edit .f-edit {
-        padding: 10px;
-    }
-
-    .dialog-edit .close-btn {
-        font-size: 20px;
-    }
-
-    .dialog-edit .form-group-edit label {
-        font-size: 14px;
-    }
-    /* add */
-    .dialog-add .body-add {
-        width: 100%;
-        height: auto;
-        border-radius: 0;
-    }
-
-    .dialog-add .f-add {
-        padding: 10px;
-    }
-
-    .dialog-add .close-btn {
-        font-size: 20px;
-    }
-
-    .dialog-add .form-group-add label {
-        font-size: 14px;
+    .bgr-image figure::before {
+        position: absolute;
+        content: "";
+        background: #fff;
+        width: 40%;
+        height: 100%;
+        left: 20px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
     }
 }

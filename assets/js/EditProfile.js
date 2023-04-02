@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     for (i = 0; i < closeEditProfile.length; i++) {
         closeEditProfile[i].addEventListener("click", function () {
 
-            dialogEditProfile.classList.remove('showDialog')
+            dialogEditProfile.classList.remove('showDialogProfile')
         });
     }
     // 
     for (i = 0; i < btnEditProfile.length; i++) {
         btnEditProfile[i].addEventListener("click", function () {
-            dialogEditProfile.classList.add('showDialog')
+            dialogEditProfile.classList.add('showDialogProfile')
         });
             
     }
@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
     for (i = 0; i < closeEditAccountSurvey.length; i++) {
         closeEditAccountSurvey[i].addEventListener("click", function () {
 
-            dialogEditAccountSurvey.classList.remove('showDialog')
+            dialogEditAccountSurvey.classList.remove('showDialogProfile')
         });
     }
     for (i = 0; i < btnEditAccountSurvey.length; i++) {
         btnEditAccountSurvey[i].addEventListener("click", function () {
-            dialogEditAccountSurvey.classList.add('showDialog')
+            dialogEditAccountSurvey.classList.add('showDialogProfile')
         });
 
     }

@@ -310,6 +310,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304010355028_anc.cs" />
+    <Compile Include="Migrations\202304010355028_anc.Designer.cs">
+      <DependentUpon>202304010355028_anc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304010449166_anchs.cs" />
+    <Compile Include="Migrations\202304010449166_anchs.Designer.cs">
+      <DependentUpon>202304010449166_anchs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304010454032_abcs.cs" />
+    <Compile Include="Migrations\202304010454032_abcs.Designer.cs">
+      <DependentUpon>202304010454032_abcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AnswerResult.cs" />
     <Compile Include="Models\AspNetRole.cs" />
@@ -319,6 +332,7 @@
     <Compile Include="Models\Competition.cs" />
     <Compile Include="Models\FAQ.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImageProcessViewModel.cs" />
     <Compile Include="Models\KSMTDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Registration.cs" />
@@ -379,6 +393,12 @@
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\Support.css" />
     <Content Include="assets\css\Survey.css" />
+    <Content Include="assets\img\avatar\10.jpg" />
+    <Content Include="assets\img\avatar\4.jpg" />
+    <Content Include="assets\img\avatar\5.jpg" />
+    <Content Include="assets\img\avatar\6.jpg" />
+    <Content Include="assets\img\avatar\7.jpg" />
+    <Content Include="assets\img\avatar\8.jpg" />
     <Content Include="assets\img\avatar\avatar1.jpg" />
     <Content Include="assets\img\avatar\avatar10.jpg" />
     <Content Include="assets\img\avatar\avatar2.jpg" />
@@ -429,6 +449,8 @@
     <Content Include="assets\img\competition\rf1.jpg" />
     <Content Include="assets\img\competition\rf2.jpg" />
     <Content Include="assets\img\faq\FaqsBgr.jpeg" />
+    <Content Include="assets\img\home\copperMedal.png" />
+    <Content Include="assets\img\home\goodMedal.png" />
     <Content Include="assets\img\home\hero-img.svg" />
     <Content Include="assets\img\home\1.jpg" />
     <Content Include="assets\img\home\10.jpg" />
@@ -449,6 +471,7 @@
     <Content Include="assets\img\home\hero-bg-abstract.jpg" />
     <Content Include="assets\img\home\hinh-anh-bao-ve-moi-truong-19.jpg" />
     <Content Include="assets\img\home\Logo.png" />
+    <Content Include="assets\img\home\silverMedal.png" />
     <Content Include="assets\img\home\Untitled.png" />
     <Content Include="assets\img\Logo.png" />
     <Content Include="assets\img\portfolio\app-1.jpg" />
@@ -466,9 +489,15 @@
     <Content Include="assets\img\home\stats-img.svg" />
     <Content Include="assets\img\support\Contact us-pana.png" />
     <Content Include="assets\img\support\dialog-bgr.jpg" />
-    <Content Include="assets\img\support\sp-avarta-1.png" />
-    <Content Include="assets\img\support\sp-avarta-2.png" />
-    <Content Include="assets\img\support\sp-avarta-3.png" />
+    <Content Include="assets\img\support\ivan-bandura-QfefrzHQAdM-unsplash.jpg" />
+    <Content Include="assets\img\support\lukasz-szmigiel-w7fx1m6iKig-unsplash.jpg" />
+    <Content Include="assets\img\support\noaa-uuA9AbeeYPE-unsplash.jpg" />
+    <Content Include="assets\img\support\sp-avatar-1.jpg" />
+    <Content Include="assets\img\support\sp-avatar-2.jpg" />
+    <Content Include="assets\img\support\sp-avatar-3.jpg" />
+    <Content Include="assets\img\support\sp-avatar-4.jpg" />
+    <Content Include="assets\img\support\sp-avatar-5.jpg" />
+    <Content Include="assets\img\support\sp-avatar-6.jpg" />
     <Content Include="assets\img\support\sp-top-bgr.jpg" />
     <Content Include="assets\img\survey\60.jpg" />
     <Content Include="assets\img\survey\Completed steps-pana.png" />
@@ -664,7 +693,7 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Admin\ListUser.cshtml" />
     <Content Include="Views\Supports\AdSupport.cshtml" />
-    <Content Include="Views\FAQs\Index.cshtml" />
+    <Content Include="Views\FAQs\FAQ.cshtml" />
     <Content Include="Views\Competitions\Competition.cshtml" />
     <Content Include="Views\Competitions\Survey.cshtml" />
     <Content Include="Views\Competitions\ADCompetition.cshtml" />
@@ -694,6 +723,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202304010355028_anc.resx">
+      <DependentUpon>202304010355028_anc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304010449166_anchs.resx">
+      <DependentUpon>202304010449166_anchs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304010454032_abcs.resx">
+      <DependentUpon>202304010454032_abcs.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

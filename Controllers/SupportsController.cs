@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -53,10 +54,22 @@ namespace Project_Sem3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "name,phone,email,position,image")] Support support)
+        public ActionResult Create([Bind(Include = "name,phone,email,position")] Support support)
         {
             if (ModelState.IsValid)
             {
+                HttpPostedFileBase img = Request.Files["image"];
+
+                if (img != null && img.ContentLength > 0)
+                {
+                    byte[] imageData = new byte[img.ContentLength];
+                    img.InputStream.Read(imageData, 0, img.ContentLength);
+                    support.Image = imageData;
+                }
+                else
+                {
+                    return RedirectToAction("AdSupport", "Supports");
+                }
                 db.Supports.Add(support);
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "Supporter added successfully.";
@@ -66,20 +79,22 @@ namespace Project_Sem3.Controllers
             return View("AdSupport");
         }
 
-        
-
-        // POST: Supports/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Email,Position,Image")] Support support)
+        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Email,Position")] Support support)
         {
-            var imgCurrent = Request["currentImage"];
-            if (support.Image == null)
+
+            HttpPostedFileBase img = Request.Files["image"];
+            byte[] imgCurrent = Convert.FromBase64String(Request["currentImage"]); 
+            if (img != null && img.ContentLength > 0)
             {
+                byte[] imageData = new byte[img.ContentLength];
+                img.InputStream.Read(imageData, 0, img.ContentLength);                support.Image = imageData;
+            }
+            else {
                 support.Image = imgCurrent;
             }
+           
             if (ModelState.IsValid)
             {
                 try {

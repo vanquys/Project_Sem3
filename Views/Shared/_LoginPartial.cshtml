@@ -3,9 +3,9 @@
 
 @if (Request.IsAuthenticated)
 {
-    
+
     KSMTDbContext db = new KSMTDbContext();
-   
+
     var userId = User.Identity.GetUserId();
     var user = db.AspNetUsers.Find(userId);
     var registration = db.Registrations.FirstOrDefault(r => r.UserId.Equals(userId));
@@ -41,10 +41,11 @@
 
             break;
         case "Employee":
+        case "Student":
             <li><a href="~/home/index" class="home">Home</a></li>
             <li><a href="~/competitions/competition" class="survey">Survey</a></li>
             <li><a href="~/Supports/Support" class="support">Support</a></li>
-            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li><a href="~/FAQs/FAQ" class="faq">FAQ’s</a></li>
             <li class="dropdown">
                 <a href="#"><ion-icon style="font-size:28px ;padding-right:10px" name="person-circle-outline"></ion-icon> <span> @user.Name</span></a>
                 <ul class="dropdown-child" style="z-index:1;">
@@ -63,7 +64,7 @@
             </li>
             if (registration != null)
             {
-<li class="dropdown-child-mobie"><a class="editAccountSurvey">Edit Account Survey</a></li>
+                <li class="dropdown-child-mobie"><a class="editAccountSurvey">Edit Account Survey</a></li>
             }
             <li class="dropdown-child-mobie"><a class="editProfile">Edit Profile</a></li>
             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -78,7 +79,7 @@
             <li><a href="~/home/index" class="home">Home</a></li>
             <li><a href="~/competitions/competition" class="survey">Survey</a></li>
             <li><a href="~/Supports/Support" class="support">Support</a></li>
-            <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+            <li><a href="~/FAQs/FAQ" class="faq">FAQ’s</a></li>
             <li class="dropdown-child"></li>
             <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
             <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
@@ -98,7 +99,7 @@ else
 { <li><a href="~/home/index" class="home">Home</a></li>
     <li><a href="~/competitions/competition" class="survey">Survey</a></li>
     <li><a href="~/Supports/Support" class="support">Support</a></li>
-    <li><a href="~/FAQs/index" class="faq">FAQ’s</a></li>
+    <li><a href="~/FAQs/FAQ" class="faq">FAQ’s</a></li>
     <li class="dropdown-child"></li>
     <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
     <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>

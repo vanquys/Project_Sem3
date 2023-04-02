@@ -12,16 +12,45 @@
     <script>alert("@ViewBag.ErrorMessage");</script>
 }
 <main id="faq">
-    <div class="Wrapper">
-        <a class="btn-add">
-            Add FAQ
-        </a>
+    <div class="faq-top">
+        <div class="faq-container">
+            <div class="wrapper">
+                <div class="row d_flex grig">
+                    <div class="col-md-6">
+                        <div class="bgr-image">
+                            <figure><img src="~/assets/img/faq/FaqsBgr.jpeg" data-aos="zoom-out" data-aos-delay="100" /></figure>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-up">
+                        <div class="faq-content">
+                            <div class="h-title">
+                                <h3><span>Frequently </span>Asked<em>Ques</em>tions</h3>
+                                <div class="p-title">
+                                    <p>
+                                        This is a list of frequently used questions and answers to answer questions
+                                        spectrum
+                                        about a particular product, service, or topic.Using FAQs also helps to reduce the number of questions sent to the support department
+                                        support
+                                        customers of a company or organization.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr>
     <div class="container-lg mt-3">
-        <h2 class="text-center pt-5 pb-5 title">FAQs List</h2>
-        <div class="body-faqList container-lg">
-            <table class="table-list table table-striped table-bordered">
+        <div class="section-header">
+            <h2>FAQs List</h2>
+        </div>
+        <div class="faq-btn-add">
+            <p>ADD</p>
+        </div>
+        <div class="body-faqList container-lg table-scroll">
+            <table class="table-list table table-striped table-bordered ">
                 <tr class="text-center">
                     <th>No</th>
                     <th>Question</th>
@@ -42,12 +71,14 @@
                         </td>
 
                         <td class="form-btn-ed">
-                            <a class="btn-edit btn-edit-faqs">
-                                Edit
-                            </a>
-                            <a class="btn-delete" data-id="@m.Id">
-                                Delete
-                            </a>
+                            <div>
+                                <a class="btn-edit btn-edit-faqs">
+                                    Edit
+                                </a>
+                                <a class="btn-delete" data-id="@m.Id">
+                                    Delete
+                                </a>
+                            </div>
                         </td>
                     </tr>
 
@@ -55,63 +86,74 @@
             </table>
         </div>
     </div>
-    <div class="dialog-add hidden-add">
-        <div class="modal-add"></div>
-        <div class="body-edit">
-            <div class="close-btn">
-                &times;
-            </div>
-            <div class="f-add">
-                <h2 class="text-text">Add FAQs</h2>
-                <input id="id" name="id" hidden />
-                <div class="form-group-add">
-                    <label for="name">Question</label>
-                    <textarea name="Question" id="question" rows="2"></textarea>
-
+\
+    <div class="dialog-add ">
+        <div class="modal-o"></div>
+        <div class="dialog-body">
+            <div class="dialog-bgr">
+                <div class="close-btn">
+                    <p>&times;</p>
                 </div>
-                <div class="form-group-add">
-                    <label for="name">Answer</label>
-                    <textarea name="Answer" id="answer" rows="3"></textarea>
-
+                <div class="faq-add-title">
+                    <h2>ADD FAQ</h2>
                 </div>
+                <div class="cp-add-form">
+                    @using (Html.BeginForm("Create", "FAQs", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                <div class="frame">
-                    <button class="custom-btn btn-add-Faqs"><span>Submit</span></button>
+                        <div class="cp-add-item">
+                            <input id="id" name="id" hidden />
+                            <label class="lb-add-cp dialog-title">Question</label>
+                            <textarea name="Question" id="question" rows="2"></textarea>
+                        </div>
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp">Answer</label>
+                            <textarea class="cp-add-description dialog-description" name="Answer" id="answer" rows="3"></textarea>
+                        </div>
+                        <div class="btn-add-cp">
+                            <button class="btn-add-cp-item" type="submit">ADD</button>
+                        </div>
+                    }
                 </div>
-
             </div>
         </div>
     </div>
+
 
     <!-- Edit -->
-    <div class="dialog-edit hidden-edit">
-        <div class="modal-edit"></div>
-        <div class="body-edit">
-            <div class="close-btn">
-                &times;
-            </div>
-            <div class="f-edit">
-                <h2 class="text-text">Edit ProFile</h2>
-                @using (Html.BeginForm("Edit", "FAQs", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <input id="id" name="id" hidden />
-                    <div class="form-group-edit">
-                        <label for="name">Question</label>
-                        <textarea name="Question" id="question" rows="3"></textarea>
+    <div class="dialog-edit ">
+        <div class="modal-o"></div>
+        <div class="dialog-body">
+            <div class="dialog-bgr">
+                <div class="close-btn">
+                    <p> &times;</p>
+                </div>
+                <div class="faq-add-title">
+                    <h2>EDIT FAQ</h2>
+                </div>
+                <div class="cp-add-form">
+                    @using (Html.BeginForm("Edit", "FAQs", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input id="id" name="id" hidden />
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp" for="name">Question</label>
+                            <textarea name="Question" id="question" rows="3"></textarea>
 
-                    </div>
-                    <div class="form-group-edit">
-                        <label for="name">Answer</label>
-                        <textarea name="Answer" id="answer" rows="5"></textarea>
-                    </div>
-                    <div class="frame">
-                        <button class="custom-btn btn-Edit-Faqs"><span>Submit</span></button>
-                    </div>
-                }
-
+                        </div>
+                        <div class="cp-add-item">
+                            <label class="lb-add-cp" for="name">Answer</label>
+                            <textarea name="Answer" id="answer" rows="5"></textarea>
+                        </div>
+                        <div class="btn-add-cp">
+                            <button class="custom-btn btn-Edit-Faqs"><span>Submit</span></button>
+                        </div>
+                    }
+                </div>
             </div>
+
         </div>
-    </div>
 
+    </div>
 </main>

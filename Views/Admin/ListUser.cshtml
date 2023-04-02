@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Project_Sem3.Models.AspNetUser>
-
+@using Project_Sem3.Models 
 @{
     ViewBag.Title = "ListUser";
+    ImageProcessViewModel imageProcess = new ImageProcessViewModel();
 }
 @* icon *@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -24,6 +25,13 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+                    string imageUrl = "";
+
+                    if (item.Image != null)
+                    {
+                        imageUrl = imageProcess.getImageUrl(item.Image);
+                    }
+
                     if (item.AspNetRoles.SingleOrDefault().Name.Equals("Admin"))
                     {
                         continue;
@@ -32,7 +40,7 @@
                     <tr data-aos="fade-up">
                         <td class="profile-item">
                             <div class="profile-item-avt">
-                                <div><img src="~/assets/img/avatar/@item.Image" /></div>
+                                <div><img src="@imageUrl" /></div>
                                 <h6 class="profile-item-name">@Html.DisplayFor(modelItem => item.Name)</h6>
                             </div>
                             <div class="profile-item-infor">

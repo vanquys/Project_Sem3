@@ -8,7 +8,7 @@ namespace Project_Sem3.Models
     public partial class KSMTDbContext : DbContext
     {
         public KSMTDbContext()
-            : base("name=KSMT")
+            : base("name=KSMTDbContext")
         {
         }
 
@@ -18,7 +18,7 @@ namespace Project_Sem3.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Competition> Competitions { get; set; }
-        public virtual DbSet<FAQ> FAQ { get; set; }
+        public virtual DbSet<FAQ> FAQs { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Support> Supports { get; set; }
 

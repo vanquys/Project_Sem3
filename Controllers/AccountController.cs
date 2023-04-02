@@ -58,57 +58,98 @@ namespace Project_Sem3.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditProfile(){
-            var img = Request["Image"];
+        public async Task<ActionResult> EditProfile()
+        {
+            HttpPostedFileBase img = Request.Files["image"];
             var name = Request["Name"];
             var currentPass = Request["CurrentPassword"];
-            var newPass = Request["NewPassword"];
-            var confirmPass = Request["ConfirmPassword"];
             var Resign = Request["isResigned"];
             bool isResigned = false;
-            if (Resign == "on") {
+            if (Resign == "on")
+            {
                 isResigned = true;
             }
             bool remember = false;
 
             AspNetUser user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            SignInStatus checkPass = await SignInManager.PasswordSignInAsync(user.Email, currentPass,remember , shouldLockout: false);
+            SignInStatus checkPass = await SignInManager.PasswordSignInAsync(user.Email, currentPass, remember, shouldLockout: false);
 
             if (!checkPass.ToString().Equals("Success"))
             {
                 TempData["ErrorMessage"] = "Incorrect Password  !";
                 return RedirectToAction("Index", "Home");
             }
-          
-            if (!newPass.Equals(confirmPass)) {
-                TempData["ErrorMessage"] = "New Passwords and Confirm Password do not match !";
-                return RedirectToAction("Index", "Home");
-            }
-            try{
-                if (img != "") { 
-                    user.Image = img;
+            try
+            {
+                
+                if (img != null && img.ContentLength > 0)
+                {
+                    byte[] imageData = new byte[img.ContentLength];
+                    img.InputStream.Read(imageData, 0, img.ContentLength);
+                    user.Image = imageData;
                 }
+
                 user.Name = name;
                 user.isResigned = isResigned;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                if (newPass != "") {
-                    var result = await UserManager.ChangePasswordAsync(user.Id, currentPass, newPass);
-                    if (!result.Succeeded)
-                    {
-                        TempData["ErrorMessage"] = "Failed to change password" ;
-                    }
-                }
-                TempData["SuccessMessage"] = "successfully  !";
+                TempData["SuccessMessage"] = "successfully change information !";
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "Failed to Change: " + e.Message ;
+                TempData["ErrorMessage"] = "Failed to Change: " + e.Message;
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Idex", "Home");
+           
 
         }
 
+
+        //
+
+        [HttpPost]
+        public async Task<ActionResult> EditPassword()
+        {
+            var currentPass = Request["CurrentPassword"];
+            var newPass = Request["NewPassword"];
+            var confirmPass = Request["ConfirmPassword"];
+            bool remember = false;
+
+            AspNetUser user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            SignInStatus checkPass = await SignInManager.PasswordSignInAsync(user.Email, currentPass, remember, shouldLockout: false);
+
+            if (!checkPass.ToString().Equals("Success"))
+            {
+                TempData["ErrorMessage"] = "Incorrect Password  !";
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (!newPass.Equals(confirmPass))
+            {
+                TempData["ErrorMessage"] = "New Passwords and Confirm Password do not match !";
+                return RedirectToAction("Index", "Home");
+            }
+            try
+            {
+                var result = await UserManager.ChangePasswordAsync(user.Id, currentPass, newPass);
+                if (result.Succeeded)
+                {
+                    TempData["SuccessMessage"] = "Successfully to change password !";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "  Failed to change password";
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = "Error: " + e.Message;
+                return RedirectToAction("Index", "Home");
+            }
+        }
         //
 
         [HttpPost]
@@ -276,17 +317,21 @@ namespace Project_Sem3.Controllers
                 return View(model);
 
             }
+
             if (!ModelState.IsValid)
             {
-                if (model.Password.Equals(model.ConfirmPassword))
-                {
-                    ModelState.AddModelError("", "password must be minimum of 6 characters with at least one number and one special character !");
+                if (model.Name.Length < 6) {
+                    ModelState.AddModelError("", "Name field minimum length is 6 !");
                     return View(model);
-
+                }
+                else if (!model.Password.Equals(model.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "the password and comfirmation password do not match");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "the password and comfirmation password do not match");
+                    ModelState.AddModelError("", "password must be minimum of 6 characters with at least one number and one special character !");
+                    return View(model);
                 }
                 return View(model);
                 
@@ -298,14 +343,24 @@ namespace Project_Sem3.Controllers
               
                 return View(model);
             }
-
+            //
             int resultRegiter = 0;
             bool isResigned = false;
             DateTime lockoutEndDateUtc;
             lockoutEndDateUtc = new DateTime(9999,01,01);
             String roleName = Request.Form["role"];
-           
-            var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = model.Image, isResigned=isResigned, LockoutEndDateUtc = lockoutEndDateUtc, CreateDate= DateTime.UtcNow };
+            
+            // img
+
+            HttpPostedFileBase img = Request.Files["Imagee"];
+            byte[] imageByte = null;
+            if (img != null && img.ContentLength > 0)
+            {
+                byte[] imageData = new byte[img.ContentLength];
+                img.InputStream.Read(imageData, 0, img.ContentLength);
+                imageByte = imageData;
+            }
+            var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = imageByte, isResigned=isResigned, LockoutEndDateUtc = lockoutEndDateUtc, CreateDate= DateTime.UtcNow };
             SqlTransaction RegisterTrans = null;
             using (SqlConnection objConn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=KSMT;Persist Security Info=True;User ID=sa;Password=123;MultipleActiveResultSets=True;Application Name=EntityFramework"))
             {

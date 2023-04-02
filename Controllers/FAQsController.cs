@@ -17,7 +17,7 @@ namespace Project_Sem3.Controllers
 
         // GET: FAQs
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult FAQ()
         {
             if (TempData.ContainsKey("SuccessMessage"))
             {
@@ -27,7 +27,7 @@ namespace Project_Sem3.Controllers
             {
                 ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
             }
-            return View(db.FAQ.ToList());
+            return View(db.FAQs.ToList());
 
         }
         [HttpGet]
@@ -41,7 +41,7 @@ namespace Project_Sem3.Controllers
             {
                 ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
             }
-            return View(db.FAQ.ToList());
+            return View(db.FAQs.ToList());
         }
       
       
@@ -51,7 +51,7 @@ namespace Project_Sem3.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.FAQ.Add(fAQ);
+                db.FAQs.Add(fAQ);
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "FAQ added successfully.";
                 return RedirectToAction("AdFAQs", "FAQs");
@@ -81,8 +81,8 @@ namespace Project_Sem3.Controllers
         {
             try
             {
-                FAQ fAQ = db.FAQ.Find(id);
-                db.FAQ.Remove(fAQ);
+                FAQ fAQ = db.FAQs.Find(id);
+                db.FAQs.Remove(fAQ);
                 db.SaveChanges();
                 return Json(new { success = true, message = "Deleted FAQ successfully." });
             }
