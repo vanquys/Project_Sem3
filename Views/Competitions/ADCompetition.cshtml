@@ -76,7 +76,7 @@
                         <th>Right Answer</th>
                         <th>Status</th>
                     </tr>
-                    @foreach (var m in Model)
+                    @foreach (var m in Model.OrderByDescending(x => x.StartDate))
                     {
                         <tr class="ts" data-aos="fade-up">
                             <td class="no">
@@ -131,7 +131,7 @@
                         <th>Score</th>
                         <th>Status</th>
                     </tr>
-                    @foreach (var m in listas)
+                    @foreach (var m in listas.OrderByDescending(x => x.Date))
                     {
                         <tr data-aos="fade-up">
                             @using (Html.BeginForm("AddMark", "Competitions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
@@ -146,7 +146,7 @@
                                 <td class="cp-mark-uname">@m.Registration.Name</td>
                                 <td class="cp-mark-compe">@m.CompetitionId</td>
                                 <td class="cp-mark-answer">@m.Answer</td>
-                                <td class="cp-mark-score"><input name="Mark" value="@m.Mark" /></td>
+                                <td class="cp-mark-score"><input name="Mark" type="number" value="@m.Mark"  min="0" max="10" /></td>
                                 <td class="cp-mark-btn">
                                     <button type="submit" class="btn-apply">Apply</button>
                                     <button data-iduser="@m.IdRegistratedUser" data-idcp="@m.CompetitionId" class="delete-answer">Delete</button>

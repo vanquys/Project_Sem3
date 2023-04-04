@@ -8,7 +8,7 @@ namespace Project_Sem3.Models
     public partial class KSMTDbContext : DbContext
     {
         public KSMTDbContext()
-            : base("name=KSMTDbContext")
+            : base("name=KSMT")
         {
         }
 

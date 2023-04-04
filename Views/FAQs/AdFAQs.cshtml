@@ -57,9 +57,9 @@
                     <th>Answer</th>
                     <th></th>
                 </tr>
-                @foreach (var m in Model)
+                @foreach (var m in Model.OrderByDescending(x => x.Id))
                 {
-                    <tr class="ts-list">
+                    <tr class="ts-list" data-aos="fade-up">
                         <td class="no">
                             <p>@m.Id</p>
                         </td>
@@ -69,7 +69,6 @@
                         <td class="Answer">
                             <p>@m.Answer</p>
                         </td>
-
                         <td class="form-btn-ed">
                             <div>
                                 <a class="btn-edit btn-edit-faqs">
@@ -81,12 +80,11 @@
                             </div>
                         </td>
                     </tr>
-
                 }
             </table>
         </div>
     </div>
-\
+
     <div class="dialog-add ">
         <div class="modal-o"></div>
         <div class="dialog-body">
@@ -135,7 +133,7 @@
                 <div class="cp-add-form">
                     @using (Html.BeginForm("Edit", "FAQs", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                     {
-                        @Html.AntiForgeryToken()
+                        @Html.AntiForgeryToken()    
                         <input id="id" name="id" hidden />
                         <div class="cp-add-item">
                             <label class="lb-add-cp" for="name">Question</label>

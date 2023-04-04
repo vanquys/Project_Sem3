@@ -83,19 +83,22 @@
                                 imageUrl = imageProcess.getImageUrl(user.Image);
                             }
                             @Html.AntiForgeryToken()
-                            <div class="editProfile-image">
-                                <div class="editProfile-image-img">
-                                    <img id="myImage" src="@imageUrl" alt="Your Avatar">
-                                    <br>
-                                    <input type="file" name="Image" onchange="loadImage(event)">
-                                </div>
-                                <p name="currentAvatar" hidden>@Convert.ToBase64String(user.Image)</p>
-                                <div class="editProfile-image-name">
-                                    <h5>@user.Name</h5>
-                                    <p>@user.AspNetRoles.SingleOrDefault().Name</p>
-                                </div>
-
+                        <div class="editProfile-image">
+                            <div class="editProfile-image-img">
+                                <img id="myImage" src="@imageUrl" alt="Your Avatar">
+                                <br>
+                                <input type="file" name="Image" onchange="loadImage(event)">
                             </div>
+                            @if (user.Image != null)
+                            {
+                                <p name="currentAvatar" hidden>@Convert.ToBase64String(user.Image)</p>
+                            }
+                            <div class="editProfile-image-name">
+                                <h5>@user.Name</h5>
+                                <p>@user.AspNetRoles.SingleOrDefault().Name</p>
+                            </div>
+
+                        </div>
                             <div class="line">
 
                             </div>
@@ -138,10 +141,13 @@
                     <div id="item-2" class="tab-pane fade show">
                         @using (Html.BeginForm("EditPassword", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
                         {
-                            
-                            @Html.AntiForgeryToken()
-                          
 
+                            @Html.AntiForgeryToken()
+
+                            <div class="editProfile-item">
+                                <label>Your Email</label>
+                                <input class="ip-editProfile" value="@user.Email" readonly style="opacity:0.85; border:none"/>
+                            </div>
                             <div class="editProfile-item">
                                 <label>New Password</label>
                                 <input class="ip-editProfile" type="password" name="NewPassword" placeholder="enter your new password " pattern="@patternPass" />
@@ -273,8 +279,8 @@
                     <h4>Useful Links</h4>
                     <ul>
                         <li><a href="/Home/index">Home</a></li>
-                        <li><a href="/Support/index">Support</a></li>
-                        <li><a href="/FAQs/index">FAQ's</a></li>
+                        <li><a href="/Support/Support">Support</a></li>
+                        <li><a href="/FAQs/FAQ">FAQ's</a></li>
                         <li><a href="#">Privacy policy</a></li>
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
 ﻿@using Project_Sem3.Models
 @using System.Data.SqlClient;
 @using System.Data;
+@using Microsoft.AspNet.Identity
 
 <link rel="stylesheet" href="~/assets/css/main.css" />
 @if (!string.IsNullOrEmpty(ViewBag.alertMessage))
@@ -22,6 +23,8 @@
     int competitionCount = db.Competitions.Count();
     int answerResultCount = db.AnswerResults.Count();
     int userCount = db.Registrations.Count();
+    var userId = User.Identity.GetUserId();
+    var user = db.AspNetUsers.Find(userId);
 
 
     // procedure
@@ -60,7 +63,21 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-easel"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Competition</a></h4>
+                            @if (Request.IsAuthenticated)
+                            {
+                                if ((user.AspNetRoles.First().Name).Equals("Admin"))
+                                {
+                                    <h4 class="title"><a href="../../Competitions/adcompetition" class="stretched-link">Competition</a></h4>
+                                }
+                                else
+                                {
+                                    <h4 class="title"><a href="../../Competitions/competition" class="stretched-link">Competition</a></h4>
+                                }
+                            }
+                            else { 
+                                  <h4 class="title"><a href="../../Competitions/competition" class="stretched-link">Competition</a></h4>
+                            }
+
                         </div>
                     </div>
                     <!--End Icon Box -->
@@ -68,7 +85,7 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-gem"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Contact us</a></h4>
+                            <h4 class="title"><a href="#contact" class="stretched-link">Contact us</a></h4>
                         </div>
                     </div>
                     <!--End Icon Box -->
@@ -76,7 +93,7 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-geo-alt"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Our location</a></h4>
+                            <h4 class="title"><a href="../../Supports/Support#Location" class="stretched-link">Our location</a></h4>
                         </div>
                     </div>
                     <!--End Icon Box -->
@@ -84,7 +101,7 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-command"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Join Us</a></h4>
+                            <h4 class="title"><a href="../../Account/Register" class="stretched-link">Join Us</a></h4>
                         </div>
                     </div>
                     <!--End Icon Box -->
@@ -188,11 +205,14 @@
 
                 @if (reader.Read())
                 {
+
                     ImageProcessViewModel imageProcess = new ImageProcessViewModel();
+                    byte[] imgByte1 = db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image;
+                    string imageUrl1 = imageProcess.getImageUrl(imgByte1);
                     <div class="top-servey-item col-xl-4 col-md-6 d-flex " data-aos="fade-up" data-aos-delay="100">
                         <div class="top-servey">
                             <div class="top-servey-user">
-                                <img src="~/assets/img/avatar/" class="img-fluid" alt="">
+                                <img src="@imageUrl1" class="img-fluid" alt="">
                                 <div class="">
                                     <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
                                     <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
@@ -213,13 +233,15 @@
                     </div>
                     if (reader.Read())
                     {
+                        byte[] imgByte2 = db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image;
+                        string imageUrl2 = imageProcess.getImageUrl(imgByte2);
                         <div class="top-servey-item col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                             <div class="top-servey">
                                 <div class="top-servey-user">
-                                    <img src="~/assets/img/avatar/" class="img-fluid" alt="">
+                                    <img src="@imageUrl2" class="img-fluid" alt="">
                                     <div>
                                         <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
-                                         <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                        <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
                                     </div>
                                 </div>
                                 <div class="top-servey-mark">
@@ -237,15 +259,15 @@
                         </div>
                         if (reader.Read())
                         {
-                            byte[] imgByte = db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image;
-                            string image3Url = imageProcess.getImageUrl(imgByte);
+                            byte[] imgByte3 = db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Image;
+                            string imageUrl3 = imageProcess.getImageUrl(imgByte3);
                             <div class="top-servey-item col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                                 <div class="top-servey">
                                     <div class="top-servey-user">
-                                        <img src="" class="img-fluid" alt="">
+                                        <img src="@imageUrl3" class="img-fluid" alt="">
                                         <div>
                                             <h4>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).Name</h4>
-                                             <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
+                                            <span>@db.AspNetUsers.Find(db.Registrations.Find(reader.GetInt32(0)).UserId).BirthDate.ToString("dd/MM/yyyy")</span>
                                         </div>
                                     </div>
                                     <div class="top-servey-mark">
@@ -499,13 +521,13 @@
                             <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="7" placeholder="Message" required></textarea>
+                            <textarea class="form-control" name="message" rows="7" placeholder="Message" required style="resize:none;"></textarea>
                         </div>
                         <div class="my-3">
                             <div class="loading">Loading</div>
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                         </div>
-                        <div class="text-center"><button type="submit" >Send Message</button></div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
                     </form>
                 </div><!-- End Contact Form -->
 

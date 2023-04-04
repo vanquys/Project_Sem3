@@ -1,4 +1,5 @@
 
+
 .faq-container {
     background: #008374;
     padding: 20px 0;
@@ -202,16 +203,20 @@ cf-title-03 {
 .cp-add-item{
     display:grid;
 }
-.lb-add-cp{
-    margin-bottom:8px;
-    font-weight:500;
-
+.lb-add-cp {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 17px;
+    margin-left: 8px;
+    color: #dce0e7;
 }
-.cp-add-item textarea{
-    resize:none;
-    margin-bottom:20px;
-    
-    padding:5px 7px;;
+.cp-add-item textarea {
+    resize: none;
+    margin-bottom: 20px;
+    padding: 5px 7px;
+    background-color: #9d995952;
+    border: none;
+    color: white;
 }
 /*.form-btn-ed{position:relative;}
 .form-btn-ed div {
@@ -227,7 +232,8 @@ cf-title-03 {
         background-color: #008374;
         border: none;
         border-radius: 5px;
-        padding:7px 25px;
+        padding: 7px 25px;
+        color: #d8caca;
     }
         .btn-add-cp button:hover {
             background-color: #019584;
@@ -236,9 +242,12 @@ cf-title-03 {
     display:grid;
     justify-content:center;
 }
-.faq-add-title h2{
-    font-weight:600;
-}
+    .faq-add-title h2 {
+        font-weight: 600;
+        font-family: 'Open Sans';
+        color: #d1d2c0;
+    }
+
 .btn-edit-faqs {
     cursor: pointer;
     background-color: #008374;
@@ -254,7 +263,7 @@ cf-title-03 {
         color:white;
     }
 .btn-delete {
-    color: white;
+    color: white;  
     border-radius: 5px;
     display: block;
     width: 100%;

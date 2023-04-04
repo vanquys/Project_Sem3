@@ -364,4 +364,8 @@ E:\C#\Project_Sem3\obj\Release\Project_Sem3.csproj.CoreCompileInputs.cache
 E:\C#\Project_Sem3\obj\Release\Project_Sem3.csproj.CopyComplete
 E:\C#\Project_Sem3\obj\Release\Project_Sem3.dll
 E:\C#\Project_Sem3\obj\Release\Project_Sem3.pdb
+E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.Migrations.anc.resources
+E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.Migrations.anchs.resources
+E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.Migrations.abcs.resources
+E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.csproj.GenerateResource.cache
 E:\GitHub\Project_Sem3\obj\Release\Project_Sem3.csproj.AssemblyReference.cache

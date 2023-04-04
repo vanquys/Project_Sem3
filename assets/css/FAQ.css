@@ -2,14 +2,16 @@
     z-index: 1000000;
 }
 
-.faq {
+#faq .faq {
     padding: unset;
+    margin-bottom:25px;
 }
 
 
 .faq-container {
     background: #008374;
     padding: 20px 0;
+    margin-bottom:25px;
 }
 
 .wrapper {

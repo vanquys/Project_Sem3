@@ -68,7 +68,7 @@
                     <th>Contestant</th>
                     <th>Status</th>
                 </tr>
-                @foreach (var m in Model)
+                @foreach (var m in Model.OrderByDescending(x => x.StartDate))
                 {
                     <tr class="ts">
                         <td class="no">
@@ -117,7 +117,10 @@
                                 }
                                 else
                                 {
-                                    <a class="cp-btn-join" href="/Account/Login">
+
+                                }
+                                {
+                                    <a class="cp-btn-join" href="/Account/Login?returnUrl=@Request.Url.PathAndQuery">
                                         Login To Join
                                     </a>
                                 }

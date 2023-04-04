@@ -8,9 +8,6 @@
     KSMTDbContext db = new KSMTDbContext();
     ImageProcessViewModel imageProcess = new ImageProcessViewModel();
 }
-<script>
-    console.log("hello");
-</script>
 @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
 {
     <script>alert("@ViewBag.SuccessMessage");</script>
@@ -50,7 +47,7 @@
                 <a class="sp-btn-btn-add">ADD</a>
             </div>
             <div class="sp-spter">
-                @foreach (var m in Model)
+                @foreach (var m in Model.OrderByDescending(x => x.Id))
                 {
                     string imageUrl = "";
 

@@ -218,6 +218,7 @@ namespace Project_Sem3.Controllers
                 ModelState.AddModelError("", "Isvalid login attempt");
                 return View(model);
             }
+
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -359,6 +360,10 @@ namespace Project_Sem3.Controllers
                 byte[] imageData = new byte[img.ContentLength];
                 img.InputStream.Read(imageData, 0, img.ContentLength);
                 imageByte = imageData;
+            }
+            else {
+                string defaultImagePath = Server.MapPath("~/assets/img/avatar/User-avatar.svg.png");
+                imageByte = System.IO.File.ReadAllBytes(defaultImagePath);
             }
             var account = new ApplicationUser {Name=model.Name,BirthDate = birthDate,PhoneNumber = model.Phone, UserName = model.Email, Email = model.Email, Image = imageByte, isResigned=isResigned, LockoutEndDateUtc = lockoutEndDateUtc, CreateDate= DateTime.UtcNow };
             SqlTransaction RegisterTrans = null;
