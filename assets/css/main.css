@@ -1476,7 +1476,7 @@ section {
         width: 90px;
         object-fit: cover;
         height: 90px;
-        filter: drop-shadow(2px 2px 9px #7b7b7bc7);
+        filter: drop-shadow(2px 2px 5px #7b7b7bc7);
     }
 .top-servey-user h4 {
     font-weight: 700;

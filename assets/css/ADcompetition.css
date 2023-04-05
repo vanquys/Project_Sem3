@@ -443,9 +443,10 @@ table td {
 }
 .cp-mark-score {   
     width: 5%;
-}    
-.cp-mark-btn {   
-    width: 10%;   
+}
+
+.cp-mark-btn {
+    width: 10%;
 }
 .cp-mark .btn-apply {
     display: block;

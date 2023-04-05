@@ -55,11 +55,10 @@ namespace Project_Sem3.Controllers
                 db.AspNetUsers.Remove(user);
                 db.SaveChanges();
                 return Json(new { success = true, message = "Deleted user successfully." });
-
             }
             catch (Exception e)
             {
-                return Json(new { success = false, message = "err: " + e.Message });
+                return Json(new { success = false, message = "this user is participating in the contest, can not delete !" });
 
             }
         }
