@@ -50,7 +50,7 @@
                         Log in
                     </span>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+                    <br />
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
                         @Html.TextBoxFor(m => m.Email, new { @class = "input100", @type = "text", @placeholder = "Username" })
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>

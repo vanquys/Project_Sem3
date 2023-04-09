@@ -186,16 +186,22 @@
     justify-content: center;
 }
 
-    .cp-add-form input {
-        width: 100%;
-        margin-bottom: 23px;
-        border: none;
-        padding: 5px;
-        background-color: #ffffff00;
-        border-bottom: 1px solid #a2b1a2;
-        color: #ffffffc9;
-        font-weight:500;
-    }
+.phone input::-webkit-outer-spin-button,
+.phone input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cp-add-form input {
+    width: 100%;
+    margin-bottom: 23px;
+    border: none;
+    padding: 5px;
+    background-color: #ffffff00;
+    border-bottom: 1px solid #a2b1a2;
+    color: #ffffffc9;
+    font-weight: 500;
+}
     .cp-add-form .image input{
         border:none;
     }

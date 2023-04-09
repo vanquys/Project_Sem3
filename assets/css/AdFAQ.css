@@ -214,9 +214,10 @@ cf-title-03 {
     resize: none;
     margin-bottom: 20px;
     padding: 5px 7px;
-    background-color: #9d995952;
+    background-color: #ffffff7a;
     border: none;
-    color: white;
+    color: #000000db;
+    border-radius: 5px;
 }
 /*.form-btn-ed{position:relative;}
 .form-btn-ed div {

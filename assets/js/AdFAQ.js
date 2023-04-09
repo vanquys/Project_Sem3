@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     var btnEdit = document.querySelectorAll('.btn-edit-faqs');
     const dialogedit = document.querySelector('.dialog-edit');
-    var btnAdd = document.querySelectorAll('.faq-btn-add');
+    var btnAdd = document.querySelectorAll('.faq-btn-add p');
     const dialogadd = document.querySelector('.dialog-add')
 
 
