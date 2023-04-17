@@ -1,6 +1,7 @@
 ﻿.listUser-table {
     text-align: center;
     overflow-x: scroll;
+    margin-bottom:60px;
 }
     .listUser-table table {
         --bs-table-bg: #c2ecc35e;
